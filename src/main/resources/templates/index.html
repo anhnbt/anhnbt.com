@@ -1,21 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Title</title>
-    <link rel="stylesheet" media="all" href="/css/bulma.min.css" th:href="@{/css/bulma.min.css}">
+    <title>Hello</title>
 </head>
 <body>
-<section class="section">
-    <div class="container">
-        <h1 class="title">
-            Hello World
-        </h1>
-        <p class="subtitle">
-            My first website with <strong>Bulma</strong>!
-        </p>
-    </div>
-</section>
+<div th:replace="fragments/layout :: header"></div>
+<div class="container">
+    <!-- /* Handle the flash message */-->
+    <th:block th:if="${message != null}">
+        <!-- /* The message code is returned from the @Controller */ -->
+        <div th:replace="fragments/components :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}(${#authentication.name})})">&nbsp;</div>
+    </th:block>
+    <p class="lead text-center">
+        Welcome to the Spring <span th:text="${springVersion}">0.0.0</span> MVC Quickstart application!
+    </p>
+</div>
+<div th:replace="fragments/layout :: footer"></div>
 </body>
 </html>

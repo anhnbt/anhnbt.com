@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title th:text="${metaTag.title}"></title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" th:href="@{/favicon-32x32.png}">
+    <meta name="description" content="AnhNBT là nơi chia sẻ những tiện ích hay công cụ về Game Mobile của Nguyễn Bá Tuấn Anh. Mời bạn ghé thăm trang và sử dụng công cụ tạo tên mới nhất của mình">
+    <link rel="canonical" th:href="${metaTag.canonical}">
+    <meta property="fb:app_id" content="1540103976279074" />
+    <meta property="og:locale" content="vi_VN">
+    <meta property="og:url" th:content="${metaTag.url}">
+    <meta property="og:type" th:content="${metaTag.type}">
+    <meta property="og:title" th:content="${metaTag.title}">
+    <meta property="og:description" th:content="${metaTag.description}">
+    <meta property="og:image" th:content="${metaTag.image}">
+    <link rel="stylesheet" media="all" href="/css/bulma.min.css" th:href="@{/css/bulma.min.css}">
+</head>
+<body>
+<!-- Header -->
+<header id="masthead" class="site-header" th:fragment="header">
+    <nav class="navbar is-info has-shadow" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" th:href="@{/}">
+                <img src="/images/logo-anhnbt.png" th:src="@{/images/logo-anhnbt.png}" alt="AnhNBT brand" width="120px" height="26px">
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navMenu" class="navbar-menu">
+            <div class="navbar-start">
+
+                <a class="navbar-item" th:href="@{/ky-tu-dac-biet}">Kí tự đặc biệt</a>
+                <a class="navbar-item" th:href="@{/chu-kieu}">Chữ kiểu</a>
+                <a class="navbar-item" th:href="@{/ten-game-hay}">Tên game hay</a>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        Công cụ
+                    </a>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" th:href="@{/chu-in-dam}">Chữ in đậm</a>
+                        <a class="navbar-item" th:href="@{/ki-tu-dac-biet-chu-nho}">Tạo chữ nhỏ</a>
+                        <a class="navbar-item" th:href="@{/tao-chu-i-am}">Tạo chữ IͥAͣMͫ</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <form action="#" th:action="@{/search}" method="GET">
+                        <div class="field is-grouped">
+                            <div class="control is-expanded">
+                                <label>
+                                    <input class="input" name="s" type="text" placeholder="Tìm kiếm tên game">
+                                </label>
+                            </div>
+                            <div class="control">
+                                <button type="submit" class="button">Tìm kiếm</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<!-- Footer -->
+<footer class="footer has-background-info has-text-info-light mt-3" th:fragment="footer">
+    <div class="content has-text-centered">
+        <p>© Copyright 2016-<span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2016</span> by <a th:href="@{/}" class="has-text-info-light">AnhNBT</a>™ <span th:text="${@environment.getProperty('app.version')}"></span></p>
+        <nav id="secondarynav" aria-label="Secondary menu">
+            <a th:href="@{/lien-he}" class="has-text-info-light">Liên hệ</a> ·
+            <a th:href="@{/gioi-thieu}" class="has-text-info-light">Giới thiệu</a> ·
+            <a th:href="@{/dieu-khoan-su-dung}" class="has-text-info-light">Điều khoản sử dụng</a> ·
+            <a th:href="@{/chinh-sach-bao-mat}" class="has-text-info-light">Chính sách bảo mật</a>
+        </nav>
+    </div>
+</footer>
+</body>
+</html>

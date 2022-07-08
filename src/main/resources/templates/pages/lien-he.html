@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head"></head>
+<body>
+<div th:replace="fragments/layout :: header"></div>
+<main class="container is-fluid pt-5">
+    <div class="columns">
+        <div class="column">
+            <div th:replace="fragments/components :: back"></div>
+            <article class="content">
+                <header>
+                    <h1 class="title" th:text="${metaTag.title}">&nbsp;</h1>
+                    <p class="is-italic">2 năm trước · 7.875 lượt xem</p>
+                </header>
+                <div class="entry-content">
+                    <p>Cảm ơn bạn đã quan tâm ghé thăm blog anhnbt.com của mình. Bạn có thể liên hệ góp ý&nbsp;với mình
+                        qua các kênh liên lạc phổ biến sau:</p>
+
+                    <p><strong>Email</strong>: <a
+                            href="mailto:anhnbt.it@gmail.com?subject=Xin%20ch%C3%A0o%20Nguy%E1%BB%85n%20B%C3%A1%20Tu%E1%BA%A5n%20Anh">anhnbt.it@gmail.com</a>
+                    </p>
+
+                    <p><strong>Address</strong>: P.604 Tầng 6 Tòa nhà Tây Hà, Số 19 Tố Hữu, Nam Từ Liêm, Hà Nội</p>
+
+                    <p><strong>Phone</strong>: <a href="tel:+84975737642">0975737642</a></p>
+
+                    <h2>Theo dõi AnhNBT trên các kênh MXH</h2>
+
+                    <ul>
+                        <li><a href="https://www.facebook.com/anhnbt">Facebook</a></li>
+                        <li><a href="https://www.youtube.com/channel/UCKoiCMAQotSZf-_zwSxlSjw">Youtube</a></li>
+                        <li><a href="https://www.linkedin.com/in/anhnbt/">Linkedin</a></li>
+                        <li><a href="https://github.com/anhnbt-it">Github</a></li>
+                    </ul>
+                </div><!-- .entry-content -->
+            </article>
+        </div>
+    </div>
+</main>
+<div th:replace="fragments/layout :: footer"></div>
+</body>
+</html>
