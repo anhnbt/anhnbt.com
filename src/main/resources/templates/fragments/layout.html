@@ -16,7 +16,7 @@
     <meta property="og:image" th:content="${metaTag.image}">
     <link rel="stylesheet" media="all" href="/css/bulma.min.css" th:href="@{/css/bulma.min.css}">
     <link rel="stylesheet" media="all" href="/css/bulma.min.css" th:href="@{/css/app.min.css}">
-    <script type="application/ld+json" th:utext="${schemaLdJson}"></script>
+    <script type="application/ld+json" th:unless="${schemaLdJson == null}" th:utext="${schemaLdJson}"></script>
 </head>
 <body>
 <!-- Header -->

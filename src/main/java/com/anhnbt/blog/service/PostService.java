@@ -8,4 +8,6 @@ public interface PostService {
     Iterable<Post> findAll();
 
     Optional<Post> findByPostName(String slug);
+
+    Post save(Post post);
 }

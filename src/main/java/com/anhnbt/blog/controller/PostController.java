@@ -8,6 +8,8 @@ import com.anhnbt.blog.service.PostService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,8 @@ import java.util.Optional;
 @Controller
 @RequestMapping
 public class PostController {
+
+    private Logger logger = LoggerFactory.getLogger(PostController.class);
 
     @Autowired
     private PostService postService;
@@ -53,12 +57,20 @@ public class PostController {
         json.setAuthor(new AuthorLdJson("Person", "Nguyễn Bá Tuấn Anh", baseUrl));
         json.setImage(List.of(baseUrl + "/uploads/" + post.getPostThumb()));
         ObjectMapper objectMapper = new ObjectMapper();
-        String jsonAsString;
+        String jsonAsString = null;
         try {
             jsonAsString = objectMapper.writeValueAsString(json);
+
+            post.setPostViewCount(post.getPostViewCount() + 1);
+            if (postService.save(post) == null) {
+                logger.info("Không cập nhật được post view");
+            }
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            // TODO 500 error page
+        } catch (Exception e) {
+            // TODO 500 error page
         }
+
         modelAndView.addObject("schemaLdJson", jsonAsString);
         modelAndView.addObject("metaTag", metaTag);
         modelAndView.addObject("post", post);

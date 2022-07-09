@@ -26,4 +26,9 @@ public class PostServiceImpl implements PostService {
     public Optional<Post> findByPostName(String slug) {
         return repo.findByPostName(slug);
     }
+
+    @Override
+    public Post save(Post post) {
+        return repo.save(post);
+    }
 }
