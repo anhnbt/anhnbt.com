@@ -1,20 +1,171 @@
 <!DOCTYPE html>
 <html lang="vi" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Hello</title>
-</head>
+<head th:replace="fragments/layout :: head"></head>
 <body>
 <div th:replace="fragments/layout :: header"></div>
-<div class="container">
-    <!-- /* Handle the flash message */-->
-    <th:block th:if="${message != null}">
-        <!-- /* The message code is returned from the @Controller */ -->
-        <div th:replace="fragments/components :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}(${#authentication.name})})">&nbsp;</div>
-    </th:block>
-    <p class="lead text-center">
-        Welcome to the Spring <span th:text="${springVersion}">0.0.0</span> MVC Quickstart application!
-    </p>
-</div>
+<!-- /* Handle the flash message */-->
+<th:block th:if="${message != null}">
+    <!-- /* The message code is returned from the @Controller */ -->
+    <div th:replace="fragments/components :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}(${#authentication.name})})">
+        &nbsp;
+    </div>
+</th:block>
+<main class="container is-fluid pt-5">
+    <section class="hero is-medium mb-6">
+        <div class="container has-text-centered">
+            <div class="hero-body">
+                <h1 class="title">BLOG của Nguyễn Bá Tuấn Anh <img src="/images/code.gif" th:src="@{/images/code.gif}"
+                                                                   width="30" style="max-width: 100%;" alt="Code"></h1>
+                <p class="subtitle">Đây là nơi mình chia sẻ những tiện ích hay công cụ về Game Mobile chẳng hạn như công
+                    cụ tạo tên bên dưới</p>
+            </div>
+            <div class="hero-light-line">
+                <img src="/images/brand-anhnbt.png" th:src="@{/images/brand-anhnbt.png}" alt="AnhNBT logo" width="30"
+                     height="30" class="hero-light-line-image">
+            </div>
+        </div>
+    </section>
+    <div class="container is-fluid">
+        <div class="columns is-desktop">
+            <div class="column">
+                <div class="columns">
+                    <div class="column">
+                        <div class="card">
+                            <div class="card-image">
+                                <a href="/ky-tu-dac-biet" th:href="@{/ky-tu-dac-biet}">
+                                    <figure class="image is-5by3">
+                                        <img src="/images/ki-tu-dac-biet-anhnbt.jpg"
+                                             th:src="@{/images/ki-tu-dac-biet-anhnbt.jpg}"
+                                             alt="Kí tự đặc biệt">
+                                    </figure>
+                                </a>
+                            </div>
+                            <div class="card-content">
+                                <h5 class="title is-5"><a href="/ky-tu-dac-biet" th:href="@{/ky-tu-dac-biet}">Kí tự đặc
+                                    biệt</a></h5>
+                                <p class="content">Hơn 1001 kí tự đặc biệt đẹp nhất cho ✅Liên Quân như trái tim ❤...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="card">
+                            <div class="card-image">
+                                <a href="/ten-game-hay">
+                                    <figure class="image is-5by3">
+                                        <img src="/images/ten-lien-quan-hay.jpg"
+                                             alt="Tên game hay nhất 2021">
+                                    </figure>
+                                </a>
+                            </div>
+                            <div class="card-content">
+                                <h5 class="title is-5"><a href="/ten-game-hay">Tên game
+                                    hay</a></h5>
+                                <p class="content">TOP hàng nghìn tên game hay nhất cho game thủ Việt Nam...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="card">
+                            <div class="card-image">
+                                <a href="/ki-tu-qua-tao">
+                                    <figure class="image is-5by3">
+                                        <img src="/images/ki-tu-qua-tao.jpg"
+                                             alt="Kí tự quả táo">
+                                    </figure>
+                                </a>
+                            </div>
+                            <div class="card-content">
+                                <h5 class="title is-5"><a href="/ki-tu-qua-tao">Kí tự quả
+                                    táo</a></h5>
+                                <p class="content">Trái táo cắn dở trong bảng mã Unicode và emoji như táo đỏ 🍎...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.columns -->
+                <div class="columns">
+                    <div class="column">
+                        <div class="card">
+                            <div class="card-image">
+                                <a href="/ki-tu-vuong-mien">
+                                    <figure class="image is-5by3">
+                                        <img src="/images/ki-tu-vuong-mien.jpg"
+                                             alt="Kí tự Vương Miện 亗">
+                                    </figure>
+                                </a>
+                            </div>
+                            <div class="card-content">
+                                <h5 class="title is-5"><a href="/ki-tu-vuong-mien">Kí tự
+                                    Vương Miện 亗</a></h5>
+                                <p class="content">Hình Vương miện Vua trắng ♔ trông có vẻ rất “quyền lực”...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="card">
+                            <div class="card-image">
+                                <a href="/ki-tu-tang-hinh">
+                                    <figure class="image is-5by3">
+                                        <img src="/images/ki-tu-tang-hinh.jpg"
+                                             alt="Dấu cách đặc biệt AnhNBT">
+                                    </figure>
+                                </a>
+                            </div>
+                            <div class="card-content">
+                                <h5 class="title is-5"><a href="/ki-tu-tang-hinh">Kí tự tàng
+                                    hình</a></h5>
+                                <p class="content">Bảng tên trắng giống tàng hình chỉ có trên điện thoại Android...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="card">
+                            <div class="card-image">
+                                <a href="/ki-tu-khoang-trong-ff">
+                                    <figure class="image is-5by3">
+                                        <img src="/images/ki-tu-khoang-trong-ff.jpg"
+                                             alt="Dấu cách đặc biệt AnhNBT">
+                                    </figure>
+                                </a>
+                            </div>
+                            <div class="card-content">
+                                <h5 class="title is-5"><a href="/ki-tu-khoang-trong-ff">Kí tự
+                                    khoảng trống FF</a></h5>
+                                <p class="content">Tên game hot có dấu cách ở giữa hỗ trợ FreeFire và LQM...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.columns -->
+                <h2>Bài viết mới nhất trên AnhNBT</h2>
+                <div class="columns" th:unless="${#lists.isEmpty(posts)}">
+                    <div class="column" th:each="post : ${posts}">
+                        <div class="card">
+                            <div class="card-image">
+                                <a href="#" th:href="@{/p/{url}.html(url=${post.postName})}">
+                                    <figure class="image is-5by3">
+                                        <th:block th:if="${post.postThumb != null}">
+                                            <img width="300" height="157" src="#"
+                                                 th:src="@{/uploads/{thumb}(thumb=${post.postThumb})}"
+                                                 th:alt="${post.postTitle}">
+                                        </th:block>
+                                        <th:block th:if="${post.postThumb == null}">
+                                            <img width="300" height="157" src="/images/no-images.png"
+                                                 th:src="@{/images/no-images.png}" th:alt="${post.postTitle}">
+                                        </th:block>
+                                    </figure>
+                                </a>
+                            </div>
+                            <div class="card-content">
+                                <h5 class="title is-5"><a href="#" th:href="@{/p/{url}.html(url=${post.postName})}" rel="bookmark"
+                                                          th:text="${post.postTitle}">&nbsp;</a></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.column -->
+        </div><!-- /.columns -->
+    </div><!-- /.container -->
+</main><!-- .site-main -->
 <div th:replace="fragments/layout :: footer"></div>
+<th:block th:replace="fragments/layout :: scripts"></th:block>
 </body>
 </html>

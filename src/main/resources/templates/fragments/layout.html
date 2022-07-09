@@ -15,6 +15,8 @@
     <meta property="og:description" th:content="${metaTag.description}">
     <meta property="og:image" th:content="${metaTag.image}">
     <link rel="stylesheet" media="all" href="/css/bulma.min.css" th:href="@{/css/bulma.min.css}">
+    <link rel="stylesheet" media="all" href="/css/bulma.min.css" th:href="@{/css/app.min.css}">
+    <script type="application/ld+json" th:utext="${schemaLdJson}"></script>
 </head>
 <body>
 <!-- Header -->
@@ -74,12 +76,15 @@
     <div class="content has-text-centered">
         <p>© Copyright 2016-<span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2016</span> by <a th:href="@{/}" class="has-text-info-light">AnhNBT</a>™ <span th:text="${@environment.getProperty('app.version')}"></span></p>
         <nav id="secondarynav" aria-label="Secondary menu">
-            <a th:href="@{/lien-he}" class="has-text-info-light">Liên hệ</a> ·
-            <a th:href="@{/gioi-thieu}" class="has-text-info-light">Giới thiệu</a> ·
-            <a th:href="@{/dieu-khoan-su-dung}" class="has-text-info-light">Điều khoản sử dụng</a> ·
-            <a th:href="@{/chinh-sach-bao-mat}" class="has-text-info-light">Chính sách bảo mật</a>
+            <a th:href="@{/p/lien-he.html}" class="has-text-info-light">Liên hệ</a> ·
+            <a th:href="@{/p/gioi-thieu.html}" class="has-text-info-light">Giới thiệu</a> ·
+            <a th:href="@{/p/dieu-khoan-su-dung.html}" class="has-text-info-light">Điều khoản sử dụng</a> ·
+            <a th:href="@{/p/chinh-sach-bao-mat.html}" class="has-text-info-light">Chính sách bảo mật</a>
         </nav>
     </div>
 </footer>
+<th:block th:fragment="scripts">
+    <script src="/js/app.min.js" th:src="@{/js/app.min.js}"></script>
+</th:block>
 </body>
 </html>
