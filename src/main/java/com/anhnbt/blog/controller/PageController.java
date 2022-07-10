@@ -37,6 +37,18 @@ public class PageController {
         model.addAttribute("posts", postService.findAll());
         return "index";
     }
+    @GetMapping("/ky-tu-dac-biet")
+    public String kiTuDacBiet(Model model) {
+        MetaTag metaTag = new MetaTag();
+        metaTag.setTitle("Kí tự đặc biệt AnhNBT - #1 Công cụ tạo tên game Mobile");
+        metaTag.setCanonical(baseUrl + "/ky-tu-dac-biet");
+        metaTag.setUrl(baseUrl + "/ky-tu-dac-biet");
+        metaTag.setType("article");
+        metaTag.setDescription("1001 Kí tự đặc biệt FF tạo tên kí tự đẹp Quân đoàn Free Fire, Liên Quân (LQ), PUBG như mặt quỷ ╰‿╯, mặt cười ×͜× , Cây dù ☂ và bảng kí hiệu đặc biệt.");
+        metaTag.setImage(baseUrl + "/images/ki-tu-dac-biet-anhnbt.jpg");
+        model.addAttribute("metaTag", metaTag);
+        return "pages/ky-tu-dac-biet";
+    }
 
     private void send301Redirect(HttpServletResponse response, String newUrl) {
         response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
