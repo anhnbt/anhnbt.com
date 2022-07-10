@@ -317,8 +317,8 @@
                 <div class="message" role="alert">
                     <p class="message-body">Một số ki tu dac biet yêu cầu hệ điều hành Android 6.0 và iOS 10.0 trở lên.</p>
                 </div>
-                <div id="nickNameList" class="box tags">
-                    Nickname here
+                <div id="nickNameList" class="box tags" th:unless="${#lists.isEmpty(nicknames)}">
+                    <span class="tag" th:each="nickname : ${nicknames}" th:attr="data-clipboard-text=${nickname.nickname}" th:text="${nickname.nickname}"></span>&nbsp;
                 </div>
                 <div class="has-text-centered mb-1"><button onclick="loadMoreNickName(this, 1, 20)" class="button is-small">Xem thêm »</button></div>
                 <div class="message is-info">

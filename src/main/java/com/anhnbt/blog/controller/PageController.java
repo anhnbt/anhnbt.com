@@ -1,9 +1,13 @@
 package com.anhnbt.blog.controller;
 
 import com.anhnbt.blog.model.MetaTag;
+import com.anhnbt.blog.service.NicknameService;
 import com.anhnbt.blog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +23,11 @@ public class PageController {
     private String baseUrl;
 
     private final PostService postService;
+    private final NicknameService nicknameService;
 
-    public PageController(PostService postService) {
+    public PageController(PostService postService, NicknameService nicknameService) {
         this.postService = postService;
+        this.nicknameService = nicknameService;
     }
 
     @GetMapping
@@ -37,6 +43,7 @@ public class PageController {
         model.addAttribute("posts", postService.findAll());
         return "index";
     }
+
     @GetMapping("/ky-tu-dac-biet")
     public String kiTuDacBiet(Model model) {
         MetaTag metaTag = new MetaTag();
@@ -47,6 +54,8 @@ public class PageController {
         metaTag.setDescription("1001 Kí tự đặc biệt FF tạo tên kí tự đẹp Quân đoàn Free Fire, Liên Quân (LQ), PUBG như mặt quỷ ╰‿╯, mặt cười ×͜× , Cây dù ☂ và bảng kí hiệu đặc biệt.");
         metaTag.setImage(baseUrl + "/images/ki-tu-dac-biet-anhnbt.jpg");
         model.addAttribute("metaTag", metaTag);
+        Pageable sortedByIdDesc = PageRequest.of(0, 20, Sort.by("id").descending());
+        model.addAttribute("nicknames", nicknameService.findAll(sortedByIdDesc));
         return "pages/ky-tu-dac-biet";
     }
 
