@@ -24,27 +24,19 @@
                     <li>Công cụ tạo <a href="/chu-kieu">Chữ kiểu</a> đẹp!</li>
                 </ul>
                 <div class="my-2 has-text-centered">
-                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <!-- AnhNBT Auto Home -->
-                    <ins class="adsbygoogle"
-                         style="display:block"
-                         data-ad-client="ca-pub-8660218247964227"
-                         data-ad-slot="9066451365"
-                         data-ad-format="auto"
-                         data-full-width-responsive="true"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
+                    ADS HERE
                 </div>
                 <form method="POST" class="box">
                     <div class="field">
                         <div class="control">
+                            <label for="myName" class="is-sr-only">Nhập tên</label>
                             <input type="text" name="myName" id="myName" placeholder="Nhập tên hoặc nickname của bạn" class="input" aria-required="true" required>
                         </div>
                     </div>
                     <div class="field has-addons has-addons-centered">
                         <div class="control">
                                 <span class="select">
+                                    <label for="symbolLeft" class="is-sr-only">Chọn ký tự Trái</label>
                                     <select name="symbolLeft" id="symbolLeft">
                                         <option value="">-Trái-</option>
                                         <option value="꧁༺">꧁༺</option>
@@ -120,6 +112,7 @@
                         </div>
                         <div class="control">
                             <div class="select">
+                                <label for="symbolCenter" class="is-sr-only">Chọn ký tự giữa</label>
                                 <select name="symbolCenter" id="symbolCenter">
                                     <option value="">-Giữa-</option>
                                     <option value=" ">Dấu cách đặc biệt</option>
@@ -168,6 +161,7 @@
                         </div>
                         <div class="control">
                                 <span class="select">
+                                    <label for="symbolRight" class="is-sr-only">Chọn ký tự phải</label>
                                     <select name="symbolRight" id="symbolRight">
                                         <option value="">-Phải-</option>
                                         <option value="༻꧂">༻꧂</option>
@@ -250,19 +244,8 @@
                             <button type="submit" class="button is-info" id="ajaxButton" onclick="toPerfectName(this); return false;">Tạo tên kí tự đặc biệt</button>
                         </div>
                     </div>
-                    <div id="aMessage"></div>
                     <div class="my-2 has-text-centered">
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                        <!-- AnhNBT Auto 2 -->
-                        <ins class="adsbygoogle"
-                             style="display:block"
-                             data-ad-client="ca-pub-8660218247964227"
-                             data-ad-slot="1225805580"
-                             data-ad-format="auto"
-                             data-full-width-responsive="true"></ins>
-                        <script>
-                            (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>
+                        ADS HERE
                     </div>
                     <div id="result"></div>
                 </form>
@@ -277,7 +260,6 @@
                     <table class="table is-bordered is-fullwidth">
                         <caption class="is-size-4">Kí tự đặc biệt phổ biến</caption>
                         <tbody>
-                        </tr>
                         <tr>
                             <td>✅ Mặt Quỷ</td>
                             <td>╰‿╯</td>
@@ -297,7 +279,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="fb-comments" data-href="https://anhnbt.com/ky-tu-dac-biet" data-numposts="5" data-width="100%" data-order-by="reverse_time"></div>
+<!--                comment here-->
                 <h2>Kí tự đặc biệt Free Fire</h2>
                 <div class="tags">
                     <span class="tag" data-clipboard-text="ᴀɴʜ┋ɴʙᴛ">ᴀɴʜ┋ɴʙᴛ</span>&nbsp;
@@ -336,26 +318,7 @@
                     <p class="message-body">Một số ki tu dac biet yêu cầu hệ điều hành Android 6.0 và iOS 10.0 trở lên.</p>
                 </div>
                 <div id="nickNameList" class="box tags">
-                    <?php
-                    //Connecting to Redis server on localhost
-                    $redis = new Redis();
-                    $redis->connect('/home/anhnbtco/redis/redis.sock', 0);
-                    $redis->expire("nicknames", 86400); // expires in 1 day = 86400
-                    if ($redis->llen("nicknames") < 1) {
-                    require_once '../inc/config.php';
-                    $queryString = "SELECT nickname from tbl_nickname WHERE `status` = 1 ORDER BY id DESC LIMIT 0, 20";
-                    $result = mysqli_query($conn, $queryString);
-                    if(mysqli_num_rows($result) > 0) :
-                    while($row = mysqli_fetch_assoc($result)) :
-                    $redis->rpush("nicknames", $row['nickname']);
-                    endwhile;
-                    endif;
-                    }
-                    $nicknames = $redis->lrange("nicknames", 0, -1);
-                    foreach ($nicknames as $value) { ?>
-                    <span class="tag" data-clipboard-text="<?php echo $value; ?>"><?php echo $value; ?></span>&nbsp;
-                    <?php }
-                    ?>
+                    Nickname here
                 </div>
                 <div class="has-text-centered mb-1"><button onclick="loadMoreNickName(this, 1, 20)" class="button is-small">Xem thêm »</button></div>
                 <div class="message is-info">
@@ -365,67 +328,67 @@
                 <div class="box">
                     <ul class="list-unstyled m-0">
                         <li class="media mb-1">
-                            <a href="<?php echo getHomeUrl(); ?>/chu-in-dam">
+                            <a href="/chu-in-dam">
                                 <picture>
-                                    <source media="(max-width: 188px)" srcset="<?php echo getHomeUrl(); ?>/images/chu-in-dam-188w.jpg">
-                                    <source media="(min-width: 800px)" srcset="<?php echo getHomeUrl(); ?>/images/chu-in-dam.jpg">
-                                    <img width="188" height="106" src="<?php echo getHomeUrl(); ?>/images/chu-in-dam.jpg" alt="Chữ in đậm" class="align-self-center mr-3" loading="lazy">
+                                    <source media="(max-width: 188px)" srcset="/images/chu-in-dam-188w.jpg">
+                                    <source media="(min-width: 800px)" srcset="/images/chu-in-dam.jpg">
+                                    <img width="188" height="106" src="/images/chu-in-dam.jpg" alt="Chữ in đậm" class="align-self-center mr-3" loading="lazy">
                                 </picture>
                             </a>
                             <div class="media-body">
-                                <a class="mt-0 mb-1 font-weight-bold" href="<?php echo getHomeUrl(); ?>/chu-in-dam">Chữ in đậm</a>
+                                <a class="mt-0 mb-1 font-weight-bold" href="/chu-in-dam">Chữ in đậm</a>
                                 <p><small>13 tháng 8 2021</small></p>
                             </div>
                         </li>
                         <li class="media mb-1">
-                            <a href="<?php echo getHomeUrl(); ?>/ki-tu-tang-hinh">
+                            <a href="/ki-tu-tang-hinh">
                                 <picture>
-                                    <source media="(max-width: 188px)" srcset="<?php echo getHomeUrl(); ?>/images/ki-tu-tang-hinh-ff-188w.jpg">
-                                    <source media="(min-width: 800px)" srcset="<?php echo getHomeUrl(); ?>/images/ki-tu-tang-hinh-ff.jpg">
-                                    <img width="188" height="106" src="<?php echo getHomeUrl(); ?>/images/ki-tu-tang-hinh-ff.jpg" alt="Kí tự tàng hình" class="align-self-center mr-3" loading="lazy">
+                                    <source media="(max-width: 188px)" srcset="/images/ki-tu-tang-hinh-ff-188w.jpg">
+                                    <source media="(min-width: 800px)" srcset="/images/ki-tu-tang-hinh-ff.jpg">
+                                    <img width="188" height="106" src="/images/ki-tu-tang-hinh-ff.jpg" alt="Kí tự tàng hình" class="align-self-center mr-3" loading="lazy">
                                 </picture>
                             </a>
                             <div class="media-body">
-                                <a class="mt-0 mb-1 font-weight-bold" href="<?php echo getHomeUrl(); ?>/ki-tu-tang-hinh">Kí tự tàng hình</a>
+                                <a class="mt-0 mb-1 font-weight-bold" href="/ki-tu-tang-hinh">Kí tự tàng hình</a>
                                 <p><small>5 tháng 8 2021</small></p>
                             </div>
                         </li>
                         <li class="media mb-1">
-                            <a href="<?php echo getHomeUrl(); ?>/ki-tu-khoang-trong-ff">
+                            <a href="/ki-tu-khoang-trong-ff">
                                 <picture>
-                                    <source media="(max-width: 188px)" srcset="<?php echo getHomeUrl(); ?>/images/ki-tu-khoang-trong-ff-188w.jpg">
-                                    <source media="(min-width: 800px)" srcset="<?php echo getHomeUrl(); ?>/images/ki-tu-khoang-trong-ff.jpg">
-                                    <img width="188" height="106" src="<?php echo getHomeUrl(); ?>/images/ki-tu-khoang-trong-ff.jpg" alt="Kí tự khoảng trống FF" class="align-self-center mr-3" loading="lazy">
+                                    <source media="(max-width: 188px)" srcset="/images/ki-tu-khoang-trong-ff-188w.jpg">
+                                    <source media="(min-width: 800px)" srcset="/images/ki-tu-khoang-trong-ff.jpg">
+                                    <img width="188" height="106" src="/images/ki-tu-khoang-trong-ff.jpg" alt="Kí tự khoảng trống FF" class="align-self-center mr-3" loading="lazy">
                                 </picture>
                             </a>
                             <div class="media-body">
-                                <a class="mt-0 mb-1 font-weight-bold" href="<?php echo getHomeUrl(); ?>/ki-tu-khoang-trong-ff">Kí tự khoảng trống FF</a>
+                                <a class="mt-0 mb-1 font-weight-bold" href="/ki-tu-khoang-trong-ff">Kí tự khoảng trống FF</a>
                                 <p><small>02 tháng 8 2021</small></p>
                             </div>
                         </li>
                         <li class="media mb-1">
-                            <a href="<?php echo getHomeUrl(); ?>/chu-kieu">
+                            <a href="/chu-kieu">
                                 <picture>
-                                    <source media="(max-width: 188px)" srcset="<?php echo getHomeUrl(); ?>/images/chu-kieu-188w.jpg">
-                                    <source media="(min-width: 800px)" srcset="<?php echo getHomeUrl(); ?>/images/chu-kieu.jpg">
-                                    <img width="188" height="106" src="<?php echo getHomeUrl(); ?>/images/chu-kieu.jpg" alt="Chữ kiểu" class="align-self-center mr-3" loading="lazy">
+                                    <source media="(max-width: 188px)" srcset="/images/chu-kieu-188w.jpg">
+                                    <source media="(min-width: 800px)" srcset="/images/chu-kieu.jpg">
+                                    <img width="188" height="106" src="/images/chu-kieu.jpg" alt="Chữ kiểu" class="align-self-center mr-3" loading="lazy">
                                 </picture>
                             </a>
                             <div class="media-body">
-                                <a class="mt-0 mb-1 font-weight-bold" href="<?php echo getHomeUrl(); ?>/chu-kieu">Chữ kiểu</a>
+                                <a class="mt-0 mb-1 font-weight-bold" href="/chu-kieu">Chữ kiểu</a>
                                 <p><small>26 tháng 7 2021</small></p>
                             </div>
                         </li>
                         <li class="media mb-1">
-                            <a href="<?php echo getHomeUrl(); ?>/tao-chu-i-am">
+                            <a href="/tao-chu-i-am">
                                 <picture>
-                                    <source media="(max-width: 188px)" srcset="<?php echo getHomeUrl(); ?>/images/ki-tu-i-am-nho-188w.jpg">
-                                    <source media="(min-width: 800px)" srcset="<?php echo getHomeUrl(); ?>/images/ki-tu-i-am-nho.jpg">
-                                    <img width="188" height="106" src="<?php echo getHomeUrl(); ?>/images/ki-tu-i-am-nho.jpg" alt="Tạo chữ IͥAͣMͫ" class="align-self-center mr-3" loading="lazy">
+                                    <source media="(max-width: 188px)" srcset="/images/ki-tu-i-am-nho-188w.jpg">
+                                    <source media="(min-width: 800px)" srcset="/images/ki-tu-i-am-nho.jpg">
+                                    <img width="188" height="106" src="/images/ki-tu-i-am-nho.jpg" alt="Tạo chữ IͥAͣMͫ" class="align-self-center mr-3" loading="lazy">
                                 </picture>
                             </a>
                             <div class="media-body">
-                                <a class="mt-0 mb-1 font-weight-bold" href="<?php echo getHomeUrl(); ?>/tao-chu-i-am">Tạo chữ IͥAͣMͫ</a>
+                                <a class="mt-0 mb-1 font-weight-bold" href="/tao-chu-i-am">Tạo chữ IͥAͣMͫ</a>
                                 <p><small>26 tháng 7 2021</small></p>
                             </div>
                         </li>
@@ -453,7 +416,6 @@
                     <p>Ӕ	Ǣ 	Ǽ	℄	ɶ	ʣ	ʤ	ʥ	Ԙ	Ѥ	ǣ	ѥ	ȸ 	ȹ	ѩ </p>
                     <p>␡ ␟ ␖ ␙ ␜ ␝ ℠ ℡ ™ ℻ ʬ Ξ 🅏 ᴭ Ԙ</p>
                     <p>웃 유 ℬ ℰ ℯ ℱ ℊ ℋ ℎ ℐ ℒ ℓ ℳ ℴ ℘ ℛ ℭ ℮ ℌ ℑ ℜ ℨ</p>
-                    </table>
                     <p class="has-text-centered">()==[:::::::::::::><br>
                         ▬▬ι═══════ﺤ<br>
                         -═══════ι▬▬<br>
