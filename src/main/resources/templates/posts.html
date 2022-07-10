@@ -10,7 +10,10 @@
             <article class="content">
                 <header>
                     <h1 class="title" th:text="${post.postTitle}">&nbsp;</h1>
-                    <p class="is-italic"><span th:text="${#dates.format(post.postModified, 'dd-MMM-yyyy')}"></span> · <span th:text="${#numbers.formatInteger(post.postViewCount,3,'POINT')}"></span> lượt xem</p>
+                    <p class="is-italic has-text-grey">
+                        <time th:datetime="${#dates.format(post.postModified, 'dd-MM-yyyy')}" th:text="${#dates.format(post.postModified, 'dd-MM-yyyy')}">23/02/2022</time>
+                        · <span th:text="${#numbers.formatInteger(post.postViewCount,3,'POINT')}"></span> lượt xem
+                    </p>
                 </header>
                 <div class="entry-content" th:utext="${post.contentEscape}"></div><!-- .entry-content -->
             </article>
