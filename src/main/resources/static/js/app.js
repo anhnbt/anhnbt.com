@@ -1,8 +1,8 @@
 function toPerfectName(elm) {
   elm.innerHTML = "Đang đổi tên...";
   const resultDOM = document.getElementById("result"),
-    msg = document.getElementById("aMessage"),
-    myName = document.getElementById("myName");
+      msg = document.getElementById("txtMessage"),
+      myName = document.getElementById("myName");
   const xhttp = new XMLHttpRequest();
   if (myName.value === "") {
     elm.innerHTML = 'Tạo tên kí tự đặc biệt';
@@ -17,10 +17,10 @@ function toPerfectName(elm) {
       "symbolLeft": document.getElementById("symbolLeft").value,
       "symbolRight": document.getElementById("symbolRight").value,
       "symbolCenter": document.getElementById("symbolCenter").value
-  };
+    };
     elm.classList.add("is-loading");
     xhttp.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
+      if (this.readyState === 4 && this.status === 200) {
         myName.classList.remove("is-danger");
         const resp = JSON.parse(this.responseText);
         let html = '';
@@ -73,21 +73,45 @@ function loadMoreNickName(btn, nextPage, recordsPerPage) {
   nickNameList.innerHTML = `<img class="d-block mx-auto" src="${baseURL}/images/spinner.gif" alt="loading"><p class="text-center">Đang tải dữ liệu ...</p>`;
 
   const http = new XMLHttpRequest();
-  http.open("POST", baseURL + "/ajax/loadMoreNickName.php", true);
-  http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  http.open("GET", baseURL + "/nicknames?page=" + nextPage + "&size=" + recordsPerPage, true);
+  http.setRequestHeader("Content-type", "application/json");
   http.onreadystatechange = function () {
-    if (http.readyState == 4 && http.status == 200) {
-      setTimeout(() => {
-        btn.remove();
-        nickNameList.innerHTML = http.responseText;
-      }, 200);
+    if (http.readyState === 4 && http.status === 200) {
+      console.log(http.responseText);
+      if (http.responseText) {
+        const resp = JSON.parse(http.responseText);
+        if (resp.code === '00') {
+          btn.remove();
+          let html = '';
+          if (resp.data.content.length) {
+            html += '<div class="box tags">';
+            for (let i = 0; i < resp.data.content.length; i++) {
+              html += '<span class="tag" data-clipboard-text="' + resp.data.content[i].nickname + '">' + resp.data.content[i].nickname + '</span>&nbsp;';
+            }
+            html += `</div><div class="has-text-centered mb-1">
+                    <button onclick="loadMoreNickName(this, ${nextPage}+1, ${recordsPerPage})" class="button is-primary is-small">Xem tiếp »</button>
+                   </div>`;
+          } else {
+            html += `<div class="has-background-warning p-2 mb-2">Đã tải hết dữ liệu.</div><div class="has-text-centered mb-1">
+                    <button onclick="loadMoreNickName(this, 1, ${recordsPerPage})" class="button is-primary is-small">Tải lại</button>
+                   </div>`;
+          }
+          nickNameList.innerHTML = html;
+        } else {
+          //TODO
+        }
+      } else {
+        //TODO
+      }
+    } else {
+      //TODO
     }
   };
-  http.send("nextPage=" + nextPage + "&recordsPerPage=" + recordsPerPage);
-  gtag("event", "pagination", {
-    event_category: "button",
-    event_label: "load_page_" + nextPage,
-  });
+  http.send();
+  // gtag("event", "pagination", {
+  //     event_category: "button",
+  //     event_label: "load_page_" + nextPage,
+  // });
 }
 
 function copyToClipboardInput(elm) {
@@ -117,8 +141,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   const $navbarBurgers = Array.prototype.slice.call(
-    document.querySelectorAll(".navbar-burger"),
-    0
+      document.querySelectorAll(".navbar-burger"),
+      0
   );
 
   if ($navbarBurgers.length > 0) {
