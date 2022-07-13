@@ -15,12 +15,20 @@
             <article class="content">
                 <header>
                     <h1>Kí tự đặc biệt</h1>
-                    <p class="is-italic"><small class="has-text-grey"><time datetime="2022-02-23">23/02/2022</time></small></p>
+                    <p class="is-italic"><small class="has-text-grey">
+                        <time datetime="2022-02-23">23/02/2022</time>
+                    </small></p>
                 </header>
-                <p>Xin chào, bạn đang tìm <strong>kí tự đặc biệt</strong> đẹp? Tại đây bạn có thể khám phá hàng nghìn <em>kí tự đẹp</em> dành riêng cho mình!</p>
-                <p>Bạn có thể chọn Kí tự trái tim ❤, ngôi sao ★, mặt quỷ ╰‿╯ hay Mặt Cười ×͜×, <a href="/ki-tu-vuong-mien" title="Kí tự Vương miện">Vương miện 亗</a>, cây dù ⛱ ☂ và nhiều hơn nữa.</p>
+                <p>Xin chào, bạn đang tìm <strong>kí tự đặc biệt</strong> đẹp? Tại đây bạn có thể khám phá hàng nghìn
+                    <em>kí tự đẹp</em> dành riêng cho mình!</p>
+                <p>Bạn có thể chọn Kí tự trái tim ❤, ngôi sao ★, mặt quỷ ╰‿╯ hay Mặt Cười ×͜×, <a
+                        href="/ki-tu-vuong-mien" title="Kí tự Vương miện">Vương miện 亗</a>, cây dù ⛱ ☂ và nhiều hơn nữa.
+                </p>
                 <ul>
-                    <li>Ra mắt ứng dụng <a href="https://kitudacbiet.com/anhnbt-key-ban-phim-ki-tu-dac-biet/" target="_blank" rel="noopener noreferrer">AnhNBT Key: Bàn phím kí tự đặc biệt</a>.</li>
+                    <li>Ra mắt ứng dụng <a href="https://kitudacbiet.com/anhnbt-key-ban-phim-ki-tu-dac-biet/"
+                                           target="_blank" rel="noopener noreferrer">AnhNBT Key: Bàn phím kí tự đặc
+                        biệt</a>.
+                    </li>
                     <li>Công cụ tạo <a href="/chu-kieu">Chữ kiểu</a> đẹp!</li>
                 </ul>
                 <div class="my-2 has-text-centered">
@@ -30,7 +38,8 @@
                     <div class="field">
                         <div class="control">
                             <label for="myName" class="is-sr-only">Nhập tên</label>
-                            <input type="text" name="myName" id="myName" placeholder="Nhập tên hoặc nickname của bạn" class="input" aria-required="true" required>
+                            <input type="text" name="myName" id="myName" placeholder="Nhập tên hoặc nickname của bạn"
+                                   class="input" aria-required="true" required>
                         </div>
                     </div>
                     <div class="field has-addons has-addons-centered">
@@ -241,9 +250,12 @@
                     </div>
                     <div class="field has-text-centered">
                         <div class="control">
-                            <button type="submit" class="button is-info" id="ajaxButton" onclick="toPerfectName(this); return false;">Tạo tên kí tự đặc biệt</button>
+                            <button type="submit" class="button is-info" id="ajaxButton"
+                                    onclick="toPerfectName(this); return false;">Tạo tên kí tự đặc biệt
+                            </button>
                         </div>
                     </div>
+                    <div id="txtMessage"></div>
                     <div class="my-2 has-text-centered">
                         ADS HERE
                     </div>
@@ -279,7 +291,7 @@
                         </tbody>
                     </table>
                 </div>
-<!--                comment here-->
+                <!--                comment here-->
                 <h2>Kí tự đặc biệt Free Fire</h2>
                 <div class="tags">
                     <span class="tag" data-clipboard-text="ᴀɴʜ┋ɴʙᴛ">ᴀɴʜ┋ɴʙᴛ</span>&nbsp;
@@ -315,14 +327,22 @@
                 </div>
                 <h2>Kí tự đặc biệt Liên Quân</h2>
                 <div class="message" role="alert">
-                    <p class="message-body">Một số ki tu dac biet yêu cầu hệ điều hành Android 6.0 và iOS 10.0 trở lên.</p>
+                    <p class="message-body">Một số ki tu dac biet yêu cầu hệ điều hành Android 6.0 và iOS 10.0 trở
+                        lên.</p>
                 </div>
-                <div id="nickNameList" class="box tags" th:unless="${#lists.isEmpty(nicknames)}">
-                    <span class="tag" th:each="nickname : ${nicknames}" th:attr="data-clipboard-text=${nickname.nickname}" th:text="${nickname.nickname}"></span>&nbsp;
-                </div>
-                <div class="has-text-centered mb-1"><button onclick="loadMoreNickName(this, 1, 20)" class="button is-small">Xem thêm »</button></div>
+                <section id="nickNameList" th:unless="${#lists.isEmpty(nicknames)}">
+                    <div class="box tags">
+                        <span class="tag" th:each="nickname : ${nicknames}"
+                              th:attr="data-clipboard-text=${nickname.nickname}" th:text="${nickname.nickname}"></span>&nbsp;
+                    </div>
+                    <div class="has-text-centered mb-1">
+                        <button onclick="loadMoreNickName(this, 2, 20)" class="button is-small">Xem thêm »</button>
+                    </div>
+                </section>
                 <div class="message is-info">
-                    <p class="message-body">Hãy giúp AnhNBT trở thành một website với hàng nghìn tên game hay và chất lượng bằng cách <a href="#" th:href="@{/search#create}" target="_blank" rel="noreferrer noopener">đóng góp tên game</a>.</p>
+                    <p class="message-body">Hãy giúp AnhNBT trở thành một website với hàng nghìn tên game hay và chất
+                        lượng bằng cách <a href="#" th:href="@{/search#create}" target="_blank"
+                                           rel="noreferrer noopener">đóng góp tên game</a>.</p>
                 </div>
                 <h3 class="is-size-3">Bài viết nổi bật trên AnhNBT</h3>
                 <div class="box">
@@ -332,7 +352,9 @@
                                 <picture>
                                     <source media="(max-width: 188px)" srcset="/images/chu-in-dam-188w.jpg">
                                     <source media="(min-width: 800px)" srcset="/images/chu-in-dam.jpg">
-                                    <img width="188" height="106" src="/images/chu-in-dam.jpg" th:src="@{/images/chu-in-dam.jpg}" alt="Chữ in đậm" class="align-self-center mr-3" loading="lazy">
+                                    <img width="188" height="106" src="/images/chu-in-dam.jpg"
+                                         th:src="@{/images/chu-in-dam.jpg}" alt="Chữ in đậm"
+                                         class="align-self-center mr-3" loading="lazy">
                                 </picture>
                             </a>
                             <div class="media-body">
@@ -345,11 +367,14 @@
                                 <picture>
                                     <source media="(max-width: 188px)" srcset="/images/ki-tu-tang-hinh-ff-188w.jpg">
                                     <source media="(min-width: 800px)" srcset="/images/ki-tu-tang-hinh-ff.jpg">
-                                    <img width="188" height="106" src="/images/ki-tu-tang-hinh-ff.jpg" th:src="@{/images/ki-tu-tang-hinh-ff.jpg}" alt="Kí tự tàng hình" class="align-self-center mr-3" loading="lazy">
+                                    <img width="188" height="106" src="/images/ki-tu-tang-hinh-ff.jpg"
+                                         th:src="@{/images/ki-tu-tang-hinh-ff.jpg}" alt="Kí tự tàng hình"
+                                         class="align-self-center mr-3" loading="lazy">
                                 </picture>
                             </a>
                             <div class="media-body">
-                                <a class="mt-0 mb-1 font-weight-bold" href="/ki-tu-tang-hinh" th:href="@{/ki-tu-tang-hinh}">Kí tự tàng hình</a>
+                                <a class="mt-0 mb-1 font-weight-bold" href="/ki-tu-tang-hinh"
+                                   th:href="@{/ki-tu-tang-hinh}">Kí tự tàng hình</a>
                                 <p><small>5 tháng 8 2021</small></p>
                             </div>
                         </li>
@@ -358,11 +383,14 @@
                                 <picture>
                                     <source media="(max-width: 188px)" srcset="/images/ki-tu-khoang-trong-ff-188w.jpg">
                                     <source media="(min-width: 800px)" srcset="/images/ki-tu-khoang-trong-ff.jpg">
-                                    <img width="188" height="106" src="/images/ki-tu-khoang-trong-ff.jpg" th:src="@{/images/ki-tu-khoang-trong-ff.jpg}" alt="Kí tự khoảng trống FF" class="align-self-center mr-3" loading="lazy">
+                                    <img width="188" height="106" src="/images/ki-tu-khoang-trong-ff.jpg"
+                                         th:src="@{/images/ki-tu-khoang-trong-ff.jpg}" alt="Kí tự khoảng trống FF"
+                                         class="align-self-center mr-3" loading="lazy">
                                 </picture>
                             </a>
                             <div class="media-body">
-                                <a class="mt-0 mb-1 font-weight-bold" href="#" th:href="@{/ki-tu-khoang-trong-ff}">Kí tự khoảng trống FF</a>
+                                <a class="mt-0 mb-1 font-weight-bold" href="#" th:href="@{/ki-tu-khoang-trong-ff}">Kí tự
+                                    khoảng trống FF</a>
                                 <p><small>02 tháng 8 2021</small></p>
                             </div>
                         </li>
@@ -371,7 +399,9 @@
                                 <picture>
                                     <source media="(max-width: 188px)" srcset="/images/chu-kieu-188w.jpg">
                                     <source media="(min-width: 800px)" srcset="/images/chu-kieu.jpg">
-                                    <img width="188" height="106" src="/images/chu-kieu.jpg" th:src="@{/images/chu-kieu.jpg}" alt="Chữ kiểu" class="align-self-center mr-3" loading="lazy">
+                                    <img width="188" height="106" src="/images/chu-kieu.jpg"
+                                         th:src="@{/images/chu-kieu.jpg}" alt="Chữ kiểu" class="align-self-center mr-3"
+                                         loading="lazy">
                                 </picture>
                             </a>
                             <div class="media-body">
@@ -384,11 +414,14 @@
                                 <picture>
                                     <source media="(max-width: 188px)" srcset="/images/ki-tu-i-am-nho-188w.jpg">
                                     <source media="(min-width: 800px)" srcset="/images/ki-tu-i-am-nho.jpg">
-                                    <img width="188" height="106" src="/images/ki-tu-i-am-nho.jpg" th:src="@{/images/ki-tu-i-am-nho.jpg}" alt="Tạo chữ IͥAͣMͫ" class="align-self-center mr-3" loading="lazy">
+                                    <img width="188" height="106" src="/images/ki-tu-i-am-nho.jpg"
+                                         th:src="@{/images/ki-tu-i-am-nho.jpg}" alt="Tạo chữ IͥAͣMͫ"
+                                         class="align-self-center mr-3" loading="lazy">
                                 </picture>
                             </a>
                             <div class="media-body">
-                                <a class="mt-0 mb-1 font-weight-bold" href="#" th:href="@{/tao-chu-i-am}">Tạo chữ IͥAͣMͫ</a>
+                                <a class="mt-0 mb-1 font-weight-bold" href="#" th:href="@{/tao-chu-i-am}">Tạo chữ
+                                    IͥAͣMͫ</a>
                                 <p><small>26 tháng 7 2021</small></p>
                             </div>
                         </li>
@@ -397,23 +430,24 @@
                 <section class="all-symbols">
                     <h3>Ký tự đẹp FF</h3>
                     <figure class="has-text-centered">
-                        <img width="480" height="270" src="/images/ki-tu-dac-biet-anhnbt.jpg" th:src="@{/images/ki-tu-dac-biet-anhnbt.jpg}" alt="Kí tự đặc biệt" loading="lazy">
+                        <img width="480" height="270" src="/images/ki-tu-dac-biet-anhnbt.jpg"
+                             th:src="@{/images/ki-tu-dac-biet-anhnbt.jpg}" alt="Kí tự đặc biệt" loading="lazy">
                         <figcaption>
                             Kí tự đặc biệt FF
                         </figcaption>
                     </figure>
-                    <p>࿐	亗	ツ	✿	-`ღ´-	༉ 	༊	Ლ	Ღ	ౘ	༒	☻ 	☹ 	༄	༆	༇	༈	༊	҉	𓅂 	༂	༃	⚚</p>
-                    <p>๖	؄	ఴ	𐩔	𐩘	𐰒	𐰑	ᚕ	ᚖ	ᚗ	ᚘ	ᚙ	፠	፨	ᴥ	᠁	ꔚ	᪤	᪥	ద	⫷	⫸	ʕ˖͜͡˖ʔ</p>
-                    <p>꧁	꧂	𐑧	𐑨	𐑩	𐑪	‿	⁀	⁔	⁐	⟅	⟆	༼	༽	༾	༿	༺	༻	༿	༾	ઈ	ઉ</p>
-                    <p>⟡	⟢	⟣	𐑥	𐑯	꒰	꒱	ʚ 	ɞ	ꔻ	ꔼ	ꕢ	ꕣ	ꕤ	ꕥ	ᱦ	ᱬ	ద	ధ	ర	ಠ	ఠ</p>
-                    <p>★	๛	𒀱	〠	֍	֎	ஜ	෴ 	🍾 	✌	✍	✎	� 	♆	۩	⬳	乄	ཉྀ	 ̈ ߹	꧃	𐩕	థ</p>
-                    <p>•	٭	⋆	˖	ﾟ°° ﾟ	⁺	ஃ	༚ 	༛	۵	༔	⁒	‼	‽	ᚘ	ᚕ	ᚖ	៚	٭</p>
-                    <p>ༀ	␥	␦	ᚌ	ᚍ	ᚎ	ᚏ	ఢ	〓	〄	๑	⊰ 	⊱ 	⁋	⁑	௵	ᚙ	ɷ 	ߡ	ߥ‎	ߦ‎	ߧ</p>
-                    <p>࿂	࿃	࿄	࿅	࿆	࿇	࿈	࿉	࿊	࿋	࿌	᪣	ᴭ	߷	ཉིཾ	ᙛ	ᙜ	ᙝ	ᙞ	༕	༖	༗</p>
-                    <p>᳀	᳁	᳂	᳃	᳄	᳅	᳆	᳇	ణ	త	Ꙩ	᭄	ఠ	◌ͧ	꙰	꙲	༜	ꮸ	𐐝	𐑅	𑁍	🝮</p>
-                    <p>؄	㍍	Ƀ ͢	Ƀ 	㉺ 	҂	✰	𒅒 	⫷ 	⫸ 	𒁂 	𒈒	𒈞 	هز	ههههه	ஓ	ଐ 	 ۝	۞	᪠	᪡	᪢</p>
-                    <p>⁂	⁎	ᨵ	ᨧ	ᨻ	᯼	᯽	᯾	᯿	ᱦ	ᱬ	𒋨 	Ꙭ	ꙭ	ꙮ	ஐ	ഋ	ൠ	⎛	⎞	⎝	⎠</p>
-                    <p>Ӕ	Ǣ 	Ǽ	℄	ɶ	ʣ	ʤ	ʥ	Ԙ	Ѥ	ǣ	ѥ	ȸ 	ȹ	ѩ </p>
+                    <p>࿐ 亗 ツ ✿ -`ღ´- ༉ ༊ Ლ Ღ ౘ ༒ ☻ ☹ ༄ ༆ ༇ ༈ ༊ ҉ 𓅂 ༂ ༃ ⚚</p>
+                    <p>๖ ؄ ఴ 𐩔 𐩘 𐰒 𐰑 ᚕ ᚖ ᚗ ᚘ ᚙ ፠ ፨ ᴥ ᠁ ꔚ ᪤ ᪥ ద ⫷ ⫸ ʕ˖͜͡˖ʔ</p>
+                    <p>꧁ ꧂ 𐑧 𐑨 𐑩 𐑪 ‿ ⁀ ⁔ ⁐ ⟅ ⟆ ༼ ༽ ༾ ༿ ༺ ༻ ༿ ༾ ઈ ઉ</p>
+                    <p>⟡ ⟢ ⟣ 𐑥 𐑯 ꒰ ꒱ ʚ ɞ ꔻ ꔼ ꕢ ꕣ ꕤ ꕥ ᱦ ᱬ ద ధ ర ಠ ఠ</p>
+                    <p>★ ๛ 𒀱 〠 ֍ ֎ ஜ ෴ 🍾 ✌ ✍ ✎ � ♆ ۩ ⬳ 乄 ཉྀ ̈ ߹ ꧃ 𐩕 థ</p>
+                    <p>• ٭ ⋆ ˖ ﾟ°° ﾟ ⁺ ஃ ༚ ༛ ۵ ༔ ⁒ ‼ ‽ ᚘ ᚕ ᚖ ៚ ٭</p>
+                    <p>ༀ ␥ ␦ ᚌ ᚍ ᚎ ᚏ ఢ 〓 〄 ๑ ⊰ ⊱ ⁋ ⁑ ௵ ᚙ ɷ ߡ ߥ‎ ߦ‎ ߧ</p>
+                    <p>࿂ ࿃ ࿄ ࿅ ࿆ ࿇ ࿈ ࿉ ࿊ ࿋ ࿌ ᪣ ᴭ ߷ ཉིཾ ᙛ ᙜ ᙝ ᙞ ༕ ༖ ༗</p>
+                    <p>᳀ ᳁ ᳂ ᳃ ᳄ ᳅ ᳆ ᳇ ణ త Ꙩ ᭄ ఠ ◌ͧ ꙰ ꙲ ༜ ꮸ 𐐝 𐑅 𑁍 🝮</p>
+                    <p>؄ ㍍ Ƀ ͢ Ƀ ㉺ ҂ ✰ 𒅒 ⫷ ⫸ 𒁂 𒈒 𒈞 هز ههههه ஓ ଐ ۝ ۞ ᪠ ᪡ ᪢</p>
+                    <p>⁂ ⁎ ᨵ ᨧ ᨻ ᯼ ᯽ ᯾ ᯿ ᱦ ᱬ 𒋨 Ꙭ ꙭ ꙮ ஐ ഋ ൠ ⎛ ⎞ ⎝ ⎠</p>
+                    <p>Ӕ Ǣ Ǽ ℄ ɶ ʣ ʤ ʥ Ԙ Ѥ ǣ ѥ ȸ ȹ ѩ </p>
                     <p>␡ ␟ ␖ ␙ ␜ ␝ ℠ ℡ ™ ℻ ʬ Ξ 🅏 ᴭ Ԙ</p>
                     <p>웃 유 ℬ ℰ ℯ ℱ ℊ ℋ ℎ ℐ ℒ ℓ ℳ ℴ ℘ ℛ ℭ ℮ ℌ ℑ ℜ ℨ</p>
                     <p class="has-text-centered">()==[:::::::::::::><br>
@@ -431,14 +465,16 @@
                         ╾━╤デ╦︻<br><br>
                         Ⓞ═╦╗</p>
                     <h3 id="ki-tu-ngoi-sao">Kí tự ngôi sao - bông hoa</h3>
-                    <p>✲ ⋆ ❄ ❅ ❇ ❈ ❖ ✫ ✪ ✩ ★ ☆ ✬ ✮ ✭ ✯ ✰ ✹ ✸ ✷ ✶ ✵ ✳ ✱ ❊ ❉ ✾ ✽ ✼ ✠ ☆ ★ ✡ ✴ ✺ ☼ ☸ ❋ ✽ ✻ ❆ ۞ ۝ ☀ ❃ ❂ ✿ ❀ ❁</p>
-                    <p>Kí tự Cỏ 3 lá <code>☘</code>, Hoa năm cánh (Cỏ 4 lá): <code>❀</code>, Quả táo Apple <code></code></p>
+                    <p>✲ ⋆ ❄ ❅ ❇ ❈ ❖ ✫ ✪ ✩ ★ ☆ ✬ ✮ ✭ ✯ ✰ ✹ ✸ ✷ ✶ ✵ ✳ ✱ ❊ ❉ ✾ ✽ ✼ ✠ ☆ ★ ✡ ✴ ✺ ☼ ☸ ❋ ✽ ✻ ❆ ۞ ۝ ☀ ❃ ❂ ✿ ❀
+                        ❁</p>
+                    <p>Kí tự Cỏ 3 lá <code>☘</code>, Hoa năm cánh (Cỏ 4 lá): <code>❀</code>, Quả táo Apple
+                        <code></code></p>
                     <p>Dấu cộng nhỏ phía trên: <code>⁺</code></p>
                     <h3 id="ki-tu-trai-tim">Kí tự trái tim tình yêu</h3>
                     <p>💕 ❤ ❥ ♥ ♡ ♥ ❣ ❦ ❧ ☙ ღ ɞ 💖</p>
                     <h3>Ký hiệu dấu ngoặc</h3>
-                    <p>〈	〉	《	》	「	」	『	』	【	】	〚	〛	◢ 	◣ 	◥	◤ ⌈	 ⌉  ⌊  ⌋ ⌌	⌍⌎ ⌏</p>
-                    <p>⦃	⦄	⦅	⦆	⦇	⦈	⦉	⦊	〔	〕	〖	〗	〘	〙	◜	◝ ⌜	⌝	⌞ ⌟</p>
+                    <p>〈 〉 《 》 「 」 『 』 【 】 〚 〛 ◢ ◣ ◥ ◤ ⌈ ⌉ ⌊ ⌋ ⌌ ⌍⌎ ⌏</p>
+                    <p>⦃ ⦄ ⦅ ⦆ ⦇ ⦈ ⦉ ⦊ 〔 〕 〖 〗 〘 〙 ◜ ◝ ⌜ ⌝ ⌞ ⌟</p>
                     <h3>Kí tự số</h3>
                     <p>⅟ ¼ ½ ⅓ ⅔ ¾ ⅕ ⅐ ⅑ ⅒</p>
                     <p>Kí tự năm sinh</p>
@@ -454,10 +490,10 @@
                     <p>➀ ➁ ➂ ➃ ➄ ➅ ➆ ➇ ➈ ➉</p>
                     <p>➊ ➋ ➌ ➍ ➎ ➏ ➐ ➑ ➒ ➓</p>
                     <p>⓵ ⓶ ⓷ ⓸ ⓹ ⓺ ⓻ ⓼ ⓽ ⓾</p>
-                    <p>㉈	㉉	㉊	㉋	㉌	㉍	㉎	㉏</p>
-                    <p>㉑	㉒	㉓	㉔	㉕	㉖	㉗	㉘	㉙	㉚	㉛	㉜	㉝	㉞	㉟</p>
-                    <p>㊱	㊲	㊳	㊴	㊵	㊶	㊷	㊸	㊹	㊺	㊻	㊼	㊽	㊾	㊿</p>
-                    <p>㋀	㋁	㋂	㋃	㋄	㋅	㋆	㋇	㋈	㋉	㋊	㋋</p>
+                    <p>㉈ ㉉ ㉊ ㉋ ㉌ ㉍ ㉎ ㉏</p>
+                    <p>㉑ ㉒ ㉓ ㉔ ㉕ ㉖ ㉗ ㉘ ㉙ ㉚ ㉛ ㉜ ㉝ ㉞ ㉟</p>
+                    <p>㊱ ㊲ ㊳ ㊴ ㊵ ㊶ ㊷ ㊸ ㊹ ㊺ ㊻ ㊼ ㊽ ㊾ ㊿</p>
+                    <p>㋀ ㋁ ㋂ ㋃ ㋄ ㋅ ㋆ ㋇ ㋈ ㋉ ㋊ ㋋</p>
                     <h3>Kí hiệu mũi tên</h3>
                     <p>← ↑ → ↓ ↔ ↕ ↖ ↗ ↘ ↙ ↚ ↛ ↜ ↝ ↞ ↟</p>
                     <p>➳ ➴ ➵ ➶ ➷ ➸ ➹ ➺ ➻ ➼ ➽</p>
@@ -474,8 +510,8 @@
                         ▶ ●─────────── 5:35<br>
                         ▂ ▄ ▅ ▇ █ ♪♫♥ MUSIC IS MY LIFE ♥♪♫ █ ▇ ▆ ▄ ▂ <br>
                         ♩ ♪ ♫ ♬ ♭ ♮ ♯ 𝄪 𝄆 𝄇 𝄈 𝄐 𝄑 𝄒 𝆒 𝆓 𝄫 𝄞 𝄢 𝄡 ☊ ☋ ✦ ✧</p>
-                    <p>⏩	⏪	⏫	⏬	⏭	⏮	⏯	◀	◁	◂	◃	◄	◅</p>
-                    <p>⏹	⏺	⊲	 ⊳	⊴	⊵  ▶	▷	▸	▹	►	▻</p>
+                    <p>⏩ ⏪ ⏫ ⏬ ⏭ ⏮ ⏯ ◀ ◁ ◂ ◃ ◄ ◅</p>
+                    <p>⏹ ⏺ ⊲ ⊳ ⊴ ⊵ ▶ ▷ ▸ ▹ ► ▻</p>
                     <h3>Kí tự đặc biệt mặt quỷ</h3>
                     <p>╰‿╯ ╰︵╯ ╰_╯ ╰︹╯ ☠️╰‿╯</p>
                     <p>◥◣_◢◤ ◥◣︿◢◤ (◣_◢) ◥◣‿◢◤</p>
@@ -498,13 +534,13 @@
                     <p>⛰ ⛱ ⛲ ⛳ ⛴ ⛵ ⛷ ⛸ ⛹ ⛺ ⛽</p>
                     <p>◔ ⌘ ｡◕‿◕｡ ツت ヅ ッ シ ٿ</p>
                     <p>⊙ ☉ ☌ ☍ ⌒ ❛❜ ❝ ❞</p>
-                    <p>🜀	🜁	🜂	🜃	🜄	🜅	🜆	🜇	🜈	🜉	🜊	🜋	🜌	🜍	🜎	🜏	🝳</p>
-                    <p>🜐	🜑	🜒	🜓	🜔	🜕	🜖	🜗	🜘	🜙	🜚	🜛	🜜	🜝	🜞	🜟	🝱</p>
-                    <p>🜠	🜡	🜢	🜣	🜤	🜥	🜦	🜧	🜨	🜩	🜪	🜫	🜬	🜭	🜮	🜯	🝲</p>
-                    <p>🜰	🜱	🜲	🜳	🜴	🜵	🜶	🜷	🜸	🜹	🜺	🜻	🜼	🜽	🜾	🜿</p>
-                    <p>🝀	🝁	🝂	🝃	🝄	🝅	🝆	🝇	🝈	🝉	🝊	🝋	🝌	🝍	🝎	🝏	</p>
-                    <p>🝐	🝑	🝒	🝓	🝔	🝕	🝖	🝗	🝘	🝙	🝚	🝛	🝜	🝝	🝞	🝟</p>
-                    <p>🝠	🝡	🝢	🝣	🝤	🝥	🝦	🝧	🝨	🝩	🝪	🝫	🝬	🝭	🝮	🝯	🝰</p>
+                    <p>🜀 🜁 🜂 🜃 🜄 🜅 🜆 🜇 🜈 🜉 🜊 🜋 🜌 🜍 🜎 🜏 🝳</p>
+                    <p>🜐 🜑 🜒 🜓 🜔 🜕 🜖 🜗 🜘 🜙 🜚 🜛 🜜 🜝 🜞 🜟 🝱</p>
+                    <p>🜠 🜡 🜢 🜣 🜤 🜥 🜦 🜧 🜨 🜩 🜪 🜫 🜬 🜭 🜮 🜯 🝲</p>
+                    <p>🜰 🜱 🜲 🜳 🜴 🜵 🜶 🜷 🜸 🜹 🜺 🜻 🜼 🜽 🜾 🜿</p>
+                    <p>🝀 🝁 🝂 🝃 🝄 🝅 🝆 🝇 🝈 🝉 🝊 🝋 🝌 🝍 🝎 🝏 </p>
+                    <p>🝐 🝑 🝒 🝓 🝔 🝕 🝖 🝗 🝘 🝙 🝚 🝛 🝜 🝝 🝞 🝟</p>
+                    <p>🝠 🝡 🝢 🝣 🝤 🝥 🝦 🝧 🝨 🝩 🝪 🝫 🝬 🝭 🝮 🝯 🝰</p>
                     <h2>Ký tự tiền tệ</h2>
                     <p>₠ ₡ ₢ ₣ ₤ ₥ ₦ ₧ ₨ ₩ ₪ ₫ € ₭ ₮ ₯ ₰ ₱ ₲ ₳ ₴ ₵ ₶ ₷ ₸ ₹ ₺ ₻ ₼ ₽ ₾ ₿</p>
                     <h2>Bảng ký tự đặc biệt</h2>
@@ -512,7 +548,8 @@
                     <p>๖ۣۣۜB b Þ ъ þ ƀ ᏸ Ꮟ ƃ Ƅ ƅ ϸ Ъ Ь ь Ѣ ѣ Ҍ ҍ ẞ ␢ ß Ɓ Ƃ Ƀ β в ߘ ᛔ Ꞵ 𐌱 ꞵ</p>
                     <p>๖ۣۣۜC ¢ © ͻ ͼ ć ƈ ĉ ċ ς č ͽ ζ Ϛ ᥴ ϲ Ͼ Ͽ ҁ Ҁ Ҫ ҫ כ Ꮸ C Ç Ć Ĉ Č Ċ Ɔ Ƈ Ȼ Ϲ Ͻ</p>
                     <p>๖ۣۣۜD d ɖ ɗ Ꮷ ď Ꮄ ȡ ḋ δ ɖ ɗ Ԁ Ԃ ԃ ᶁ ᶑ Ď Ɗ Ḋ ᗫ Ɗ đ ð Ƌ ƌ ϼ ք ᵭ</p>
-                    <p>๖ۣۣۜE ē ҿ ĕ ǝ ë ė ȅ ę ȇ ě ȩ ɇ έ ε ᥱ ϵ ϶ ҽ э ё є ӭ ѯ ҙ ӟ ӟ ᶒ ᶓ ᶔ ᶕ Ē Ĕ Ė Ę Ě Ǝ Ȅ Ȇ Ë Ȩ Ɇ Ξ Ѐ Ё Є Э Ə Ҽ Ӗ Ӟ Ӭ Ѯ Ҙ Ӡ Ɛ ξ Ḙ Ḛ Ḝ 𐊤</p>
+                    <p>๖ۣۣۜE ē ҿ ĕ ǝ ë ė ȅ ę ȇ ě ȩ ɇ έ ε ᥱ ϵ ϶ ҽ э ё є ӭ ѯ ҙ ӟ ӟ ᶒ ᶓ ᶔ ᶕ Ē Ĕ Ė Ę Ě Ǝ Ȅ Ȇ Ë Ȩ Ɇ Ξ Ѐ Ё Є Э
+                        Ə Ҽ Ӗ Ӟ Ӭ Ѯ Ҙ Ӡ Ɛ ξ Ḙ Ḛ Ḝ 𐊤</p>
                     <p>๖ۣۣۜF Ƒ ƒ Ḟ ḟ Ϝ ϝ Ғ ғ Ӻ ӻ ɟ Բ Ꮈ ᵳ ᵮ ᶂ Ḟ ẜ ẝ 𐊥 𐍆</p>
                     <p>๖ۣۣۜG ǧ ĝ ģ ğ ġ ǥ ᏽ Ꮆ ᶃ ꬶ Ĝ Ğ Ġ Ģ Ɠ Ǥ Ǧ Ǵ ᏻ Ᏽ Ꮹ</p>
                     <p>๖ۣۣۜH ӊ Ꮒ ħ ƕ Ӌ ӌ ȟ Ђ Ћ ч ђ ћ Ч Ҷ ҷ Ҹ ҹ Һ һ ӈ ԋ Ԧ ԧ ԩ Ᏺ Ĥ Ħ Ƕ Ȟ н Ң ң Ҥ ҥ Ӈ Ԩ Ӊ Ԋ ĥ</p>
@@ -522,13 +559,15 @@
                     <p>๖ۣۣۜL £ լ Ꮭ ĺ ᥨ ļ ᶅ ľ ŀ ł ſ Ɩ Ĺ Ļ Ľ Ŀ Ł Ƚ Ѓ Г Ӷ ᴌ</p>
                     <p>๖ۣۣۜM Ɯ ṁ Ϣ ϣ ш щ ო ლ რ ന ഩ ൩ ൰ ᵯ ᶆ Ო 𐌼 Ṁ Ϻ Ш Щ Ӎ ൬ ϻ м ӎ ᛖ</p>
                     <p>๖ۣۣۜN n ń ñ ņ ƞ ň ŉ Ŋ ŋ ǹ Ƞ ȵ ͷ ή η դ ղ ת ր ᵰ ᶇ ᥟ ᥢ ᥒ Ñ Ń Ņ Ň Ɲ Ǹ Ͷ ϰ И Й П Ѝ Л и Ҋ Ӣ Ӥ 𐌽</p>
-                    <p>๖ۣۣۜO ō ø ö ŏ ő ƍ ǿ ȍ ȏ ȫ ȭ ȯ ȱ ο σ Ꮻ ϙ ѳ ѻ о ӫ Փ ꚛ ᴓ Ö Ø Ō Ŏ Ő Ɵ Ǿ Ȍ Ȏ Ȫ Ȭ Ȯ Ȱ Θ θ Φ ϕ Ϙ Ѻ Ф Ѳ Ӫ Ꮎ</p>
+                    <p>๖ۣۣۜO ō ø ö ŏ ő ƍ ǿ ȍ ȏ ȫ ȭ ȯ ȱ ο σ Ꮻ ϙ ѳ ѻ о ӫ Փ ꚛ ᴓ Ö Ø Ō Ŏ Ő Ɵ Ǿ Ȍ Ȏ Ȫ Ȭ Ȯ Ȱ Θ θ Φ ϕ Ϙ Ѻ Ф Ѳ Ӫ
+                        Ꮎ</p>
                     <p>๖ۣۣۜP Ƥ ƥ ƿ Ƿ Ṗ ṗ ρ Ϸ Ҏ ҏ թ ק ᵱ ᵽ ᶈ</p>
                     <p>๖ۣۣۜQ ¶ Ǫ ǫ Ǭ ǭ Ϥ ϥ Ҩ ҩ գ ੧ ʠ զ գ</p>
                     <p>๖ۣۣۜR ȑ ɍ ŕ ř ŗ ȓ ᶉ ṛ ṝ ṟ Ŕ Ŗ Ř Ʀ Ȑ Ȓ Я Ꭱ Ꮢ ᴙ я Ɍ ® Ṛ Ṝ Ṟ 𐍂</p>
                     <p>๖ۣۣۜS § Ꭶ ś ş ŝ ƨ Ƽ ƽ š ș ȿ ṡ Ϩ Ꮥ ៜ ទ ᳱ ᵴ ᶊ ṡ ṣ ṥ ṧ Ś Ŝ Ş Š Ƨ Ș Ṡ ֆ ડ Ṡ Ṥ Ṧ Ṩ</p>
                     <p>๖ۣۣۜT Ţ Ƭ Ť Ʈ Ŧ Ț Ⱦ Ṫ Ͳ ͳ т Ҭ ҭ ţ ť ŧ ƫ ƭ ƾ ț ȶ ṫ τ ʇ է Ꮏ Ϯ ϯ Է ߙ ᵵ</p>
-                    <p>๖ۣۣۜU µ ü ũ ū ŭ ů ű ų ǖ ǘ ǘ ǚ ǜ ȕ ȗ υ ΰ μ ϋ ύ ц ṳ ṵ ṷ ṹ ṻ ᥳ ᥙ ᥛ ꭒ Ù Ú Û Ü Ũ Ū Ŭ Ů Ų Ʊ Ʋ Ǖ Ǘ Ǚ Ǜ Ȕ Ȗ Ȗ Ц Ҵ Ʉ Ա Ꮜ ᵾ Ṳ Ṵ Ṷ Ṹ Ṻ</p>
+                    <p>๖ۣۣۜU µ ü ũ ū ŭ ů ű ų ǖ ǘ ǘ ǚ ǜ ȕ ȗ υ ΰ μ ϋ ύ ц ṳ ṵ ṷ ṹ ṻ ᥳ ᥙ ᥛ ꭒ Ù Ú Û Ü Ũ Ū Ŭ Ů Ų Ʊ Ʋ Ǖ Ǘ Ǚ Ǜ Ȕ
+                        Ȗ Ȗ Ц Ҵ Ʉ Ա Ꮜ ᵾ Ṳ Ṵ Ṷ Ṹ Ṻ</p>
                     <p>๖ۣۣۜV Ʌ ν ϑ Ϫ ϫ Ѵ ѵ Ѷ ѷ ݍ ᶌ</p>
                     <p>๖ۣۣۜW ẉ ŵ ẇ ẁ ẅ ẃ ẃ ẅ ẁ ѿ ψ ω ώ ϖ ѡ ῲ ῳ ῴ ῶ ῷ ᥕ Ŵ Ẁ Ẃ Ẅ Ώ Ω ധ Ẁ Ẃ Ẅ Ẇ Ẉ</p>
                     <p>๖ۣۣۜX × χ Ж ж Җ җ Ҳ ҳ Ӂ ӂ Ӽ ӽ Ӿ ӿ א Ⴟ ჯ ᶍ ꭓ Ẍ</p>
@@ -550,21 +589,26 @@
                     <p>Ａ Ｂ Ｃ Ｄ Ｅ Ｆ Ｇ Ｈ Ｉ Ｊ Ｋ Ｌ Ｍ Ｎ Ｏ Ｐ Ｑ Ｒ Ｓ Ｔ Ｕ Ｖ Ｗ Ｘ Ｙ Ｚ</p>
                     <p>ａ ｂ ｃ ｄ ｅ ｆ ｇ ｈ ｉ ｊ ｋ ｌ ｍ ｎ ｏ ｐ ｑ ｒ ｓ ｔ ｕ ｖ ｗ ｘ ｙ ｚ</p>
                     <h3>Bảng Unicode chữ Thái Lan</h3>
-                    <p>ก ข ฃ ค ฅ ฆ ง จ ฉ ช ซ ฌ ญ ฎ ฏ ฐ ฑ ฒ ณ ด ต ถ ท ธ น บ ป ผ ฝ พ ฟ ภ ม ย ร ฤ ล ฦ ว ศ ษ ส ห ฬ อ ฮ ฯ ะ ั า ำ ิ ี ึ ื ุ ู ฺ ฿ เ แ โ ใ ไ ๅ ๆ ็ ่ ้ ๊ ๋ ์ ํ ๎ ๏ ๐ ๑ ๒ ๓ ๔ ๕ ๖ ๗ ๘ ๙ ๚ ๛</p>
+                    <p>ก ข ฃ ค ฅ ฆ ง จ ฉ ช ซ ฌ ญ ฎ ฏ ฐ ฑ ฒ ณ ด ต ถ ท ธ น บ ป ผ ฝ พ ฟ ภ ม ย ร ฤ ล ฦ ว ศ ษ ส ห ฬ อ ฮ ฯ ะ ั
+                        า ำ ิ ี ึ ื ุ ู ฺ ฿ เ แ โ ใ ไ ๅ ๆ ็ ่ ้ ๊ ๋ ์ ํ ๎ ๏ ๐ ๑ ๒ ๓ ๔ ๕ ๖ ๗ ๘ ๙ ๚ ๛</p>
                     <h3>Bảng chữ cái Trung Quốc</h3>
-                    <p>㉄	㉅	㉆	㉇	㊀	㊁	㊂	㊃	㊄	㊅	㊆	㊇	㊈	㊉	㊊	㊋	㊌	㊍	㊎	㊏	🈰	🈱	🈣	🈤	🈥	🈦	🈧	🈨	🈩<p>
-                    <p>㊰	㊐	㊑	㊒	㊓	㊔	㊕	㊖	㊗	㊘	㊙	㊚	㊛	㊜	㊝	㊞	㊟	🈐	🈑	🈒	🈓	🈪	🈫	🈬	🈭	🈮	🈯<p>
-                    <p>㊠	㊡	㊢	㊣	㊤	㊥	㊦	㊧	㊨	㊩	㊪	㊫	㊬	㊭	㊮	㊯	🈠	🈡	🈢	🈔	🈕	🈖	🈗	🈘	🈙	🈚	🈛	🈜	🈝	🈞	🈟<p>
-                    <p>🈲	🈳	🈴	🈵	🈶	🈷	🈸	🈹	🈺	🉀	🉁	🉂	🉃	🉄	🉅	🉆	🉇	🉈	🉐	🉑<p>
+                    <p>㉄ ㉅ ㉆ ㉇ ㊀ ㊁ ㊂ ㊃ ㊄ ㊅ ㊆ ㊇ ㊈ ㊉ ㊊ ㊋ ㊌ ㊍ ㊎ ㊏ 🈰 🈱 🈣 🈤 🈥 🈦 🈧 🈨 🈩
+                    <p>
+                    <p>㊰ ㊐ ㊑ ㊒ ㊓ ㊔ ㊕ ㊖ ㊗ ㊘ ㊙ ㊚ ㊛ ㊜ ㊝ ㊞ ㊟ 🈐 🈑 🈒 🈓 🈪 🈫 🈬 🈭 🈮 🈯
+                    <p>
+                    <p>㊠ ㊡ ㊢ ㊣ ㊤ ㊥ ㊦ ㊧ ㊨ ㊩ ㊪ ㊫ ㊬ ㊭ ㊮ ㊯ 🈠 🈡 🈢 🈔 🈕 🈖 🈗 🈘 🈙 🈚 🈛 🈜 🈝 🈞 🈟
+                    <p>
+                    <p>🈲 🈳 🈴 🈵 🈶 🈷 🈸 🈹 🈺 🉀 🉁 🉂 🉃 🉄 🉅 🉆 🉇 🉈 🉐 🉑
+                    <p>
                     <h3>Bảng chữ cái Nhật Bản</h3>
-                    <p>㋐	㋑	㋒	㋓	㋔	㋕	㋖	㋗	㋘	㋙	㋚	㋛	㋜	㋝	㋞	㋟</p>
-                    <p>㋠	㋡	㋢	㋣	㋤	㋥	㋦	㋧	㋨	㋩	㋪	㋫	㋬	㋭	㋮	㋯</p>
-                    <p>㋰	㋱	㋲	㋳	㋴	㋵	㋶	㋷	㋸	㋹	㋺	㋻	㋼	㋽	㋾</p>
+                    <p>㋐ ㋑ ㋒ ㋓ ㋔ ㋕ ㋖ ㋗ ㋘ ㋙ ㋚ ㋛ ㋜ ㋝ ㋞ ㋟</p>
+                    <p>㋠ ㋡ ㋢ ㋣ ㋤ ㋥ ㋦ ㋧ ㋨ ㋩ ㋪ ㋫ ㋬ ㋭ ㋮ ㋯</p>
+                    <p>㋰ ㋱ ㋲ ㋳ ㋴ ㋵ ㋶ ㋷ ㋸ ㋹ ㋺ ㋻ ㋼ ㋽ ㋾</p>
                     <h3>Bảng chữ cái Hàn Quốc</h3>
-                    <p>㉠	㉡	㉢	㉣	㉤	㉥	㉦	㉧	㉨	㉩	㉪	㉫	㉬	㉭	㉮	㉯</p>
-                    <p>㉰	㉱	㉲	㉳	㉴	㉵	㉶	㉷	㉸	㉹	㉺	㉻	㉿</p>
-                    <p>㈀	㈁	㈂	㈃	㈄	㈅	㈆	㈇	㈈	㈉	㈊	㈋	㈌	㈍	㈎	㈏</p>
-                    <p>㈐	㈑	㈒	㈓	㈔	㈕	㈖	㈗	㈘	㈙	㈚	㈛	㈜</p>
+                    <p>㉠ ㉡ ㉢ ㉣ ㉤ ㉥ ㉦ ㉧ ㉨ ㉩ ㉪ ㉫ ㉬ ㉭ ㉮ ㉯</p>
+                    <p>㉰ ㉱ ㉲ ㉳ ㉴ ㉵ ㉶ ㉷ ㉸ ㉹ ㉺ ㉻ ㉿</p>
+                    <p>㈀ ㈁ ㈂ ㈃ ㈄ ㈅ ㈆ ㈇ ㈈ ㈉ ㈊ ㈋ ㈌ ㈍ ㈎ ㈏</p>
+                    <p>㈐ ㈑ ㈒ ㈓ ㈔ ㈕ ㈖ ㈗ ㈘ ㈙ ㈚ ㈛ ㈜</p>
                     <h2>Mặt cười phổ biến</h2>
                     <p class="has-text-centered">
                         ¯\_(ツ)_/¯<br>
@@ -576,12 +620,18 @@
                         (;￣◇￣)<br>
                         (՞•ﻌ•՞)۶<br>
                         ๑•̀ㅁ•́๑</p>
-                    <p class="text-normal"><strong>1001 kí tự đặc biệt</strong> không thể tổng hợp hết vào trong bài viết này. Nếu bạn không tìm được ký tự mong muốn; Bạn có thể nhắn tin cho mình để được hỗ trợ riêng nhé!</p>
+                    <p class="text-normal"><strong>1001 kí tự đặc biệt</strong> không thể tổng hợp hết vào trong bài
+                        viết này. Nếu bạn không tìm được ký tự mong muốn; Bạn có thể nhắn tin cho mình để được hỗ trợ
+                        riêng nhé!</p>
                     <figure class="has-text-centered">
-                        <img width="476" height="507" src="/images/character-map-windows-10.png" th:src="@{/images/character-map-windows-10.png}" alt="Character Map Windows 10" loading="lazy">
+                        <img width="476" height="507" src="/images/character-map-windows-10.png"
+                             th:src="@{/images/character-map-windows-10.png}" alt="Character Map Windows 10"
+                             loading="lazy">
                         <figcaption>Character Map Windows 10.</figcaption>
                     </figure>
-                    <p class="text-normal">Ngoài ra, bạn có thể lấy được rất nhiều <strong>ký tự đặc biệt</strong> có sẵn trên Windows 10 có tên là <strong>Character Map</strong>. Chỉ cần vài thao tác Chọn; Sao chép và <kbd>Ctrl</kbd> + <kbd>V</kbd> trên máy tính là có thể sử dụng được.</p>
+                    <p class="text-normal">Ngoài ra, bạn có thể lấy được rất nhiều <strong>ký tự đặc biệt</strong> có
+                        sẵn trên Windows 10 có tên là <strong>Character Map</strong>. Chỉ cần vài thao tác Chọn; Sao
+                        chép và <kbd>Ctrl</kbd> + <kbd>V</kbd> trên máy tính là có thể sử dụng được.</p>
                 </section><!-- /.symbols -->
             </article>
         </div>
@@ -590,13 +640,18 @@
             <section class="hero is-small is-link has-text-centered mb-2 p-3">
                 <h3 class="has-text-weight-bold">Kí Tự Đặc Biệt AnhNBT</h3>
                 <p>Tải ứng dụng Miễn phí trên Google Play (Android).</p>
-                <a title="Google Download" href="https://play.google.com/store/apps/details?id=com.manteiv.fancytext&amp;hl=vi" target="_blank" rel="noopener noreferrer">
-                    <img src="/images/google.png" th:src="@{/images/google.png}" alt="Google Download" width="135" height="40">
+                <a title="Google Download"
+                   href="https://play.google.com/store/apps/details?id=com.manteiv.fancytext&amp;hl=vi" target="_blank"
+                   rel="noopener noreferrer">
+                    <img src="/images/google.png" th:src="@{/images/google.png}" alt="Google Download" width="135"
+                         height="40">
                 </a>
             </section>
         </aside>
     </div>
 </main>
 <div th:replace="fragments/layout :: footer"></div>
+<div th:replace="fragments/layout :: modal"></div>
+<th:block th:replace="fragments/layout :: scripts"></th:block>
 </body>
 </html>

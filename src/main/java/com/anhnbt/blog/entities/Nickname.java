@@ -1,31 +1,37 @@
 package com.anhnbt.blog.entities;
 
+import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.Instant;
+import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "nickname")
-public class Nickname {
+public class Nickname implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
+    @NotNull
     private String name;
 
     @Column(name = "slug", nullable = false)
     private String slug;
 
-    @Column(name = "nickname", nullable = false)
+    @Column(name = "nickname")
+    @NotNull
     private String nickname;
 
     @Column(name = "count_like")
@@ -35,7 +41,8 @@ public class Nickname {
     private Integer views;
 
     @Column(name = "timestamp", nullable = false)
-    private Instant timestamp;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private Date timestamp;
 
     @Override
     public boolean equals(Object o) {

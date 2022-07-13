@@ -7,6 +7,9 @@ import com.anhnbt.blog.service.NicknameService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.SortDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +33,10 @@ public class NicknameController {
     }
 
     @GetMapping
-    public ResponseEntity<ResponseBody> nicknames(Pageable pageable) {
+    public ResponseEntity<ResponseBody> nicknames(@PageableDefault(size = 20)
+                                                      @SortDefault.SortDefaults({
+                                                              @SortDefault(sort = "id", direction = Sort.Direction.DESC)
+                                                      }) Pageable pageable) {
         Iterable<Nickname> nicknames = nicknameService.findAll(pageable);
         List<NicknameDto> nicknameDtoList = new ArrayList<>();
         nicknames.forEach(nickname -> {
