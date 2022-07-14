@@ -31,9 +31,9 @@ function toPerfectName(elm) {
                     <input type="text" class="input" value="${resp.recommendChars[i]}" onfocus="this.select();" onmouseup="return false;">
                 </div>
                 <div class="control">
-                    <a class="button is-info" onclick="copyToClipboardInput(this);">
+                    <button class="button is-info" onclick="copyToClipboardInput(this);">
                     Sao chép
-                    </a>
+                    </button>
                 </div>
             </div>`;
           }
@@ -77,16 +77,14 @@ function loadMoreNickName(btn, nextPage, recordsPerPage) {
   http.setRequestHeader("Content-type", "application/json");
   http.onreadystatechange = function () {
     if (http.readyState === 4 && http.status === 200) {
-      console.log(http.responseText);
       if (http.responseText) {
         const resp = JSON.parse(http.responseText);
-        if (resp.code === '00') {
           btn.remove();
           let html = '';
-          if (resp.data.content.length) {
+          if (resp.content.length) {
             html += '<div class="box tags">';
-            for (let i = 0; i < resp.data.content.length; i++) {
-              html += '<span class="tag" data-clipboard-text="' + resp.data.content[i].nickname + '">' + resp.data.content[i].nickname + '</span>&nbsp;';
+            for (let i = 0; i < resp.content.length; i++) {
+              html += '<span class="tag" data-clipboard-text="' + resp.content[i].nickname + '">' + resp.content[i].nickname + '</span>&nbsp;';
             }
             html += `</div><div class="has-text-centered mb-1">
                     <button onclick="loadMoreNickName(this, ${nextPage}+1, ${recordsPerPage})" class="button is-primary is-small">Xem tiếp »</button>
@@ -97,14 +95,13 @@ function loadMoreNickName(btn, nextPage, recordsPerPage) {
                    </div>`;
           }
           nickNameList.innerHTML = html;
-        } else {
-          //TODO
-        }
       } else {
-        //TODO
+        nickNameList.innerHTML = '<div class="has-background-danger p-2 mb-2">Lỗi không nhận được dữ liệu từ máy chủ</div>';
       }
+    } else if (http.status === 204) {
+      nickNameList.innerHTML = '<div class="has-background-danger p-2 mb-2">Không có dữ liệu để hiển thị</div>';
     } else {
-      //TODO
+      nickNameList.innerHTML = '<div class="has-background-danger p-2 mb-2">Lỗi không xác định.</div>';
     }
   };
   http.send();
@@ -115,7 +112,7 @@ function loadMoreNickName(btn, nextPage, recordsPerPage) {
 }
 
 function copyToClipboardInput(elm) {
-  copyToClipboard(elm.parentElement.parentElement.children[0].children[0]);
+  copyToClipboard(elm.parentElement.parentElement.children[0].children[1]);
   elm.classList.remove("is-info");
   elm.classList.add("is-success");
   elm.innerHTML = "Đã chép";
@@ -136,7 +133,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnClose = document.getElementById("btn-close");
   if (btnClose) {
     btnClose.addEventListener("click", function () {
-      console.log("close");
       document.getElementById("copyModal").classList.toggle("is-active");
     });
   }

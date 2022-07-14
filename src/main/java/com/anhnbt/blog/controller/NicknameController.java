@@ -33,16 +33,17 @@ public class NicknameController {
     }
 
     @GetMapping
-    public ResponseEntity<ResponseBody> nicknames(@PageableDefault(size = 20)
-                                                      @SortDefault.SortDefaults({
-                                                              @SortDefault(sort = "id", direction = Sort.Direction.DESC)
-                                                      }) Pageable pageable) {
+    public ResponseEntity<?> nicknames(@PageableDefault(size = 20) @SortDefault.SortDefaults({@SortDefault(sort = "id", direction = Sort.Direction.DESC)}) Pageable pageable) {
         Iterable<Nickname> nicknames = nicknameService.findAll(pageable);
         List<NicknameDto> nicknameDtoList = new ArrayList<>();
         nicknames.forEach(nickname -> {
             NicknameDto nicknameDto = modelMapper.map(nickname, NicknameDto.class);
             nicknameDtoList.add(nicknameDto);
         });
-        return new ResponseEntity<>(new ResponseBody("00", "success", nicknameDtoList), HttpStatus.OK);
+        if (nicknameDtoList.size() == 0) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(nicknameDtoList, HttpStatus.OK);
+        }
     }
 }
