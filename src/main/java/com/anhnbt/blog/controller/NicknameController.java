@@ -6,6 +6,7 @@ import com.anhnbt.blog.model.ResponseBody;
 import com.anhnbt.blog.service.NicknameService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -33,17 +34,16 @@ public class NicknameController {
     }
 
     @GetMapping
-    public ResponseEntity<?> nicknames(@PageableDefault(size = 20) @SortDefault.SortDefaults({@SortDefault(sort = "id", direction = Sort.Direction.DESC)}) Pageable pageable) {
-        Iterable<Nickname> nicknames = nicknameService.findAll(pageable);
-        List<NicknameDto> nicknameDtoList = new ArrayList<>();
-        nicknames.forEach(nickname -> {
-            NicknameDto nicknameDto = modelMapper.map(nickname, NicknameDto.class);
-            nicknameDtoList.add(nicknameDto);
-        });
-        if (nicknameDtoList.size() == 0) {
+    public ResponseEntity<Page<Nickname>> nicknames(@PageableDefault(size = 20) @SortDefault.SortDefaults({@SortDefault(sort = "id", direction = Sort.Direction.DESC)}) Pageable pageable) {
+        Page<Nickname> nicknames = nicknameService.findAllByEnabled(true, pageable);
+        if (nicknames.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } else {
-            return new ResponseEntity<>(nicknameDtoList, HttpStatus.OK);
         }
+//        List<NicknameDto> nicknameDtoList = new ArrayList<>();
+//        nicknames.forEach(nickname -> {
+//            NicknameDto nicknameDto = modelMapper.map(nickname, NicknameDto.class);
+//            nicknameDtoList.add(nicknameDto);
+//        });
+        return new ResponseEntity<>(nicknames, HttpStatus.OK);
     }
 }

@@ -54,8 +54,8 @@ public class PageController {
         metaTag.setDescription("1001 Kí tự đặc biệt FF tạo tên kí tự đẹp Quân đoàn Free Fire, Liên Quân (LQ), PUBG như mặt quỷ ╰‿╯, mặt cười ×͜× , Cây dù ☂ và bảng kí hiệu đặc biệt.");
         metaTag.setImage(baseUrl + "/images/ki-tu-dac-biet-anhnbt.jpg");
         model.addAttribute("metaTag", metaTag);
-        Pageable sortedByIdDesc = PageRequest.of(0, 20, Sort.by("id").descending());
-        model.addAttribute("nicknames", nicknameService.findAll(sortedByIdDesc));
+        Pageable sortedByIdDesc = PageRequest.of(1, 20, Sort.by("id").descending());
+        model.addAttribute("nicknames", nicknameService.findAllByEnabled(true, sortedByIdDesc));
         return "pages/ky-tu-dac-biet";
     }
 

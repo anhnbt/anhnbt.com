@@ -44,6 +44,9 @@ public class Nickname implements Serializable {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date timestamp;
 
+    @Column(name = "enabled", nullable = false)
+    private Boolean enabled;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
