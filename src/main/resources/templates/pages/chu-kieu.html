@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head"></head>
+<body>
+<div th:replace="fragments/layout :: header"></div>
+<main class="container is-fluid pt-5">
+    <div class="columns">
+        <div class="column">
+            <nav class="breadcrumb is-small" aria-label="breadcrumbs">
+                <ul>
+                    <li><a href="#" th:href="@{/}">Trang chủ</a></li>
+                    <li class="is-active"><a href="#" aria-current="page">Chữ Kiểu đẹp</a></li>
+                </ul>
+            </nav>
+            <article class="content">
+                <header>
+                    <h1>Chữ Kiểu đẹp</h1>
+                    <p class="is-italic"><small class="has-text-grey">
+                        <time datetime="2022-02-27">27/02/2022</time>
+                    </small></p>
+                </header>
+                <div class="entry-content">
+                    <p>Giúp bạn tạo <strong>chữ kiểu</strong> cực ngầu với 1001+ kiểu chữ đẹp khác nhau, font chữ đẹp,
+                        chữ đậm, nghiêng, gạch ngang, bong bóng, thư pháp, ô vuông..., kí tự Facebook, Instagram, Zalo,
+                        Twitter, Tiktok, Word …</p>
+                    <form action="" class="box">
+                        <div class="field">
+                            <label for="input" class="label">Nhập vào</label>
+                            <div class="control">
+                        <textarea
+                                class="textarea"
+                                name="input"
+                                id="input"
+                                rows="3"
+                                onkeyup="onConvertTextToFancy()"
+                        ></textarea>
+                            </div>
+                        </div>
+                        <p class="has-text-centered is-size-3 has-text-info">▼</p>
+                        <label for="anhnbt-code-001">Chữ Bong Bóng</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-001"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-001"
+                                        placeholder="ⓐⓝⓗⓝⓑⓣ.©ⓞⓜ"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-002">Bong Bóng Đen</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-002"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-002"
+                                        placeholder="🅐🅝🅗🅝🅑🅣.🅒🅞🅜"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-003">Chữ Monospace</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-003"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-003"
+                                        placeholder="𝚊𝚗𝚑𝚗𝚋𝚝.𝚌𝚘𝚖"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-004">Chữ Khoảng Trống</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-004"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-004"
+                                        placeholder="ａｎｈｎｂｔ.ｃｏｍ"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-005">Chữ Lộn Ngược</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-005"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-005"
+                                        placeholder="ɐnɥnbʇ.ɔoɯ"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-006">Chữ Ô Vuông</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-006"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-006"
+                                        placeholder="🄰🄽🄷🄽🄱🅃.🄲🄾🄼"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-007">Ô Vuông Đen</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-007"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-007"
+                                        placeholder="🅰🅽🅷🅽🅱🆃.🅲🅾🅼"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-008">Chữ Ruột Rỗng</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-008"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-008"
+                                        placeholder="𝕒𝕟𝕙𝕟𝕓𝕥.𝕔𝕠𝕞"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-009">Ô Vuông Rộng</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-009"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-009"
+                                        placeholder="a⃣n⃣h⃣n⃣b⃣t⃣.c⃣o⃣m⃣"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-010">Chữ Kim Cương</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-010"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-010"
+                                        placeholder="a⃟n⃟h⃟n⃟b⃟t⃟.c⃟o⃟m⃟"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-011">Mực Lem Nhạt</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-011"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-011"
+                                        placeholder="a҉n҉h҉n҉b҉t҉.c҉o҉m҉"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-012">Mực Lem Đậm</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-012"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-012"
+                                        placeholder="a҉҉n҉҉h҉҉n҉҉b҉҉t҉҉.c҉҉o҉҉m҉҉"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-013">Gạch Chéo Dài</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-013"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-013"
+                                        placeholder="a̸n̸h̸n̸b̸t̸.c̸o̸m̸"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-014">Gạch Chéo Ngắn</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-014"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-014"
+                                        placeholder="a̷n̷h̷n̷b̷t̷.c̷o̷m̷"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-015">Gạch Chân Dài</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-015"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-015"
+                                        placeholder="a͟n͟h͟n͟b͟t͟.c͟o͟m͟"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-016">Gạch Ngang Ngắn</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-016"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-016"
+                                        placeholder="a̵n̵h̵n̵b̵t̵.c̵o̵m̵"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-017">Gạch Chân Ngắn</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-017"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-017"
+                                        placeholder="a̲n̲h̲n̲b̲t̲.c̲o̲m̲"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-018">Ngoặc hai bên</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-018"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-018"
+                                        placeholder="⒜⒩⒣⒩⒝⒯.⒞⒪⒨"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-019">Gạch Chân Lượn Sóng</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-019"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-019"
+                                        placeholder="a̫n̫h̫n̫b̫t̫.c̫o̫m̫"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-020">Ngoặc Trên Dưới</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-020"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-020"
+                                        placeholder="A͜͡N͜͡H͜͡N͜͡B͜͡T͜͡.C͜͡O͜͡M͜͡"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-021">Ngoặc Vuông Trên Dưới</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-021"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-021"
+                                        placeholder="A̺͆N̺͆H̺͆N̺͆B̺͆T̺͆.C̺͆O̺͆M̺͆"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-022">Tia Sét</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-022"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-022"
+                                        placeholder="a̾n̾h̾n̾b̾t̾.c̾o̾m̾"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-023">Ngoặc Vuông</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-023"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-023"
+                                        placeholder="[̲̅a̲̅][̲̅n̲̅][̲̅h̲̅][̲̅n̲̅][̲̅b̲̅][̲̅t̲̅].[̲̅c̲̅][̲̅o̲̅][̲̅m̲̅]"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-024">Hai Chấm Trên Dưới</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-024"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-024"
+                                        placeholder="ä̤n̤̈ḧ̤n̤̈b̤̈ẗ̤.c̤̈ö̤m̤̈"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-025">Chữ Kiểu 1</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-025"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-025"
+                                        placeholder="AཽNཽHཽNཽBཽTཽ.CཽOཽMཽ"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-026">Chữ Kiểu 2</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-026"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-026"
+                                        placeholder="A͒N͒H͒N͒B͒T͒.C͒O͒M͒"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-027">Mặt Buồn Dưới</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-027"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-027"
+                                        placeholder="A̬̤̯N̬̤̯H̬̤̯N̬̤̯B̬̤̯T̬̤̯.C̬̤̯O̬̤̯M̬̤̯"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-028">Chữ Mã Hóa</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-028"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-028"
+                                        placeholder="a̘̫͈̭͌͛͌̇̇̍n͉̠̙͉̗̺̋̋̔ͧ̊h͚̖̜̍̃͐n͉̠̙͉̗̺̋̋̔ͧ̊b͎̣̫͈̥̗͒͌̃͑̔̾ͅt̘̟̼̉̈́͐͋͌̊.c͔ͣͦ́́͂ͅo͎̜̓̇ͫ̉͊ͨ͊m̘͈̺̪͓ͩ͂̾ͪ̀̋"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-029">Chữ Kiểu 3</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-029"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-029"
+                                        placeholder="A̸͟͞N̸͟͞H̸͟͞N̸͟͞B̸͟͞T̸͟͞.C̸͟͞O̸͟͞M̸͟͞"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-030">Gạch Chân Vô Cực</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-030"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-030"
+                                        placeholder="A͚N͚H͚N͚B͚T͚.C͚O͚M͚"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-031">Gạch Chân Sao</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-031"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-031"
+                                        placeholder="A͙N͙H͙N͙B͙T͙.C͙O͙M͙"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-032">Gạch Chân Mặt Cười</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-032"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-032"
+                                        placeholder="A̤̮N̤̮H̤̮N̤̮B̤̮T̤̮.C̤̮O̤̮M̤̮"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-033">Chữ kiểu 4</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-033"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-033"
+                                        placeholder="A҈N҈H҈N҈B҈T҈.C҈O҈M҈"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-034">Chữ kiểu 5</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-034"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-034"
+                                        placeholder="ĂN̆H̆N̆B̆T̆.C̆ŎM̆"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-035">Chữ kiểu 6</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-035"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-035"
+                                        placeholder="ḀͦN̥ͦH̥ͦN̥ͦB̥ͦT̥ͦ.C̥ͦO̥ͦM̥ͦ"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-036">Chữ kiểu 7</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-036"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-036"
+                                        placeholder="A༙N༙H༙N༙B༙T༙.C༙O༙M༙"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-037">Chữ kiểu 8</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-037"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-037"
+                                        placeholder="A͓̽N͓̽H͓̽N͓̽B͓̽T͓̽.C͓̽O͓̽M͓̽"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-038">Chữ kiểu 9</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-038"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-038"
+                                        placeholder="ꍏꈤꃅꈤꌃ꓄.ꉓꂦꎭ"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-039">Chữ kiểu 10</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-039"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-039"
+                                        placeholder="A᷈N᷈H᷈N᷈B᷈T᷈.C᷈O᷈M᷈"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label for="anhnbt-code-040">Chữ kiểu 11</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        aria-label="anhnbt-code-040"
+                                        readonly
+                                        class="input"
+                                        id="anhnbt-code-040"
+                                        placeholder="A͆N͆H͆N͆B͆T͆.C͆O͆M͆"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <h2>Làm sao để tạo chữ kiểu - Font chữ đẹp online</h2>
+                    <p>Để giúp các bạn có thể dễ dàng tạo và sao chép những <strong>chữ kiểu</strong> theo sở thích của
+                        mình, AnhNBT.Com đã phát triển bộ công cụ chuyển đổi phông chữ đẹp, cung cấp công cụ <strong>tạo
+                            chữ kiểu</strong> online giúp bạn chuyển đổi một văn bản bình thường thành các kiểu chữ đẹp
+                        độc lạ miễn phí, chẳng hạn như font chữ thư pháp, font chữ viết tay, font chữ tiếng Anh cũ, font
+                        chữ đẹp, tạo chữ nghiêng, font chữ nghệ thuật, chữ ruột rỗng, chữ bong bóng, chữ harry potter,
+                        làm chữ đẹp, chữ kiểu bảng chữ cái... các kiểu chữ đẹp cho Facebook, Twitter , Instagram,
+                        tiktok, zalo, Viber, word, Excel, powerpoint...&nbsp;</p>
+                    <figure class="has-text-centered">
+                        <img width="480" height="270" src="/images/chu-kieu.jpg" th:src="@{/images/chu-kieu.jpg}"
+                             alt="Chữ kiểu" loading="lazy">
+                        <figcaption>
+                            Chữ kiểu
+                        </figcaption>
+                    </figure>
+                    <h2 class="is-size-2 has-text-weight-medium">Hướng dẫn sử dụng công cụ tạo chữ kiểu</h2>
+                    <ul>
+                        <li>Bước 1: Nhập đoạn văn bản bạn muốn chuyển đổi vào trong ô NHẬP VĂN BẢN.</li>
+                        <li>Bước 2: Kéo xuống dưới, chọn kiểu chữ bạn ưa thích rồi ấn vào ô SAO CHÉP. Đoạn văn bản đã tự
+                            động lưu, bạn chỉ cần dán nó vào bất cứ nơi bạn muốn là xong nhé.
+                        </li>
+                    </ul>
+                    <h2 class="is-size-2 has-text-weight-medium">Chữ kiểu được dùng ở đâu?</h2>
+                    <p>Bộ công cụ này hoạt động hầu hết mọi nơi mà Facebook cho phép nhập văn bản: cập nhật trạng thái,
+                        tin nhắn, tiểu sử, bình luận... Tất cả các font chữ bên dưới đều là font Unicode nên chúng sẽ
+                        hiển thị với hầu hết mọi nơi bạn có thể dán văn bản, ví dụ như các trang mạng xã hội Instagram,
+                        Zalo, Tiktok, Twitter, các bình luận, diễn đàn, tài liệu... chứ không chỉ riêng gì Fb.</p>
+                    <p>Hy vọng bộ công cụ tạo chữ kiểu, phông chữ đẹp online mà chúng tôi cung cấp này không làm bạn
+                        thất vọng. Nếu bạn thấy công cụ tạo kiểu chữ đẹp này hay và ý nghĩa vui lòng chia sẻ cho bạn bè
+                        nhé.</p>
+                </div>
+            </article>
+        </div>
+    </div>
+</main>
+<div th:replace="fragments/layout :: footer"></div>
+<div th:replace="fragments/components :: modal"></div>
+<th:block th:replace="fragments/layout :: scripts"></th:block>
+<script src="/js/chu-kieu.min.js" th:src="@{/js/chu-kieu.min.js}"></script>
+</body>
+</html>

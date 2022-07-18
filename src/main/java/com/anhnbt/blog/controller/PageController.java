@@ -60,7 +60,7 @@ public class PageController {
     }
 
     @GetMapping("/chu-in-dam")
-    public String chuImDam(Model model) {
+    public String chuInDam(Model model) {
         MetaTag metaTag = new MetaTag();
         metaTag.setTitle("Chữ in đậm | Công cụ tạo chữ đậm Online");
         metaTag.setCanonical(baseUrl + "/chu-in-dam");
@@ -70,6 +70,19 @@ public class PageController {
         metaTag.setImage(baseUrl + "/images/chu-in-dam.jpg");
         model.addAttribute("metaTag", metaTag);
         return "pages/chu-in-dam";
+    }
+
+    @GetMapping("/chu-kieu")
+    public String chuKieu(Model model) {
+        MetaTag metaTag = new MetaTag();
+        metaTag.setTitle("Chữ Kiểu đẹp - Công cụ tạo Chữ Kiểu Online");
+        metaTag.setCanonical(baseUrl + "/chu-kieu");
+        metaTag.setUrl(baseUrl + "/chu-kieu");
+        metaTag.setType("article");
+        metaTag.setDescription("Tạo Chữ Kiểu đẹp với 1001+ font chữ đẹp như gạch chân, gạch ngang, bong bóng, ô vuông, chữ khoảng trống,... Kí tự Facebook, Instagram, Zalo, Tiktok.");
+        metaTag.setImage(baseUrl + "/images/chu-kieu.jpg");
+        model.addAttribute("metaTag", metaTag);
+        return "pages/chu-kieu";
     }
 
     private void send301Redirect(HttpServletResponse response, String newUrl) {
