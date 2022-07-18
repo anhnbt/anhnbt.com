@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head"></head>
+<body>
+<div th:replace="fragments/layout :: header"></div>
+<main class="container is-fluid pt-5">
+    <div class="columns">
+        <div class="column">
+            <nav class="breadcrumb is-small" aria-label="breadcrumbs">
+                <ul>
+                    <li><a href="#" th:href="@{/}">Trang chủ</a></li>
+                    <li class="is-active"><a href="#" aria-current="page">Kí tự tàng hình</a></li>
+                </ul>
+            </nav>
+            <article class="content">
+                <header>
+                    <h1>Kí tự tàng hình</h1>
+                    <p class="is-italic"><small class="has-text-grey">
+                        <time datetime="2022-02-27">27/02/2022</time>
+                    </small></p>
+                </header>
+                <div class="entry-content">
+                    <p>Ký tự tàng hình bên dưới bao gồm các ký tự khoảng trống được trộn với các ký tự đặc biệt theo cách ngẫu nhiên. Mình làm vậy để mỗi tên xuất hiện sẽ trở nên duy nhất (Không bị trùng lặp).</p>
+                    <form action="#" class="box">
+                        <div class="field">
+                            <label for="ki-tu-tang-hinh" class="label">Tên FF (tàng hình) ngẫu nhiên</label>
+                            <div class="control">
+                                <input type="text" aria-label="ki-tu-tang-hinh" value="ⅅℳℴ⅌ㅤ" class="input" id="ki-tu-tang-hinh">
+                            </div>
+                        </div>
+                        <div class="buttons">
+                            <button class="button" type="button" onclick="getKiTuTangHinh(this)">
+                                Thử tên khác
+                            </button>
+                            <button class="button is-info" type="button" onclick="copyToClipboardInput(this)">Copy</button>
+                        </div>
+                    </form>
+                    <p><strong>Kí tự tàng hình</strong>, hay kí tự ẩn là một trong những kí tự hot nhất hiện nay giúp bạn có thể tạo được tên game không tên, không hiển thị tên. Hôm nay Kí tự đặc biệt AnNBT xin giới thiệu đến bạn công cụ giúp bạn tạo tên game tàng hình Free Fire (FF) chỉ trong một nốt nhạc.</p>
+                    <figure class="has-text-centered">
+                        <img width="480" height="270" src="/images/ki-tu-tang-hinh.jpg" th:src="@{/images/ki-tu-tang-hinh.jpg}" alt="Kí tự tàng hình" loading="lazy">
+                        <figcaption>
+                            Kí tự tàng hình FF
+                        </figcaption>
+                    </figure>
+                    <h2>Ký tự tàng hình là gì?</h2>
+                    <p>Ký tự tàng hình là một kí tự đặc biệt thuộc dạng kí tự Unicode. Nhưng bản thân nó không hiển thị nội dung mà chỉ hiển thị một <a href="https://anhnbt.com/ki-tu-khoang-trong-ff">ký tự khoảng trống</a>, hay mọi người thường bảo là tên game không tên vậy đó. Bạn có thể tham khảo hướng dẫn bên dưới.</p>
+                    <h2>Các bước tạo tên game tàng hình, không tên</h2>
+                    <ul>
+                        <li>B1: Sử dụng công cụ random kí tự tàng hình của web mình. Việc của bạn chỉ cần ấn Random hệ thống sẽ đưa cho bạn một dãy kí tự</li>
+                        <li>B2: Ấn copy và vào game dán kí tự đó vào game của bạn</li>
+                        <li>B3: Ấn đổi tên để có một cái tên game tàng hình nhé. Nếu hệ thống game thông báo tên đã trùng lặp, thì bạn hãy vào lặp lại các bước trên nhé.</li>
+                    </ul>
+                    <p><strong class="has-text-warning">Lưu ý</strong>: Với kí tự tàng hình FF này, nếu bạn dùng iPhone, iPad thì nó sẽ hiển thị kí tự lỗi ô vuông dấu hỏi chấm. Nếu bạn muốn biết tên game của mình có tàng hình hay ko, hãy dùng một chiếc điện thoại Android để kiểm tra ID nick nhé.</p>
+                </div><!-- .entry-content -->
+            </article>
+        </div>
+    </div>
+</main>
+<div th:replace="fragments/layout :: footer"></div>
+<div th:replace="fragments/components :: modal"></div>
+<th:block th:replace="fragments/layout :: scripts"></th:block>
+<script src="/js/ki-tu-tang-hinh.min.js" th:src="@{/js/ki-tu-tang-hinh.min.js}"></script>
+</body>
+</html>

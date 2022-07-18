@@ -111,6 +111,19 @@ public class PageController {
         return "pages/ki-tu-vuong-mien";
     }
 
+    @GetMapping("/ki-tu-tang-hinh")
+    public String kiTuTangHinh(Model model) {
+        MetaTag metaTag = new MetaTag();
+        metaTag.setTitle("Kí tự tàng hình – Đổi tên Free Fire không tên");
+        metaTag.setCanonical(baseUrl + "/ki-tu-tang-hinh");
+        metaTag.setUrl(baseUrl + "/ki-tu-tang-hinh");
+        metaTag.setType("article");
+        metaTag.setDescription("Kí tự tàng hình, hay kí tự ẩn là một trong những kí tự hot nhất giúp bạn tạo tên game tàng hình Free Fire (FF) không tên.");
+        metaTag.setImage(baseUrl + "/images/ki-tu-tang-hinh.jpg");
+        model.addAttribute("metaTag", metaTag);
+        return "pages/ki-tu-tang-hinh";
+    }
+
     private void send301Redirect(HttpServletResponse response, String newUrl) {
         response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
         response.setHeader("Location", newUrl);
