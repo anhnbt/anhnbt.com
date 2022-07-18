@@ -85,6 +85,19 @@ public class PageController {
         return "pages/chu-kieu";
     }
 
+    @GetMapping("/ten-game-hay")
+    public String tenGameHay(Model model) {
+        MetaTag metaTag = new MetaTag();
+        metaTag.setTitle("Tên Game Hay nhất cho game thủ Việt Nam");
+        metaTag.setCanonical(baseUrl + "/ten-game-hay");
+        metaTag.setUrl(baseUrl + "/ten-game-hay");
+        metaTag.setType("article");
+        metaTag.setDescription("Bạn đang bí ý tưởng để đặt tên game hay Liên Quân Mobile (LQ), Free Fire (FF)? Vào xem ngay những cái tên cực ngầu, hợp thời và gây được ấn tượng nhất.");
+        metaTag.setImage(baseUrl + "/images/ten-lien-quan-hay.jpg");
+        model.addAttribute("metaTag", metaTag);
+        return "pages/ten-game-hay";
+    }
+
     private void send301Redirect(HttpServletResponse response, String newUrl) {
         response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
         response.setHeader("Location", newUrl);
