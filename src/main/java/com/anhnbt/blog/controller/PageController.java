@@ -59,6 +59,19 @@ public class PageController {
         return "pages/ky-tu-dac-biet";
     }
 
+    @GetMapping("/chu-in-dam")
+    public String chuImDam(Model model) {
+        MetaTag metaTag = new MetaTag();
+        metaTag.setTitle("Chữ in đậm | Công cụ tạo chữ đậm Online");
+        metaTag.setCanonical(baseUrl + "/chu-in-dam");
+        metaTag.setUrl(baseUrl + "/chu-in-dam");
+        metaTag.setType("article");
+        metaTag.setDescription("Công cụ tạo chữ in đậm, chữ nghiêng trên status Facebook Fanpage đơn giản nhất. Chữ nét đậm không cần cài đặt font (phông) về điện thoại.");
+        metaTag.setImage(baseUrl + "/images/chu-in-dam.jpg");
+        model.addAttribute("metaTag", metaTag);
+        return "pages/chu-in-dam";
+    }
+
     private void send301Redirect(HttpServletResponse response, String newUrl) {
         response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
         response.setHeader("Location", newUrl);

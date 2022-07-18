@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head"></head>
+<body>
+<div th:replace="fragments/layout :: header"></div>
+<main class="container is-fluid pt-5">
+    <div class="columns">
+        <div class="column">
+            <nav class="breadcrumb is-small" aria-label="breadcrumbs">
+                <ul>
+                    <li><a href="#" th:href="@{/}">Trang chủ</a></li>
+                    <li class="is-active"><a href="#" aria-current="page">Chữ in đậm</a></li>
+                </ul>
+            </nav>
+            <article class="content">
+                <header>
+                    <h1>Chữ in đậm</h1>
+                    <p class="is-italic"><small class="has-text-grey">
+                        <time datetime="2022-02-23">23/02/2022</time>
+                    </small></p>
+                </header>
+                <p>Công cụ tạo <strong>chữ in đậm</strong>, <em>chữ in nghiêng</em> online mới nhất, giúp chuyển đổi
+                    những đoạn văn bản <strong>Tiếng Việt</strong> thành chữ in đậm có dấu tương ứng. Không cần cài đặt
+                    phông chữ như trong Photoshop! Bạn chỉ cần dán đoạn văn bản cần chuyển đổi xuống bên dưới sau đó
+                    nhấn vào nút Sao chép.</p>
+                <form action="" class="box">
+                    <div class="field">
+                        <label for="input" class="label">Nhập vào</label>
+                        <div class="control">
+                                <textarea class="textarea" name="input" id="input" rows="3"
+                                          onkeyup="onConvertTextToFancy()"></textarea>
+                        </div>
+                    </div>
+                    <p class="has-text-centered is-size-3 has-text-info">▼</p>
+                    <label for="bold" class="label">Đậm</label>
+                    <div class="field has-addons">
+                        <div class="control is-expanded">
+                            <input type="text" readonly class="input" id="bold" placeholder="𝗔𝗻𝗵𝗻𝗯𝘁.𝗰𝗼𝗺">
+                        </div>
+                        <div class="control">
+                            <button class="button is-info" type="button" onclick="copyToClipboardInput(this)">Sao chép
+                            </button>
+                        </div>
+                    </div>
+                    <label for="bold-serif" class="label">Đậm (Chữ có chân)</label>
+                    <div class="field has-addons">
+                        <div class="control is-expanded">
+                            <input type="text" readonly class="input" id="bold-serif" placeholder="𝐀𝐧𝐡𝐧𝐛𝐭.𝐜𝐨𝐦">
+                        </div>
+                        <div class="control">
+                            <button class="button is-info" type="button" onclick="copyToClipboardInput(this)">Sao chép
+                            </button>
+                        </div>
+                    </div>
+                    <label for="bold-italic" class="label">Đậm nghiêng</label>
+                    <div class="field has-addons">
+                        <div class="control is-expanded">
+                            <input type="text" readonly class="input" id="bold-italic"
+                                   placeholder="𝘼𝙣𝙝𝙣𝙗𝙩.𝙘𝙤𝙢">
+                        </div>
+                        <div class="control">
+                            <button class="button is-info" type="button" onclick="copyToClipboardInput(this)">Sao chép
+                            </button>
+                        </div>
+                    </div>
+                    <label for="bold-italic-serif" class="label">Đậm nghiêng (Chữ có chân)</label>
+                    <div class="field has-addons">
+                        <div class="control is-expanded">
+                            <input type="text" readonly class="input" id="bold-italic-serif"
+                                   placeholder="𝑨𝒏𝒉𝒏𝒃𝒕.𝒄𝒐𝒎">
+                        </div>
+                        <div class="control">
+                            <button class="button is-info" type="button" onclick="copyToClipboardInput(this)">Sao chép
+                            </button>
+                        </div>
+                    </div>
+                    <label for="italic" class="label">Nghiêng</label>
+                    <div class="field has-addons">
+                        <div class="control is-expanded">
+                            <input type="text" readonly class="input" id="italic" placeholder="𝘈𝘯𝘩𝘯𝘣𝘵.𝘤𝘰𝘮">
+                        </div>
+                        <div class="control">
+                            <button class="button is-info" type="button" onclick="copyToClipboardInput(this)">Sao chép
+                            </button>
+                        </div>
+                    </div>
+                    <label for="italic-serif" class="label">Nghiêng (Chữ có chân)</label>
+                    <div class="field has-addons">
+                        <div class="control is-expanded">
+                            <input type="text" readonly class="input" id="italic-serif"
+                                   placeholder="𝐴𝑛ℎ𝑛𝑏𝑡.𝑐𝑜𝑚">
+                        </div>
+                        <div class="control">
+                            <button class="button is-info" type="button" onclick="copyToClipboardInput(this)">Sao chép
+                            </button>
+                        </div>
+                    </div>
+                    <label for="cursive" class="label">Chữ viết tay</label>
+                    <div class="field has-addons">
+                        <div class="control is-expanded">
+                            <input type="text" readonly class="input" id="cursive" placeholder="𝒜𝓃𝒽𝓃𝒷𝓉.𝒸𝑜𝓂">
+                        </div>
+                        <div class="control">
+                            <button class="button is-info" type="button" onclick="copyToClipboardInput(this)">Sao chép
+                            </button>
+                        </div>
+                    </div>
+                    <label for="cursive-bold" class="label">Chữ viết tay (Đậm)</label>
+                    <div class="field has-addons">
+                        <div class="control is-expanded">
+                            <input type="text" readonly class="input" id="cursive-bold"
+                                   placeholder="𝓐𝓷𝓱𝓷𝓫𝓽.𝓬𝓸𝓶">
+                        </div>
+                        <div class="control">
+                            <button class="button is-info" type="button" onclick="copyToClipboardInput(this)">Sao chép
+                            </button>
+                        </div>
+                    </div>
+                    <label for="old-english" class="label">Harry Potter</label>
+                    <div class="field has-addons">
+                        <div class="control is-expanded">
+                            <input type="text" readonly class="input" id="old-english"
+                                   placeholder="𝔄𝔫𝔥𝔫𝔟𝔱.𝔠𝔬𝔪">
+                        </div>
+                        <div class="control">
+                            <button class="button is-info" type="button" onclick="copyToClipboardInput(this)">Sao chép
+                            </button>
+                        </div>
+                    </div>
+                    <label for="old-english-bold" class="label">Harry Potter (Đậm)</label>
+                    <div class="field has-addons">
+                        <div class="control is-expanded">
+                            <input type="text" readonly class="input" id="old-english-bold"
+                                   placeholder="𝕬𝖓𝖍𝖓𝖇𝖙.𝖈𝖔𝖒">
+                        </div>
+                        <div class="control">
+                            <button class="button is-info" type="button" onclick="copyToClipboardInput(this)">Sao chép
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <p><strong>Chữ in đậm (Bold)</strong> hay <em>chữ in nghiêng (Italic)</em> được dùng rất phổ biến trong
+                    nhiều tình huống của mỗi chúng ta, ví dụ như dùng trong soạn thảo văn bản, tạo tên game hay nickname
+                    độc đáo, tạo các status trên mạng xã hội Facebook, Twitter, Zalo, Instagram, Tiktok,... hoặc gửi tin
+                    nhắn đến bạn bè, sự hữu ích của 2 loại chữ này đã khiến chúng trở thành những chữ kiểu được sử dụng
+                    nhiều nhất trên toàn thế giới.</p>
+                <h2>Chữ in đậm là gì?</h2>
+                <p>Chữ in đậm, chữ đậm là những chữ được gắn thuộc tính đậm giúp các nét chữ trở nên đậm hơn, rõ ràng
+                    hơn, mục đích khi sử dụng chữ in đậm thường là nhằm nhấn mạnh và tạo sự chú ý cho người đọc, người
+                    xem đối với nội dung mà chúng ta cần truyền tải, đây là kiểu chữ rất phổ thông mà chúng sử dụng
+                    nhiều trong soạn thảo các văn bản, chơi game, thiết kế web, tạo nội dung trên fb, đăng bài viết trên
+                    các trang mạng xã hội hoặc gửi tin nhắn tới bạn bè...</p>
+                <table class="table is-bordered is-fullwidth">
+                    <caption class="is-size-4">Chữ in đậm phổ biến</caption>
+                    <tbody>
+                    <tr>
+                        <td>✅Chữ in đậm</td>
+                        <td>𝗮𝗻𝗵𝗻𝗯𝘁.𝗰𝗼𝗺</td>
+                    </tr>
+                    <tr>
+                        <td>✅Chữ viết tay (Đậm)</td>
+                        <td>𝓪𝓷𝓱𝓷𝓫𝓽.𝓬𝓸𝓶</td>
+                    </tr>
+                    <tr>
+                        <td>✅Harry Potter (Đậm)</td>
+                        <td>𝖆𝖓𝖍𝖓𝖇𝖙.𝖈𝖔𝖒</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <figure class="has-text-centered">
+                    <img width="480" height="270" src="/images/chu-in-dam.jpg" th:src="@{/images/chu-in-dam.jpg}" alt="Chữ in đậm" loading="lazy">
+                    <figcaption>
+                        Chữ in đậm
+                    </figcaption>
+                </figure>
+                <h2>Chữ in nghiêng là gì?</h2>
+                <p>Chữ in nghiêng, chữ nghiêng hiển thị như chữ thường nhưng được gắn thuộc tính nghiêng nên khi hiển
+                    thị thì chữ sẽ bị nghiêng nhẹ sang phải, chữ nghiêng được dùng khi ta muốn thể hiện các đoạn văn bản
+                    trích dẫn, mô tả lời nói hoặc chỉ đơn giản là muốn làm đẹp hay tạo sự khác biệt trong văn bản, tuy
+                    nhiên chữ in nghiêng không dễ đọc hơn chữ thường hay chữ in đậm.</p>
+                <h2>Cách sử dụng chữ in đậm, chữ in nghiêng hiệu quả</h2>
+                <p>Sử dụng chữ in đậm hay chữ in nghiêng rất dễ nếu các bạn nắm được khái nhiệm về 2 kiểu chữ này mà
+                    chúng tôi đã đăng tải ở phía trên, sử dụng chữ in đậm cho những đoạn văn mà chúng ta cần nhấn mạnh
+                    và tạo sự chú ý cho người đọc, người xem đối với nội dung mà chúng ta cần truyền tải, sử dụng chữ in
+                    nghiêng khi ta muốn thể hiện các đoạn văn bản trích dẫn, mô tả lời nói..</p>
+                <p>Lưu ý: Dùng nhiều chữ in đậm sẽ làm xấu văn bản và tương tự dùng chữ in nghiêng nhiều sẽ gây khó đọc
+                    hơn so với chữ thường.</p>
+                <h3>Dùng trong soạn thảo văn bản</h3>
+                <p>Trong soạn thảo văn bản chữ in đậm và chữ in nghiêng thường xuyên được sử dụng vì các lợi ích mà 2
+                    kiểu chữ này mang lại, để sử dụng 2 kiểu chữ này chúng ta dùng 2 tổ hợp phím để bật/tắt đồng thời
+                    khi soạn thảo đó là (<kbd>Ctrl + B</kbd>) dành cho chữ in đậm và (<kbd>Ctrl + I</kbd>) dành cho chữ
+                    in nghiêng, các bạn nhớ lưu ý 2 tổ hợp phím tắ này nhé.</p>
+                <h3>Dùng trên trang web</h3>
+                <p>Việc sử dụng chữ in đậm hay chữ in nghiêng trong trang web rất quan trọng nhất là đối các bạn làm SEO
+                    nhằm tối ưu hóa các từ khóa với Google, tuy nhiên cũng cần lưu ý là 2 kiểu chữ này trên trang web
+                    không đóng góp nhiều vào việc SEO cả, không nên quán lạm dụng để dẫn tới những kết quả ngoài ý
+                    muốn.</p>
+                <h3>Dùng trong game, trên Facebook</h3>
+                <p>Trong game hay trên Facebook việc viết chữ in đậm hay chữ in nghiêng mang tính vui vẻ giải trí nhiều
+                    hơn khi chúng ta sử dụng để tạo ra những tên game hay, nickname độc hay những dòng status độc đáo,
+                    hoặc gửi tin nhắn đến bạn bè. Đương nhiên là việc lạm dụng cũng dẫn tới phản tác dụng nên các bạn sử
+                    dụng cần chú ý những điều này nhé.</p>
+                <h2>Tạo chữ in đậm, chữ in nghiêng ở đâu?</h2>
+                <p>Tại đây chúng tôi có những công cụ tạo chữ đậm nghiêng giúp bạn tạo ra những thông điệp với chữ in
+                    nghiêng, chữ in đậm vô cùng đơn giản, bạn có thể xem qua các công cụ đó tại đây. Ngoài những chữ đậm
+                    nghiêng thông thường, công tụ tạo chữ đậm này còn có font chữ khác như chữ viết tay, chữ harry
+                    potter, </p>
+                <h2>Kiểu chữ in đậm, <a href="https://vi.wikipedia.org/wiki/In_nghi%C3%AAng"
+                                        rel="nofollow noopener noreferrer">in nghiêng</a> trong Skype</h2>
+                <p>Đối với ứng dụng chat Skype thì đơn giản hơn.</p>
+                <figure class="has-text-centered">
+                    <img width="480" height="270" src="/images/chu-in-dam.jpg" th:src="@{/images/chu-in-dam.jpg}" alt="Chữ in đậm trong Skype"
+                         loading="lazy">
+                    <figcaption>
+                        Chữ in đậm trong Skype
+                    </figcaption>
+                </figure>
+                <ul>
+                    <li>Thêm dấu sao * ở đầu và cuối đoạn chat. Ví dụ: *<strong>Chữ in đậm</strong>*</li>
+                    <li>Thêm dấu gạch dưới _ ở đầu và cuối đoạn chat. Ví dụ: _<i>Chữ in nghiêng</i>_</li>
+                    <li>Thêm dấu ngã ~ ở đầu và cuối đoạn chat. Ví dụ: ~<s>Chữ có dấu gạch giữa</s>~</li>
+                    <li>Thêm {code} ở đầu và cuối đoạn chat. Ví dụ: {code}<code>Định dạng code</code>{code}</li>
+                </ul>
+                <p>Trên đây mình đã hướng dẫn bạn cách tạo chữ in đậm, kí tự nghiêng Fb đẹp, hãy share ngay với bạn bè
+                    của mình nhé.</p>
+            </article>
+        </div>
+    </div>
+</main>
+<div th:replace="fragments/layout :: footer"></div>
+<div th:replace="fragments/components :: modal"></div>
+<th:block th:replace="fragments/layout :: scripts"></th:block>
+<script src="/js/bold-text.min.js" th:src="@{/js/bold-text.min.js}"></script>
+</body>
+</html>
