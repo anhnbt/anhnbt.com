@@ -117,6 +117,18 @@ function copyToClipboardInput(elm) {
     }, 1000);
 }
 
+function copyToClipboardInputWithLabel(elm) {
+    copyToClipboard(elm.parentElement.parentElement.children[0].children[0]);
+    elm.classList.remove("is-info");
+    elm.classList.add("is-success");
+    elm.innerHTML = "Đã chép";
+    setTimeout(function () {
+        elm.classList.remove("is-success");
+        elm.classList.add("is-info");
+        elm.innerHTML = "Sao chép";
+    }, 1000);
+}
+
 function copyToClipboard(t) {
     t.select();
     t.setSelectionRange(0, 99999); /*For mobile devices*/

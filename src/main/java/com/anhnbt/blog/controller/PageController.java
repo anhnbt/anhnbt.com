@@ -98,6 +98,19 @@ public class PageController {
         return "pages/ten-game-hay";
     }
 
+    @GetMapping("/ki-tu-vuong-mien")
+    public String kiTuVuongMien(Model model) {
+        MetaTag metaTag = new MetaTag();
+        metaTag.setTitle("Kí tự Vương Miện 亗 – Tên game Vương Miện đẹp");
+        metaTag.setCanonical(baseUrl + "/ki-tu-vuong-mien");
+        metaTag.setUrl(baseUrl + "/ki-tu-vuong-mien");
+        metaTag.setType("article");
+        metaTag.setDescription("Kí tự Vương Miện hay Kí tự đặc biệt Vương Miện một trong những kí tự hot trend hiện nay. Giúp bạn tạo những tên game hay cho FF, Liên Quân, PUBG.");
+        metaTag.setImage(baseUrl + "/images/ki-tu-vuong-mien.jpg");
+        model.addAttribute("metaTag", metaTag);
+        return "pages/ki-tu-vuong-mien";
+    }
+
     private void send301Redirect(HttpServletResponse response, String newUrl) {
         response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
         response.setHeader("Location", newUrl);
