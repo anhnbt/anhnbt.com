@@ -124,6 +124,19 @@ public class PageController {
         return "pages/ki-tu-tang-hinh";
     }
 
+    @GetMapping("/ki-tu-dac-biet-chu-nho")
+    public String kiTuDacBietChuNho(Model model) {
+        MetaTag metaTag = new MetaTag();
+        metaTag.setTitle("Kí tự đặc biệt chữ nhỏ - Tạo chữ siêu nhỏ");
+        metaTag.setCanonical(baseUrl + "/ki-tu-dac-biet-chu-nho");
+        metaTag.setUrl(baseUrl + "/ki-tu-dac-biet-chu-nho");
+        metaTag.setType("article");
+        metaTag.setDescription("Bộ công cụ tạo tên game bằng bảng kí tự đặc biệt chữ nhỏ (chữ siêu nhỏ, chữ nhỏ ở giữa) có dấu và không dấu.");
+        metaTag.setImage(baseUrl + "/images/ki-tu-chu-nho.jpg");
+        model.addAttribute("metaTag", metaTag);
+        return "pages/ki-tu-dac-biet-chu-nho";
+    }
+
     private void send301Redirect(HttpServletResponse response, String newUrl) {
         response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
         response.setHeader("Location", newUrl);

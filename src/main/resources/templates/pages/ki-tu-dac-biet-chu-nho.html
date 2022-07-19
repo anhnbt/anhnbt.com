@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head"></head>
+<body>
+<div th:replace="fragments/layout :: header"></div>
+<main class="container is-fluid pt-5">
+    <div class="columns">
+        <div class="column">
+            <nav class="breadcrumb is-small" aria-label="breadcrumbs">
+                <ul>
+                    <li><a href="#" th:href="@{/}">Trang chủ</a></li>
+                    <li class="is-active"><a href="#" aria-current="page">Kí tự đặc biệt chữ nhỏ</a></li>
+                </ul>
+            </nav>
+            <article class="content">
+                <header>
+                    <h1>Kí tự đặc biệt chữ nhỏ</h1>
+                    <p class="is-italic"><small class="has-text-grey">
+                        <time datetime="2022-02-23">23/02/2022</time>
+                    </small></p>
+                </header>
+                <div class="entry-content">
+                    <p>
+                        Xin gửi tới các bạn bộ công cụ tạo tên game bằng <strong>kí tự đặc biệt chữ nhỏ</strong>, chữ in
+                        hoa nhỏ, chữ nhỏ ở
+                        dưới (Small caps, tiny font, tiny letters) có dấu và không dấu mới
+                        nhất và duy nhất tại Website.
+                    </p>
+                    <form action="#" role="form" class="box">
+                        <div class="field">
+                            <label for="input">Nhập vào</label>
+                            <div class="control">
+                <textarea
+                        class="textarea"
+                        name="input"
+                        id="input"
+                        rows="3"
+                        onkeyup="onConvertTextToFancy()"
+                        aria-required="true"
+                        required
+                ></textarea>
+                            </div>
+                        </div>
+                        <p class="has-text-centered is-size-3 has-text-info">▼</p>
+                        <label
+                                for="small-caps"
+                        >Chữ nhỏ in hoa</label
+                        >
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        readonly
+                                        class="input"
+                                        id="small-caps"
+                                        value="ᴄʜᴜ̛̃ ɴʜᴏ̉ ɪɴ ʜᴏᴀ"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label
+                                for="superscript"
+                        >Chữ nhỏ kiểu treo trên</label
+                        >
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        readonly
+                                        class="input"
+                                        id="superscript"
+                                        value="ᑦʰᵘ̛̃ ⁿʰᵒ̉ ᵏⁱᵉ̂̉ᵘ ᵗʳᵉᵒ ᵗʳᵉ̂ⁿ"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                        <label
+                                for="subscript"
+                        >Chữ nhỏ kiểu ở dưới</label
+                        >
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input
+                                        type="text"
+                                        readonly
+                                        class="input"
+                                        id="subscript"
+                                        value="ᑦʰᵘ̛̃ ⁿʰᵒ̉ ᵏⁱᵉ̂̉ᵘ ᵒ̛̉ ᵈᵘ̛ᵒ̛́ⁱ"
+                                />
+                            </div>
+                            <div class="control">
+                                <button
+                                        class="button is-info"
+                                        type="button"
+                                        onclick="copyToClipboardInput(this)"
+                                >
+                                    Sao chép
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <p>
+                        <a href="#" th:href="@{/ky-tu-dac-biet}">Kí tự đặc biệt</a> nói chung hay Kí tự đặc
+                        biệt chữ nhỏ được sử dụng nhiều trong cuộc sống hàng ngày của chúng
+                        ta, những kí tự này thường được dùng trong soạn thảo văn bản, thiết
+                        kế, tạo ra những nickname, tên game, tên nhân vật, tên người dùng
+                        hay và độc đáo.
+                    </p>
+                    <figure class="has-text-centered">
+                        <img width="480" height="270" src="/images/ki-tu-chu-nho.jpg"
+                             th:src="@{/images/ki-tu-chu-nho.jpg}" alt="Kí tự đặc biệt chữ nhỏ" loading="lazy">
+                        <figcaption>
+                            Kí tự đặc biệt chữ nhỏ
+                        </figcaption>
+                    </figure>
+                    <h2>Ký tự đặc biệt chữ nhỏ là gì?</h2>
+                    <p>
+                        Kí tự chữ nhỏ là một dạng kí tự cho phép người dùng có thể tạo ra
+                        những font chữ siêu nhỏ. Hiện tại có 3 loại chữ nhỏ chính là chữ nhỏ
+                        trên đầu, chữ in hoa nhỏ và chữ nhỏ ở dưới dưới. Tùy vào mục đích sử
+                        dụng của mỗi người mà lựa chọn cho mình loại chữ nhỏ phù hợp. Hiện
+                        tại giới game thủ online đang săn lùng chữ nhỏ ở giữa này để tạo cho
+                        mình những cái tên game đẹp độc.
+                    </p>
+                    <h2>Kí tự đặc biệt chữ nhỏ được sử dụng ở đâu?</h2>
+                    <p>
+                        Kí tự nhỏ được giới game thủ ưa chuộng, giúp tạo ra những tên game
+                        hay nickname độc đáo thể hiện cá tính của mình, sẽ rất là vui sướng
+                        nếu bản thân mình sở hữu một cái tên game đỉnh của đỉnh khiến ai
+                        nhìn thấy đều cảm thấy GATO và nhớ tên bạn ngay lần đầu nhìn thấy.
+                    </p>
+                    <p>
+                        Rất nhiều tựa game hay ứng dụng, trang web hiện nay đều đã hỗ trợ kí
+                        tự đặc biệt cho tên game hay nickname, các bạn có thể sử dụng để tạo
+                        tên game Liên Quân Mobile, PUBG Mobile, Liên Minh Tốc Chiến hay là
+                        tên game Free Fire (FF) và các tựa game online, ứng dụng khác mà bạn
+                        đang, sắp trải nghiệm.
+                    </p>
+                    <h2>Các bước tạo tên game bằng kí tự đặc biệt chữ nhỏ</h2>
+                    <ul>
+                        <li>
+                            B1: Nhập tên có dấu, không dấu vào ô NHẬP TÊN. Hệ thống sẽ tự động
+                            show ra ba loại chữ nhỏ hiện nay: chữ nhỏ trên đầu, chữ in hoa nhỏ
+                            và chữ nhỏ ở dưới.
+                        </li>
+                        <li>
+                            B2: Kéo xuống dưới và nhấp vào&nbsp;<strong>Sao chép</strong
+                        >&nbsp;tên.
+                        </li>
+                    </ul>
+                    <p>
+                        Chỉ cần hai thao tác đơn giản là bạn đã có thể tạo cho mình những
+                        cái tên game độc lạ rồi đấy nhé. Ngoài ra bạn có thể tạo cho mình
+                        những dòng trạng thái trên mạng xã hội hoặc những tin nhắn gửi đến
+                        bạn bè đảm bảo sẽ tạo ấn tượng mạnh đó nhé.
+                    </p>
+                    <p>
+                        Trên đây là tổng quan về kí tự đặc biệt chữ nhỏ mà web mình tổng hợp
+                        được. Hy vọng sẽ giúp ích cho các bạn trong việc tạo tên game hay
+                        bằng kí tự đặc biệt. Chúc các bạn thành công!
+                    </p>
+                </div><!-- .entry-content -->
+            </article>
+        </div>
+    </div>
+</main>
+<div th:replace="fragments/layout :: footer"></div>
+<div th:replace="fragments/components :: modal"></div>
+<th:block th:replace="fragments/layout :: scripts"></th:block>
+<script src="/js/small-text.min.js" th:src="@{/js/small-text.min.js}"></script>
+</body>
+</html>
