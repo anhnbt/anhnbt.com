@@ -91,7 +91,7 @@
 </script>
 <th:block th:fragment="scripts">
     <script th:inline="javascript">
-        const baseURL = 'http://localhost:8080';
+        const contextPath = /*[[@{/}]]*/ '/';
     </script>
     <script src="/js/app.min.js" th:src="@{/js/app.js}"></script>
 </th:block>
