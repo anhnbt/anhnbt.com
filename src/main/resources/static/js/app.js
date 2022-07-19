@@ -69,10 +69,10 @@ function toPerfectName(elm) {
 
 function loadMoreNickName(btn, nextPage, recordsPerPage) {
     const nickNameList = document.getElementById("nickNameList");
-    nickNameList.innerHTML = `<img class="d-block mx-auto" src="${contextPath}/images/spinner.gif" alt="loading"><p class="text-center">Đang tải dữ liệu ...</p>`;
+    nickNameList.innerHTML = `<img class="d-block mx-auto" src="${contextPath}images/spinner.gif" alt="loading"><p class="text-center">Đang tải dữ liệu ...</p>`;
 
     const http = new XMLHttpRequest();
-    http.open("GET", contextPath + "/nicknames?page=" + nextPage + "&size=" + recordsPerPage, true);
+    http.open("GET", contextPath + "nicknames?page=" + nextPage + "&size=" + recordsPerPage, true);
     http.setRequestHeader("Content-type", "application/json");
     http.onreadystatechange = function () {
         if (http.readyState === 4 && http.status === 200) {
