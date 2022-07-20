@@ -163,6 +163,19 @@ public class PageController {
         return "pages/ki-tu-qua-tao";
     }
 
+    @GetMapping("/ki-tu-khoang-trong-ff")
+    public String kiTuKhoangTrongFF(Model model) {
+        MetaTag metaTag = new MetaTag();
+        metaTag.setTitle("Kí tự khoảng trống FF - Dấu cách đặc biệt");
+        metaTag.setCanonical(baseUrl + "/ki-tu-khoang-trong-ff");
+        metaTag.setUrl(baseUrl + "/ki-tu-khoang-trong-ff");
+        metaTag.setType("article");
+        metaTag.setDescription("Dùng làm tên game đẹp độc đáo với ký tự khoảng trống hay dấu cách đặc biệt dành cho game Free Fire (FF), Liên Quân Mobile...");
+        metaTag.setImage(baseUrl + "/images/ki-tu-khoang-trong-ff.jpg");
+        model.addAttribute("metaTag", metaTag);
+        return "pages/ki-tu-khoang-trong-ff";
+    }
+
     private void send301Redirect(HttpServletResponse response, String newUrl) {
         response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
         response.setHeader("Location", newUrl);
