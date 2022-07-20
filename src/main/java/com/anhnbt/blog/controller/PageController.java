@@ -150,6 +150,19 @@ public class PageController {
         return "pages/tao-chu-i-am";
     }
 
+    @GetMapping("/ki-tu-qua-tao")
+    public String kiTuQuaTao(Model model) {
+        MetaTag metaTag = new MetaTag();
+        metaTag.setTitle("Kí tự quả táo \uD83C\uDF4E – Tên game quả táo đẹp");
+        metaTag.setCanonical(baseUrl + "/ki-tu-qua-tao");
+        metaTag.setUrl(baseUrl + "/ki-tu-qua-tao");
+        metaTag.setType("article");
+        metaTag.setDescription("Kí tự quả táo iPhone \uF8FF, hay kí tự quả táo cắn dở được nhiều bạn thắc mắc và hỏi làm sao để hiển thị trong Free Fire (FF).");
+        metaTag.setImage(baseUrl + "/images/ki-tu-qua-tao.jpg");
+        model.addAttribute("metaTag", metaTag);
+        return "pages/ki-tu-qua-tao";
+    }
+
     private void send301Redirect(HttpServletResponse response, String newUrl) {
         response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
         response.setHeader("Location", newUrl);
