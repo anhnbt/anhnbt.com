@@ -137,6 +137,19 @@ public class PageController {
         return "pages/ki-tu-dac-biet-chu-nho";
     }
 
+    @GetMapping("/tao-chu-i-am")
+    public String taoChuIAm(Model model) {
+        MetaTag metaTag = new MetaTag();
+        metaTag.setTitle("Công cụ tạo chữ IAM (IͥAͣMͫ) nhỏ xíu trên đầu");
+        metaTag.setCanonical(baseUrl + "/tao-chu-i-am");
+        metaTag.setUrl(baseUrl + "/tao-chu-i-am");
+        metaTag.setType("article");
+        metaTag.setDescription("Công cụ tạo kí tự đặc biệt kiểu IAM (IͥAͣMͫ) trên đầu sử dụng dễ dàng và đơn giản. Có nhiều tùy chọn ký tự trên đầu khác chẳng hạn như Aͭnͧhͣn.");
+        metaTag.setImage(baseUrl + "/images/ki-tu-i-am-nho.jpg");
+        model.addAttribute("metaTag", metaTag);
+        return "pages/tao-chu-i-am";
+    }
+
     private void send301Redirect(HttpServletResponse response, String newUrl) {
         response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
         response.setHeader("Location", newUrl);
