@@ -30,7 +30,7 @@ function toPerfectName(elm) {
                     <input type="text" class="input" value="${resp.recommendChars[i]}" onfocus="this.select();" onmouseup="return false;">
                 </div>
                 <div class="control">
-                    <button class="button is-info" onclick="copyToClipboardInput(this);">
+                    <button type="button" class="button is-info" onclick="copyToClipboardInput(this);">
                     Sao chép
                     </button>
                 </div>
@@ -44,9 +44,9 @@ function toPerfectName(elm) {
                     <input type="text" class="input" value="${resp.chars[i]}" onfocus="this.select();" onmouseup="return false;">
                 </div>
                 <div class="control">
-                    <a class="button is-info" onclick="copyToClipboardInput(this);">
+                    <button type="button" class="button is-info" onclick="copyToClipboardInput(this);">
                     Sao chép
-                    </a>
+                    </button>
                 </div>
             </div>`;
                     }
