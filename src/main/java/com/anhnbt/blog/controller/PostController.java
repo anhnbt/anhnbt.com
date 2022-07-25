@@ -1,13 +1,13 @@
 package com.anhnbt.blog.controller;
 
 import com.anhnbt.blog.entities.Post;
+import com.anhnbt.blog.exception.PostNotFoundException;
 import com.anhnbt.blog.model.AuthorLdJson;
 import com.anhnbt.blog.model.MetaTag;
 import com.anhnbt.blog.model.SchemaLdJson;
 import com.anhnbt.blog.service.PostService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +16,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping
@@ -37,9 +33,9 @@ public class PostController {
     private String baseUrl;
 
     @GetMapping("/p/{slug}.html")
-    private ModelAndView details(@PathVariable("slug") String slug) {
+    private ModelAndView details(@PathVariable("slug") String slug) throws PostNotFoundException {
         ModelAndView modelAndView = new ModelAndView("posts");
-        Post post = postService.findByPostName(slug).orElseThrow(() -> new RuntimeException("Not found"));
+        Post post = postService.findByPostName(slug).orElseThrow(() -> new PostNotFoundException("Not found"));
         MetaTag metaTag = new MetaTag();
         metaTag.setCanonical(baseUrl + "/p/" + slug + ".html");
         metaTag.setUrl(baseUrl + "/p/" + slug + ".html");
