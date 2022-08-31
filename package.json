@@ -1,0 +1,25 @@
+{
+  "name": "blog-spring-boot",
+  "version": "1.0.0",
+  "description": "Dự án là một trang blog cá nhân sử dụng Spring Framework",
+  "main": "_sass/main.scss",
+  "scripts": {
+    "css-build": "node-sass --omit-source-map-url _sass/main.scss css/style.css",
+    "css-watch": "npm run css-build -- --watch",
+    "start": "npm run css-watch"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anhnbt/blog-spring-boot.git"
+  },
+  "author": "Nguyễn Bá Tuấn Anh",
+  "bugs": {
+    "url": "https://github.com/anhnbt/blog-spring-boot/issues"
+  },
+  "homepage": "https://github.com/anhnbt/blog-spring-boot#readme",
+  "devDependencies": {
+    "bulma": "^0.9.4",
+    "node-sass": "^7.0.1"
+  }
+}

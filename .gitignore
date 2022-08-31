@@ -28,3 +28,4 @@ replay_pid*
 
 # Maven
 /target
+/node_modules
