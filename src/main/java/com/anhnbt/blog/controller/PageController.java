@@ -59,6 +59,123 @@ public class PageController {
         return "pages/ky-tu-dac-biet";
     }
 
+    @GetMapping("/chu-in-dam")
+    public String chuInDam(Model model) {
+        MetaTag metaTag = new MetaTag();
+        metaTag.setTitle("Chữ in đậm | Công cụ tạo chữ đậm Online");
+        metaTag.setCanonical(baseUrl + "/chu-in-dam");
+        metaTag.setUrl(baseUrl + "/chu-in-dam");
+        metaTag.setType("article");
+        metaTag.setDescription("Công cụ tạo chữ in đậm, chữ nghiêng trên status Facebook Fanpage đơn giản nhất. Chữ nét đậm không cần cài đặt font (phông) về điện thoại.");
+        metaTag.setImage(baseUrl + "/images/chu-in-dam.jpg");
+        model.addAttribute("metaTag", metaTag);
+        return "pages/chu-in-dam";
+    }
+
+    @GetMapping("/chu-kieu")
+    public String chuKieu(Model model) {
+        MetaTag metaTag = new MetaTag();
+        metaTag.setTitle("Chữ Kiểu đẹp - Công cụ tạo Chữ Kiểu Online");
+        metaTag.setCanonical(baseUrl + "/chu-kieu");
+        metaTag.setUrl(baseUrl + "/chu-kieu");
+        metaTag.setType("article");
+        metaTag.setDescription("Tạo Chữ Kiểu đẹp với 1001+ font chữ đẹp như gạch chân, gạch ngang, bong bóng, ô vuông, chữ khoảng trống,... Kí tự Facebook, Instagram, Zalo, Tiktok.");
+        metaTag.setImage(baseUrl + "/images/chu-kieu.jpg");
+        model.addAttribute("metaTag", metaTag);
+        return "pages/chu-kieu";
+    }
+
+    @GetMapping("/ten-game-hay")
+    public String tenGameHay(Model model) {
+        MetaTag metaTag = new MetaTag();
+        metaTag.setTitle("Tên Game Hay nhất cho game thủ Việt Nam");
+        metaTag.setCanonical(baseUrl + "/ten-game-hay");
+        metaTag.setUrl(baseUrl + "/ten-game-hay");
+        metaTag.setType("article");
+        metaTag.setDescription("Bạn đang bí ý tưởng để đặt tên game hay Liên Quân Mobile (LQ), Free Fire (FF)? Vào xem ngay những cái tên cực ngầu, hợp thời và gây được ấn tượng nhất.");
+        metaTag.setImage(baseUrl + "/images/ten-lien-quan-hay.jpg");
+        model.addAttribute("metaTag", metaTag);
+        return "pages/ten-game-hay";
+    }
+
+    @GetMapping("/ki-tu-vuong-mien")
+    public String kiTuVuongMien(Model model) {
+        MetaTag metaTag = new MetaTag();
+        metaTag.setTitle("Kí tự Vương Miện 亗 – Tên game Vương Miện đẹp");
+        metaTag.setCanonical(baseUrl + "/ki-tu-vuong-mien");
+        metaTag.setUrl(baseUrl + "/ki-tu-vuong-mien");
+        metaTag.setType("article");
+        metaTag.setDescription("Kí tự Vương Miện hay Kí tự đặc biệt Vương Miện một trong những kí tự hot trend hiện nay. Giúp bạn tạo những tên game hay cho FF, Liên Quân, PUBG.");
+        metaTag.setImage(baseUrl + "/images/ki-tu-vuong-mien.jpg");
+        model.addAttribute("metaTag", metaTag);
+        return "pages/ki-tu-vuong-mien";
+    }
+
+    @GetMapping("/ki-tu-tang-hinh")
+    public String kiTuTangHinh(Model model) {
+        MetaTag metaTag = new MetaTag();
+        metaTag.setTitle("Kí tự tàng hình – Đổi tên Free Fire không tên");
+        metaTag.setCanonical(baseUrl + "/ki-tu-tang-hinh");
+        metaTag.setUrl(baseUrl + "/ki-tu-tang-hinh");
+        metaTag.setType("article");
+        metaTag.setDescription("Kí tự tàng hình, hay kí tự ẩn là một trong những kí tự hot nhất giúp bạn tạo tên game tàng hình Free Fire (FF) không tên.");
+        metaTag.setImage(baseUrl + "/images/ki-tu-tang-hinh.jpg");
+        model.addAttribute("metaTag", metaTag);
+        return "pages/ki-tu-tang-hinh";
+    }
+
+    @GetMapping("/ki-tu-dac-biet-chu-nho")
+    public String kiTuDacBietChuNho(Model model) {
+        MetaTag metaTag = new MetaTag();
+        metaTag.setTitle("Kí tự đặc biệt chữ nhỏ - Tạo chữ siêu nhỏ");
+        metaTag.setCanonical(baseUrl + "/ki-tu-dac-biet-chu-nho");
+        metaTag.setUrl(baseUrl + "/ki-tu-dac-biet-chu-nho");
+        metaTag.setType("article");
+        metaTag.setDescription("Bộ công cụ tạo tên game bằng bảng kí tự đặc biệt chữ nhỏ (chữ siêu nhỏ, chữ nhỏ ở giữa) có dấu và không dấu.");
+        metaTag.setImage(baseUrl + "/images/ki-tu-chu-nho.jpg");
+        model.addAttribute("metaTag", metaTag);
+        return "pages/ki-tu-dac-biet-chu-nho";
+    }
+
+    @GetMapping("/tao-chu-i-am")
+    public String taoChuIAm(Model model) {
+        MetaTag metaTag = new MetaTag();
+        metaTag.setTitle("Công cụ tạo chữ IAM (IͥAͣMͫ) nhỏ xíu trên đầu");
+        metaTag.setCanonical(baseUrl + "/tao-chu-i-am");
+        metaTag.setUrl(baseUrl + "/tao-chu-i-am");
+        metaTag.setType("article");
+        metaTag.setDescription("Công cụ tạo kí tự đặc biệt kiểu IAM (IͥAͣMͫ) trên đầu sử dụng dễ dàng và đơn giản. Có nhiều tùy chọn ký tự trên đầu khác chẳng hạn như Aͭnͧhͣn.");
+        metaTag.setImage(baseUrl + "/images/ki-tu-i-am-nho.jpg");
+        model.addAttribute("metaTag", metaTag);
+        return "pages/tao-chu-i-am";
+    }
+
+    @GetMapping("/ki-tu-qua-tao")
+    public String kiTuQuaTao(Model model) {
+        MetaTag metaTag = new MetaTag();
+        metaTag.setTitle("Kí tự quả táo \uD83C\uDF4E – Tên game quả táo đẹp");
+        metaTag.setCanonical(baseUrl + "/ki-tu-qua-tao");
+        metaTag.setUrl(baseUrl + "/ki-tu-qua-tao");
+        metaTag.setType("article");
+        metaTag.setDescription("Kí tự quả táo iPhone \uF8FF, hay kí tự quả táo cắn dở được nhiều bạn thắc mắc và hỏi làm sao để hiển thị trong Free Fire (FF).");
+        metaTag.setImage(baseUrl + "/images/ki-tu-qua-tao.jpg");
+        model.addAttribute("metaTag", metaTag);
+        return "pages/ki-tu-qua-tao";
+    }
+
+    @GetMapping("/ki-tu-khoang-trong-ff")
+    public String kiTuKhoangTrongFF(Model model) {
+        MetaTag metaTag = new MetaTag();
+        metaTag.setTitle("Kí tự khoảng trống FF - Dấu cách đặc biệt");
+        metaTag.setCanonical(baseUrl + "/ki-tu-khoang-trong-ff");
+        metaTag.setUrl(baseUrl + "/ki-tu-khoang-trong-ff");
+        metaTag.setType("article");
+        metaTag.setDescription("Dùng làm tên game đẹp độc đáo với ký tự khoảng trống hay dấu cách đặc biệt dành cho game Free Fire (FF), Liên Quân Mobile...");
+        metaTag.setImage(baseUrl + "/images/ki-tu-khoang-trong-ff.jpg");
+        model.addAttribute("metaTag", metaTag);
+        return "pages/ki-tu-khoang-trong-ff";
+    }
+
     private void send301Redirect(HttpServletResponse response, String newUrl) {
         response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
         response.setHeader("Location", newUrl);

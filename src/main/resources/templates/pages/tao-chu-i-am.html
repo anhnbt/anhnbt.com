@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head"></head>
+<body>
+<div th:replace="fragments/layout :: header"></div>
+<main class="container is-fluid pt-5">
+  <div class="columns">
+    <div class="column">
+      <nav class="breadcrumb is-small" aria-label="breadcrumbs">
+        <ul>
+          <li><a href="#" th:href="@{/}">Trang chủ</a></li>
+          <li class="is-active"><a href="#" aria-current="page">Tạo chữ IAM (IͥAͣMͫ)</a></li>
+        </ul>
+      </nav>
+      <article class="content">
+        <header>
+          <h1>Tạo chữ IAM (IͥAͣMͫ)</h1>
+          <p class="is-italic"><small class="has-text-grey">
+            <time datetime="2022-02-23">23/02/2022</time>
+          </small></p>
+        </header>
+        <div class="entry-content">
+          <p>Kí tự đặc biệt I-AM hay còn gọi là chữ chồng ở trên đầu giúp bạn có thể thoải mái tạo ra những cái tên game hay độc lạ, hoặc những chữ kiểu đẹp.</p>
+          <form action="#" method="post" class="box">
+            <div class="field">
+              <label for="input" class="label">Nhập vào</label>
+              <div class="control">
+                <textarea class="textarea" name="input" id="input" rows="3"></textarea>
+              </div>
+            </div>
+            <div class="has-text-centered mb-2">
+              <button type="button" class="button" onclick="addCharacterToInput('ͣ')">ͣ</button>
+              <button type="button" class="button" onclick="addCharacterToInput('ͤ')">ͤ</button>
+              <button type="button" class="button" onclick="addCharacterToInput('ͥ')">ͥ</button>
+              <button type="button" class="button" onclick="addCharacterToInput('ͦ')">ͦ</button>
+              <button type="button" class="button" onclick="addCharacterToInput('ͧ')">ͧ</button>
+              <button type="button" class="button" onclick="addCharacterToInput('ͨ')">ͨ</button>
+              <button type="button" class="button" onclick="addCharacterToInput('ͩ')">ͩ</button>
+            </div>
+            <div class="has-text-centered mb-2">
+              <button type="button" class="button" onclick="addCharacterToInput('ⷦ')">ⷦ</button>
+              <button type="button" class="button" onclick="addCharacterToInput('ͪ')">ͪ</button>
+              <button type="button" class="button" onclick="addCharacterToInput('ͫ')">ͫ</button>
+              <button type="button" class="button" onclick="addCharacterToInput('ͬ')">ͬ</button>
+              <button type="button" class="button" onclick="addCharacterToInput('ͭ')">ͭ</button>
+              <button type="button" class="button" onclick="addCharacterToInput('ͮ')">ͮ</button>
+              <button type="button" class="button" onclick="addCharacterToInput('ͯ')">ͯ</button>
+            </div>
+          </form>
+          <figure class="has-text-centered">
+            <img width="480" height="270" src="/images/ki-tu-i-am-nho.jpg" th:src="@{/images/ki-tu-i-am-nho.jpg}" alt="Kí tự đặc biệt I-AM" loading="lazy">
+            <figcaption>
+              Kí tự đặc biệt I-AM
+            </figcaption>
+          </figure>
+          <p>Kí tự chồng IAM không còn quá xa lạ gì với các bạn trẻ, đặc biệt là các bạn game thủ online hay đổi tên game. Một kiểu chữ độc lạ làm tên game khiến nhiều người mê mẩn. Hôm nay Anhnbt xin giới thiệu bạn đến công cụ tạo chữ chồng. Không chỉ làm những chữ IAM mà với tool này bạn có thể chèn thêm 1 số kí tự chồng như: a e i o c d m h k t v x</p>
+          <h2>Các bước để tạo chữ chồng:</h2>
+          <ul>
+            <li>B1: Nhập tên mà bạn muốn làm</li>
+            <li>B2: Chọn kí tự chữ chồng ở trên đầu mà bạn muốn</li>
+            <li>B3: Bấm vào ô "TextBox" để sao chép.</li>
+          </ul>
+          <p>Lưu ý: Công cụ tạo chữ chồng này trông sẽ đẹp hơn nếu bạn nhập vào Tiếng Việt không dấu và in hoa nhé.</p>
+          <p>Vậy là chỉ những bước đơn giản bạn đã có cho mình cái tên game độc lạ với kí tự chữ chồng rồi đấy nhé. Nếu bạn thấy công cụ tạo tên kí tự đặc biệt IAM này hay và hữu ích cho bạn cũng như bạn bè, hãy chia sẻ nó đến với bạn bè của mình nhé. Chúc bạn thành công!</p>
+        </div><!-- .entry-content -->
+      </article>
+    </div>
+  </div>
+</main>
+<div th:replace="fragments/layout :: footer"></div>
+<div th:replace="fragments/components :: modal"></div>
+<th:block th:replace="fragments/layout :: scripts"></th:block>
+<script src="/js/iam-text.min.js" th:src="@{/js/iam-text.min.js}"></script>
+</body>
+</html>

@@ -6,8 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title th:text="${metaTag.title}"></title>
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" th:href="@{/favicon-32x32.png}">
-    <meta name="description"
-          content="AnhNBT là nơi chia sẻ những tiện ích hay công cụ về Game Mobile của Nguyễn Bá Tuấn Anh. Mời bạn ghé thăm trang và sử dụng công cụ tạo tên mới nhất của mình">
+    <meta name="description" th:content="${metaTag.description}">
     <link rel="canonical" th:href="${metaTag.canonical}">
     <meta property="fb:app_id" content="1540103976279074"/>
     <meta property="og:locale" content="vi_VN">
@@ -92,7 +91,7 @@
 </script>
 <th:block th:fragment="scripts">
     <script th:inline="javascript">
-        const baseURL = 'http://localhost:8080';
+        const contextPath = /*[[@{/}]]*/ '/';
     </script>
     <script src="/js/app.min.js" th:src="@{/js/app.js}"></script>
 </th:block>
