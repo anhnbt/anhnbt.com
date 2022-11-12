@@ -30,4 +30,15 @@ public class MyExceptionHandler extends ResponseEntityExceptionHandler {
         modelAndView.addObject("metaTag", metaTag);
         return modelAndView;
     }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
+    protected ModelAndView handleServerException(Exception e, WebRequest request) {
+        logger.error("NotFoundException: " + request.toString(), e);
+        MetaTag metaTag = new MetaTag();
+        metaTag.setTitle("500 Internal Server Error");
+        ModelAndView modelAndView = new ModelAndView("error/500");
+        modelAndView.addObject("metaTag", metaTag);
+        return modelAndView;
+    }
 }
