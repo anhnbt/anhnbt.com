@@ -6,11 +6,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
@@ -27,17 +29,6 @@ public class MyExceptionHandler extends ResponseEntityExceptionHandler {
         MetaTag metaTag = new MetaTag();
         metaTag.setTitle("404 Not Found - Bài viết không tồn tại");
         ModelAndView modelAndView = new ModelAndView("error/404");
-        modelAndView.addObject("metaTag", metaTag);
-        return modelAndView;
-    }
-
-    @ExceptionHandler(Exception.class)
-    @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
-    protected ModelAndView handleServerException(Exception e, WebRequest request) {
-        logger.error("NotFoundException: " + request.toString(), e);
-        MetaTag metaTag = new MetaTag();
-        metaTag.setTitle("500 Internal Server Error");
-        ModelAndView modelAndView = new ModelAndView("error/500");
         modelAndView.addObject("metaTag", metaTag);
         return modelAndView;
     }
