@@ -7,4 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface NicknameRepository extends JpaRepository<Nickname, Long> {
     Page<Nickname> findAllByEnabled(Boolean enabled, Pageable pageable);
+
+    Page<Nickname> findAllBySlugContainingIgnoreCase(String slug, Pageable pageable);
 }

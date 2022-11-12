@@ -22,4 +22,9 @@ public class NicknameServiceImpl implements NicknameService {
     public Page<Nickname> findAllByEnabled(Boolean enabled, Pageable pageable) {
         return repo.findAllByEnabled(enabled, pageable);
     }
+
+    @Override
+    public Page<Nickname> findAllBySlugContainingIgnoreCase(String slug, Pageable pageable) {
+        return repo.findAllBySlugContainingIgnoreCase(slug, pageable);
+    }
 }

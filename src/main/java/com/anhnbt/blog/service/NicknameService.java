@@ -8,4 +8,6 @@ public interface NicknameService {
     Page<Nickname> findAll(Pageable pageable);
 
     Page<Nickname> findAllByEnabled(Boolean enabled, Pageable pageable);
+
+    Page<Nickname> findAllBySlugContainingIgnoreCase(String slug, Pageable pageable);
 }
