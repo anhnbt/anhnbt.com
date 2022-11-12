@@ -70,6 +70,7 @@ public class PostController {
         modelAndView.addObject("schemaLdJson", jsonAsString);
         modelAndView.addObject("metaTag", metaTag);
         modelAndView.addObject("post", post);
+        modelAndView.addObject("enabledAds", false);
         return modelAndView;
     }
 }

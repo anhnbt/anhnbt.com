@@ -45,6 +45,7 @@ public class SearchController {
         MetaTag metaTag = new MetaTag();
         metaTag.setTitle(query + " | AnhNBT BLOG");
         model.addAttribute("metaTag", metaTag);
+        model.addAttribute("enabledAds", false);
         model.addAttribute("nicknames", nicknames);
         int totalPages = nicknames.getTotalPages();
         if (totalPages > 0) {
