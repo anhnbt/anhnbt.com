@@ -59,7 +59,7 @@ function toPerfectName(elm) {
                 }, 2000);
             }
         };
-        xhttp.open("POST", "https://api.anhnbt.com", true);
+        xhttp.open("POST", "https://anhnbt.kitudacbiet.com", true);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(JSON.stringify(req));
     } catch (e) {
