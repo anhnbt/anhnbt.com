@@ -41,7 +41,8 @@ public class PageController {
         metaTag.setImage(baseUrl + "/images/ki-tu-dac-biet-anhnbt.jpg");
         model.addAttribute("metaTag", metaTag);
         model.addAttribute("enabledAds", false);
-        model.addAttribute("posts", postService.findAll());
+        // Bỏ qua 4 bài viết đầu tiên
+        model.addAttribute("posts", postService.findAllByIdGreaterThan(4L));
         return "index";
     }
 

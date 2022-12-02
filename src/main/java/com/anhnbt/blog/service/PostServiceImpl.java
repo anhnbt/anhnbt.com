@@ -6,6 +6,7 @@ import com.anhnbt.blog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,6 +21,11 @@ public class PostServiceImpl implements PostService {
     @Override
     public Iterable<Post> findAll() {
         return repo.findAll();
+    }
+
+    @Override
+    public List<Post> findAllByIdGreaterThan(Long id) {
+        return repo.findAllByIdGreaterThan(id);
     }
 
     @Override
