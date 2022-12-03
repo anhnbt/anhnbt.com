@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head"></head>
+<body>
+<div th:replace="fragments/layout :: header"></div>
+<main class="container is-fluid pt-5">
+    <div class="columns is-desktop">
+        <div class="column">
+            <div class="box">
+                <!-- /* Handle the flash message */-->
+                <th:block th:if="${message != null}">
+                    <!-- /* The message code is returned from the @Controller */ -->
+                    <div th:replace="fragments/components :: alert (type=${#strings.toLowerCase(message.type)}, message=${message.message})">
+                    </div>
+                </th:block>
+                <form th:action="@{/signup}" th:object="${user}" method="post">
+                    <div class="notification is-danger content" th:if="${#fields.hasAnyErrors()}">
+                        <ul>
+                            <li th:each="err : ${#fields.allErrors()}" th:text="${err}"/>
+                        </ul>
+                    </div>
+                    <div class="field">
+                        <label th:for="username" class="label">Tài khoản</label>
+                        <div class="control">
+                            <input class="input" type="text" th:field="*{username}"
+                                   th:classappend="${#fields.hasErrors('username')} ? ' is-danger'"
+                                   placeholder="Tài khoản"/>
+                        </div>
+                        <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="help is-danger">
+                            Tài khoản không hợp lệ</p>
+                    </div>
+                    <div class="field">
+                        <label th:for="email" class="label">Email</label>
+                        <div class="control">
+                            <input class="input" type="email" th:field="*{email}"
+                                   th:classappend="${#fields.hasErrors('email')} ? ' is-danger'"
+                                   placeholder="Email"/>
+                        </div>
+                        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="help is-danger">Email
+                            không hợp lệ</p>
+                    </div>
+                    <div class="field">
+                        <label th:for="password" class="label">Mật khẩu</label>
+                        <div class="control">
+                            <input class="input" type="password" th:field="*{password}"
+                                   th:classappend="${#fields.hasErrors('password')} ? ' is-danger'"
+                                   placeholder="Mật khẩu"/>
+                        </div>
+                        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="help is-danger">
+                            Mật khẩu không hợp lệ</p>
+                    </div>
+                    <div class="field">
+                        <label th:for="email" class="label">Xác nhận mật khẩu</label>
+                        <div class="control">
+                            <input type="password" th:field="*{confirmPassword}" class="input"
+                                   th:classappend="${#fields.hasErrors('confirmPassword')} ? ' is-danger'"
+                                   placeholder="Xác nhận mật khẩu">
+                        </div>
+                        <p th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"
+                           class="help is-danger">Xác nhận mật khẩu không hợp lệ</p>
+                    </div>
+                    <div class="field is-grouped">
+                        <input type="submit" value="Đăng ký" class="button is-link"/>
+                    </div>
+                </form>
+                <div class="block">
+                    Nếu đã có tài khoản vui lòng <a th:href="@{/login}">Đăng nhập</a>
+                </div>
+            </div><!-- /.box -->
+        </div><!-- /. column -->
+    </div><!-- /.columns -->
+</main><!-- .site-main -->
+<div th:replace="fragments/layout :: footer"></div>
+<div th:replace="fragments/components :: modal"></div>
+<th:block th:replace="fragments/layout :: scripts"></th:block>
+</body>
+</html>

@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title th:text="${metaTag.title}"></title>
+    <title th:if="${metaTag?.title}" th:text="${metaTag?.title}"></title>
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" th:href="@{/favicon-32x32.png}">
-    <meta name="description" th:content="${metaTag.description}">
-    <link rel="canonical" th:href="${metaTag.canonical}">
+    <meta name="description" th:if="${metaTag?.description}" th:content="${metaTag?.description}">
+    <link rel="canonical" th:if="${metaTag?.canonical}" th:href="${metaTag?.canonical}">
     <meta property="fb:app_id" content="1540103976279074"/>
     <meta property="og:locale" content="vi_VN">
-    <meta property="og:url" th:content="${metaTag.url}">
-    <meta property="og:type" th:content="${metaTag.type}">
-    <meta property="og:title" th:content="${metaTag.title}">
-    <meta property="og:description" th:content="${metaTag.description}">
-    <meta property="og:image" th:content="${metaTag.image}">
+    <meta property="og:url" th:if="${metaTag?.url}" th:content="${metaTag?.url}">
+    <meta property="og:type" th:if="${metaTag?.type}" th:content="${metaTag?.type}">
+    <meta property="og:title" th:if="${metaTag?.title}" th:content="${metaTag?.title}">
+    <meta property="og:description" th:if="${metaTag?.description}" th:content="${metaTag?.description}">
+    <meta property="og:image" th:if="${metaTag?.image}" th:content="${metaTag?.image}">
     <link rel="stylesheet" media="all" href="/css/bulma.min.css" th:href="@{/css/bulma.min.css}">
     <link rel="stylesheet" media="all" href="/css/bulma.min.css" th:href="@{/css/app.min.css}">
     <script type="application/ld+json" th:unless="${schemaLdJson == null}" th:utext="${schemaLdJson}"></script>
@@ -97,6 +97,25 @@
                             </div>
                         </div>
                     </form>
+                    <div class="buttons ml-2" sec:authorize="!isAuthenticated()">
+                        <a class="button is-primary" th:href="@{/signup}">
+                            <strong>Đăng ký</strong>
+                        </a>
+                        <a class="button is-light" th:href="@{/login}">
+                            Đăng nhập
+                        </a>
+                    </div>
+                    <div class="navbar-item has-dropdown is-hoverable" sec:authorize="isAuthenticated()">
+                        <a class="navbar-link" href="#" th:text="${user?.username}">Tài khoản</a>
+                        <div class="navbar-dropdown is-boxed">
+                            <a th:href="@{/admin/dashboard}" sec:authorize="hasRole('ROLE_ADMIN')" class="navbar-item">
+                                Quản trị
+                            </a>
+                            <a th:href="@{/logout}" class="navbar-item">
+                                Thoát
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
