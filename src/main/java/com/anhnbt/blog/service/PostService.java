@@ -1,6 +1,7 @@
 package com.anhnbt.blog.service;
 
 import com.anhnbt.blog.entities.Post;
+import com.anhnbt.blog.model.PostDto;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,5 +13,5 @@ public interface PostService {
 
     Optional<Post> findByPostName(String slug);
 
-    Post save(Post post);
+    Post save(PostDto postDto);
 }

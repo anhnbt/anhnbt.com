@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head"></head>
+<body>
+<div th:replace="fragments/layout :: header"></div>
+<main class="container is-fluid pt-5">
+    <div class="columns is-desktop">
+        <div class="column">
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li><a th:href="@{/admin}">Quản trị</a></li>
+                    <li><a th:href="@{/admin/posts}">Bài viết</a></li>
+                    <li class="is-active"><a href="#" aria-current="page">Thêm bài viết</a></li>
+                </ul>
+            </nav>
+            <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        Thêm bài viết
+                    </p>
+                </header>
+                <div class="card-content">
+                    <!-- /* Handle the flash message */-->
+                    <th:block th:if="${message != null}">
+                        <!-- /* The message code is returned from the @Controller */ -->
+                        <div th:replace="fragments/components :: alert (type=${#strings.toLowerCase(message.type)}, message=${message.message})">
+                        </div>
+                    </th:block>
+                    <form th:action="@{/admin/post-new}" th:object="${post}" method="post">
+                        <div class="message is-danger content" th:if="${#fields.hasAnyErrors()}">
+                            <div class="message-body">
+                                <ul class="m-0">
+                                    <li th:each="err : ${#fields.allErrors()}" th:text="${err}"/>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label th:for="postTitle" class="label">Tiêu đề</label>
+                            <div class="control">
+                                <input class="input" type="text" th:field="*{postTitle}"
+                                       th:classappend="${#fields.hasErrors('postTitle')} ? ' is-danger'"
+                                       placeholder="Tiêu đề" maxlength="60"/>
+                            </div>
+                            <div class="help"><span id="titleChars">60</span> ký tự còn lại</div>
+                            <p th:if="${#fields.hasErrors('postTitle')}" th:errors="*{postTitle}"
+                               class="help is-danger"></p>
+                        </div>
+                        <div class="field">
+                            <label th:for="category" class="label">Chuyên mục</label>
+                            <div class="select">
+                                <select th:field="*{category}">
+                                    <option th:each="c : ${categories}"
+                                            th:value="${c.id}"
+                                            th:text="${c.name}">
+                                        Address
+                                    </option>
+                                </select>
+                            </div>
+                            <p th:if="${#fields.hasErrors('category')}" th:errors="*{category}"
+                               class="help is-danger"></p>
+                        </div>
+                        <div class="field">
+                            <label th:for="postContent" class="label">Nội dung</label>
+                            <div class="control">
+                            <textarea maxlength="5000" class="textarea" th:field="*{postContent}"
+                                      th:classappend="${#fields.hasErrors('postContent')} ? ' is-danger'"
+                                      placeholder="Nội dung"/>
+                            </div>
+                            <p th:if="${#fields.hasErrors('postContent')}" th:errors="*{postContent}"
+                               class="help is-danger"></p>
+                        </div>
+                        <div class="field is-grouped">
+                            <input type="submit" value="Đăng bài" class="button is-link"/>
+                        </div>
+                    </form>
+                </div><!-- /.card-content -->
+            </div><!-- /.card -->
+        </div><!-- /. column -->
+    </div><!-- /.columns -->
+</main><!-- .site-main -->
+<div th:replace="fragments/layout :: footer"></div>
+<div th:replace="fragments/components :: modal"></div>
+<th:block th:replace="fragments/layout :: scripts"></th:block>
+<script src="/js/jquery-3.6.1.min.js" th:src="@{/js/jquery-3.6.1.min.js}"></script>
+<script src="/js/chu-kieu.min.js" th:src="@{/js/ckeditor.js}"></script>
+<script>
+    // Textarea Text Count
+
+    const titleMaxLength = 60;
+    const contentMaxLength = 5000;
+    $('#postTitle').on('keyup change', function () {
+        var length = $(this).val().length;
+        length = titleMaxLength - length;
+        $('#titleChars').text(length);
+    });
+    ClassicEditor
+        .create(document.querySelector('#postContent'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head"></head>
+<body>
+<div th:replace="fragments/layout :: header"></div>
+<main class="container is-fluid pt-5">
+    <div class="columns is-desktop">
+        <div class="column">
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li><a th:href="@{/admin}">Quản trị</a></li>
+                    <li class="is-active"><a href="#" aria-current="page">Bài viết</a></li>
+                </ul>
+            </nav>
+            <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        Tất cả bài viết
+                    </p>
+                </header>
+                <div class="card-content">
+                    <!-- /* Handle the flash message */-->
+                    <th:block th:if="${message != null}">
+                        <!-- /* The message code is returned from the @Controller */ -->
+                        <div th:replace="fragments/components :: alert (type=${#strings.toLowerCase(message.type)}, message=${message.message})">
+                        </div>
+                    </th:block>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tiêu đề</th>
+                            <th>Chuyên mục</th>
+                            <th>Ngày tạo</th>
+                            <th>Lượt xem</th>
+                            <th>Thao tác</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:unless="${#lists.isEmpty(posts)}" th:each="post,iterStat : ${posts}">
+                            <td th:text="${iterStat.index+1}"></td>
+                            <td><a href="#" th:href="@{/p/{url}.html(url=${post.postName})}" rel="bookmark"
+                                   th:text="${post.postTitle}"></a></td>
+                            <td th:text="${post.category?.name}"></td>
+                            <td th:text="${#dates.format(post.postModified, 'dd-MM-yyyy')}"></td>
+                            <td th:text="${#numbers.formatInteger(post.postViewCount,3,'POINT')}"></td>
+                            <td>
+                                <div class="buttons ml-2">
+                                    <a class="button is-small is-info is-light" th:href="@{/post-edit/{id}(id=${post.id})}">
+                                        <strong>Sửa</strong>
+                                    </a>
+                                    <a class="button is-small is-danger is-light" th:href="@{/login}">
+                                        Xóa
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div><!-- /.card-content -->
+            </div><!-- /.card -->
+        </div><!-- /. column -->
+    </div><!-- /.columns -->
+</main><!-- .site-main -->
+<div th:replace="fragments/layout :: footer"></div>
+<div th:replace="fragments/components :: modal"></div>
+<th:block th:replace="fragments/layout :: scripts"></th:block>
+<script src="/js/jquery-3.6.1.min.js" th:src="@{/js/jquery-3.6.1.min.js}"></script>
+<script src="/js/chu-kieu.min.js" th:src="@{/js/ckeditor.js}"></script>
+<script>
+    // Textarea Text Count
+
+    const titleMaxLength = 60;
+    const contentMaxLength = 5000;
+    $('#postTitle').on('keyup change', function () {
+        var length = $(this).val().length;
+        length = titleMaxLength - length;
+        $('#titleChars').text(length);
+    });
+    ClassicEditor
+        .create(document.querySelector('#postContent'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+
+</body>
+</html>

@@ -1,10 +1,11 @@
 package com.anhnbt.blog.controller;
 
+import com.anhnbt.blog.common.Constants;
 import com.anhnbt.blog.entities.Post;
 import com.anhnbt.blog.exception.PostNotFoundException;
-import com.anhnbt.blog.model.AuthorLdJson;
-import com.anhnbt.blog.model.MetaTag;
-import com.anhnbt.blog.model.SchemaLdJson;
+import com.anhnbt.blog.model.*;
+import com.anhnbt.blog.repository.PostRepository;
+import com.anhnbt.blog.service.CategoryService;
 import com.anhnbt.blog.service.PostService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,10 +14,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -28,12 +31,17 @@ public class PostController {
 
     @Autowired
     private PostService postService;
+    @Autowired
+    private PostRepository postRepository;
+
+    @Autowired
+    private CategoryService categoryService;
 
     @Value(value = "${app.base-url}")
     private String baseUrl;
 
     @GetMapping("/p/{slug}.html")
-    private ModelAndView details(@PathVariable("slug") String slug) throws PostNotFoundException {
+    public ModelAndView details(@PathVariable("slug") String slug) throws PostNotFoundException {
         ModelAndView modelAndView = new ModelAndView("posts");
         Post post = postService.findByPostName(slug).orElseThrow(() -> new PostNotFoundException("Not found"));
         MetaTag metaTag = new MetaTag();
@@ -58,13 +66,9 @@ public class PostController {
             jsonAsString = objectMapper.writeValueAsString(json);
 
             post.setPostViewCount(post.getPostViewCount() + 1);
-            if (postService.save(post) == null) {
-                logger.info("Không cập nhật được post view");
-            }
-        } catch (JsonProcessingException e) {
-            // TODO 500 error page
+            postRepository.save(post);
         } catch (Exception e) {
-            // TODO 500 error page
+            logger.debug("Exception khi thực hiện PostController.details", e);
         }
 
         modelAndView.addObject("schemaLdJson", jsonAsString);
@@ -72,5 +76,43 @@ public class PostController {
         modelAndView.addObject("post", post);
         modelAndView.addObject("enabledAds", false);
         return modelAndView;
+    }
+
+    @ModelAttribute
+    public void categoriesAttributes(Model model) {
+        model.addAttribute("categories", categoryService.findAll());
+    }
+
+    @GetMapping("/admin/posts")
+    public ModelAndView showAllPost() {
+        ModelAndView modelAndView = new ModelAndView("admin/posts");
+        modelAndView.addObject("posts", postService.findAll());
+        modelAndView.addObject("metaTag", new MetaTag("Tất cả bài viết"));
+        return modelAndView;
+    }
+
+    @GetMapping("/admin/post-new")
+    public ModelAndView createPost() {
+        ModelAndView modelAndView = new ModelAndView("admin/post-new");
+        modelAndView.addObject("post", new Post());
+        modelAndView.addObject("metaTag", new MetaTag("Thêm bài viết"));
+        return modelAndView;
+    }
+
+    @PostMapping("/admin/post-new")
+    public String createPost(@Validated @ModelAttribute("post") PostDto post,
+                          BindingResult result,
+                          RedirectAttributes redirect) {
+        try {
+            if (result.hasErrors()) {
+                return "admin/post-new";
+            }
+            postService.save(post);
+            redirect.addFlashAttribute(Constants.MESSAGE, new Message(Constants.MESSAGE_TYPE.SUCCESS, "Thêm bài viết thành công!"));
+        } catch (Exception e) {
+            logger.debug("Exception when /admin/post-new", e);
+            redirect.addFlashAttribute(Constants.MESSAGE, new Message(Constants.MESSAGE_TYPE.DANGER, "Thêm bài viết không thành công!"));
+        }
+        return "redirect:/admin/post-new";
     }
 }

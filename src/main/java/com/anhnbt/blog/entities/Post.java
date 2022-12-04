@@ -17,13 +17,13 @@ public class Post implements Serializable {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "category_id", nullable = false)
+    @JoinColumn(name = "category_id")
     private Category category;
 
     @Column(name = "post_title", nullable = false, length = 110)
     private String postTitle;
 
-    @Column(name = "post_name", nullable = false, length = 200)
+    @Column(name = "post_name", length = 200)
     private String postName;
 
     @Column(name = "post_thumb")
@@ -33,16 +33,16 @@ public class Post implements Serializable {
     @Column(name = "post_content", nullable = false)
     private String postContent;
 
-    @Column(name = "post_date", nullable = false)
+    @Column(name = "post_date")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date postDate;
+    private Date postDate = new Date();
 
-    @Column(name = "post_modified", nullable = false)
+    @Column(name = "post_modified")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date postModified;
+    private Date postModified = new Date();
 
-    @Column(name = "post_view_count", nullable = false)
-    private Integer postViewCount;
+    @Column(name = "post_view_count")
+    private Integer postViewCount = 0;
 
     public String getContentEscape() {
         if (StringUtils.isNotEmpty(postContent)) {

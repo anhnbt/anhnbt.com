@@ -1,9 +1,9 @@
 package com.anhnbt.blog.service;
 
+import com.anhnbt.blog.common.StringCommon;
 import com.anhnbt.blog.entities.Post;
+import com.anhnbt.blog.model.PostDto;
 import com.anhnbt.blog.repository.PostRepository;
-import com.anhnbt.blog.service.PostService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,7 +34,12 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Post save(Post post) {
+    public Post save(PostDto postDto) {
+        Post post = new Post();
+        post.setCategory(post.getCategory());
+        post.setPostTitle(postDto.getPostTitle());
+        post.setPostContent(postDto.getPostContent());
+        post.setPostName(StringCommon.createSlug(postDto.getPostTitle()));
         return repo.save(post);
     }
 }
