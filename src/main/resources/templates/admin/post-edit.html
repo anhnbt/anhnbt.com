@@ -10,7 +10,7 @@
                 <ul>
                     <li><a th:href="@{/admin}">Quản trị</a></li>
                     <li><a th:href="@{/admin/posts}">Bài viết</a></li>
-                    <li class="is-active"><a href="#" aria-current="page">Thêm bài viết</a></li>
+                    <li class="is-active"><a href="#" aria-current="page">Chỉnh sửa bài viết</a></li>
                 </ul>
             </nav>
             <div class="card">
@@ -26,7 +26,8 @@
                         <div th:replace="fragments/components :: alert (type=${#strings.toLowerCase(message.type)}, message=${message.message})">
                         </div>
                     </th:block>
-                    <form th:action="@{/admin/post-new}" th:object="${post}" method="post">
+                    <form th:action="@{/admin/post-edit}" th:object="${post}" method="post">
+                        <input type="hidden" th:field="*{id}">
                         <div class="message is-danger content" th:if="${#fields.hasAnyErrors()}">
                             <div class="message-body">
                                 <ul class="m-0">
@@ -69,7 +70,7 @@
                                class="help is-danger"></p>
                         </div>
                         <div class="field is-grouped">
-                            <input type="submit" value="Đăng bài" class="button is-link"/>
+                            <input type="submit" value="Cập nhật" class="button is-link"/>
                         </div>
                     </form>
                 </div><!-- /.card-content -->

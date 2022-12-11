@@ -115,4 +115,33 @@ public class PostController {
         }
         return "redirect:/admin/post-new";
     }
+
+    @GetMapping("/admin/post-edit/{id}")
+    public ModelAndView editPost(@PathVariable("id") Long id) {
+        ModelAndView modelAndView = new ModelAndView("admin/post-edit");
+        try {
+            modelAndView.addObject("post", postService.findById(id));
+        } catch (PostNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        modelAndView.addObject("metaTag", new MetaTag("Thêm bài viết"));
+        return modelAndView;
+    }
+
+    @PostMapping("/admin/post-edit")
+    public String editPost(@ModelAttribute("post") PostDto post,
+                                 BindingResult result,
+                                 RedirectAttributes redirect) {
+        try {
+            if (result.hasErrors()) {
+                return "admin/post-edit";
+            }
+            postService.save(post);
+            redirect.addFlashAttribute(Constants.MESSAGE, new Message(Constants.MESSAGE_TYPE.SUCCESS, "Chỉnh sửa bài viết thành công!"));
+        } catch (Exception e) {
+            logger.debug("Exception when /admin/post-new", e);
+            redirect.addFlashAttribute(Constants.MESSAGE, new Message(Constants.MESSAGE_TYPE.DANGER, "Chỉnh sửa bài viết không thành công!"));
+        }
+        return "redirect:/admin/post-edit/" + post.getId();
+    }
 }

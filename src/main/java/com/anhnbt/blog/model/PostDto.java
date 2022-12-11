@@ -10,6 +10,7 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 public class PostDto {
+    private Long id;
     private Category category;
 
     @NotEmpty(message = "Tiêu đề không được để trống")
