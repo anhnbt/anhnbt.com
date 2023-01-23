@@ -17,4 +17,7 @@ public interface PostService {
     Post save(PostDto postDto);
 
     PostDto findById(Long id) throws PostNotFoundException;
+
+    boolean existsByPostNameIgnoreCase(String postName);
+
 }

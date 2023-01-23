@@ -55,4 +55,9 @@ public class PostServiceImpl implements PostService {
         postDto.setCategory(post.getCategory());
         return postDto;
     }
+
+    @Override
+    public boolean existsByPostNameIgnoreCase(String postName) {
+        return repo.existsByPostNameIgnoreCase(postName);
+    }
 }

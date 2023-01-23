@@ -9,8 +9,8 @@ import com.anhnbt.blog.model.UserDto;
 import com.anhnbt.blog.repository.PrivilegeRepository;
 import com.anhnbt.blog.repository.RoleRepository;
 import com.anhnbt.blog.service.UserService;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -23,7 +23,7 @@ import java.util.List;
 
 @Component
 public class SetupDataLoader implements ApplicationListener<ContextRefreshedEvent> {
-    protected final Log logger = LogFactory.getLog(getClass());
+    private static final Logger logger = LogManager.getLogger(SetupDataLoader.class);
 
     boolean alreadySetup = false;
 

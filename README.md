@@ -1,32 +1,39 @@
-## Dự án Blog
+## AnhNBT
 
-## Running Spring Boot Application 
-```./mvn spring-boot:run```
+## Development
 
-## Cấu hình chạy project với file env
-java -jar blog-1.0.1-SNAPSHOT.jar --spring.profiles.active=development
+Ứng dụng có 2 file cấu hình môi trường `production` và `development`.
 
-## Chạy project trên môi trường production
+```
+java -Dspring.profiles.active=development -jar blog-1.0.1-SNAPSHOT.jar
+```
+
+## Production
+```
 nohup java -jar blog-1.0.1-SNAPSHOT.jar --spring.profiles.active=production > anhnbt.log &
+```
 
 ## Actuator
 
 - [actuator/health](http://localhost:8080/actuator/health)
 - [actuator](http://localhost:8080/actuator)
 
-## Build CSS
+## Build
+
+```
+npm install
+```
+
 ```
 npm run css-build
 ```
 
-## [Persistent Login (Remember-Me) Schema](https://docs.spring.io/spring-security/site/docs/5.5.8/reference/html5/#persistent-login-remember-me-schema)
 ```
-create table persistent_logins (
-    username varchar(64) not null,
-    series varchar(64) primary key,
-    token varchar(64) not null,
-    last_used timestamp not null
-);
+./mvn spring-boot:run
+```
+
+```
+mvnw clean package
 ```
 
 [![Made with Bulma](https://bulma.io/images/made-with-bulma.png)](https://bulma.io?utm_source=badge)

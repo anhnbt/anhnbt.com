@@ -3,7 +3,6 @@ package com.anhnbt.blog.controller;
 import com.anhnbt.blog.model.MetaTag;
 import com.anhnbt.blog.service.NicknameService;
 import com.anhnbt.blog.service.PostService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
