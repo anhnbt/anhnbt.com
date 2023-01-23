@@ -101,7 +101,7 @@ public class PostController {
     }
 
     @PostMapping("/admin/post-new")
-    public String createPost(@Validated @ModelAttribute("post") PostDto post,
+    public String createPost(@Validated @ModelAttribute("post") PostDTO post,
                           BindingResult result,
                           RedirectAttributes redirect) {
         try {
@@ -130,7 +130,7 @@ public class PostController {
     }
 
     @PostMapping("/admin/post-edit")
-    public String editPost(@ModelAttribute("post") PostDto post,
+    public String editPost(@ModelAttribute("post") PostDTO post,
                                  BindingResult result,
                                  RedirectAttributes redirect) {
         try {

@@ -3,7 +3,7 @@ package com.anhnbt.blog.service;
 import com.anhnbt.blog.common.StringCommon;
 import com.anhnbt.blog.entities.Post;
 import com.anhnbt.blog.exception.PostNotFoundException;
-import com.anhnbt.blog.model.PostDto;
+import com.anhnbt.blog.model.PostDTO;
 import com.anhnbt.blog.repository.PostRepository;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +35,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Post save(PostDto postDto) {
+    public Post save(PostDTO postDto) {
         Post post = new Post();
         post.setId(postDto.getId());
         post.setCategory(postDto.getCategory());
@@ -46,9 +46,9 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public PostDto findById(Long id) throws PostNotFoundException {
+    public PostDTO findById(Long id) throws PostNotFoundException {
         Post post = repo.findById(id).orElseThrow(() -> new PostNotFoundException("Post not found"));
-        PostDto postDto = new PostDto();
+        PostDTO postDto = new PostDTO();
         postDto.setId(post.getId());
         postDto.setPostTitle(post.getPostTitle());
         postDto.setPostContent(post.getPostContent());

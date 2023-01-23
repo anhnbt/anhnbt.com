@@ -2,7 +2,7 @@ package com.anhnbt.blog.service;
 
 import com.anhnbt.blog.entities.Post;
 import com.anhnbt.blog.exception.PostNotFoundException;
-import com.anhnbt.blog.model.PostDto;
+import com.anhnbt.blog.model.PostDTO;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,9 +14,9 @@ public interface PostService {
 
     Optional<Post> findByPostName(String slug);
 
-    Post save(PostDto postDto);
+    Post save(PostDTO postDto);
 
-    PostDto findById(Long id) throws PostNotFoundException;
+    PostDTO findById(Long id) throws PostNotFoundException;
 
     boolean existsByPostNameIgnoreCase(String postName);
 

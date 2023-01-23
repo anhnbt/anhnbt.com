@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 @Getter
 @Setter
-public class PostDTOO {
+public class PostDTO {
     private Long id;
     private Category category;
 
