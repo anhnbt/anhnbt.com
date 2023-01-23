@@ -10,4 +10,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     Optional<Post> findByPostName(String slug);
 
     List<Post> findAllByIdGreaterThan(Long id);
+
+    boolean existsByPostNameIgnoreCase(String postName);
 }

@@ -37,4 +37,9 @@ public class PostServiceImpl implements PostService {
     public Post save(Post post) {
         return repo.save(post);
     }
+
+    @Override
+    public boolean existsByPostNameIgnoreCase(String postName) {
+        return repo.existsByPostNameIgnoreCase(postName);
+    }
 }

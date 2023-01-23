@@ -8,8 +8,8 @@ import com.anhnbt.blog.model.SchemaLdJson;
 import com.anhnbt.blog.service.PostService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -24,7 +24,7 @@ import java.util.List;
 @RequestMapping
 public class PostController {
 
-    private Logger logger = LoggerFactory.getLogger(PostController.class);
+    private static final Logger logger = LogManager.getLogger(PostController.class);
 
     @Autowired
     private PostService postService;
@@ -33,7 +33,7 @@ public class PostController {
     private String baseUrl;
 
     @GetMapping("/p/{slug}.html")
-    private ModelAndView details(@PathVariable("slug") String slug) throws PostNotFoundException {
+    public ModelAndView details(@PathVariable("slug") String slug) throws PostNotFoundException {
         ModelAndView modelAndView = new ModelAndView("posts");
         Post post = postService.findByPostName(slug).orElseThrow(() -> new PostNotFoundException("Not found"));
         MetaTag metaTag = new MetaTag();
@@ -41,6 +41,7 @@ public class PostController {
         metaTag.setUrl(baseUrl + "/p/" + slug + ".html");
         metaTag.setTitle(post.getPostTitle());
         metaTag.setType("article");
+        // TODO
 //        metaTag.setDescription(post.getPostContent());
         metaTag.setImage(baseUrl + "/uploads/" + post.getPostThumb());
 

@@ -34,7 +34,7 @@ public class NicknameController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<Nickname>> nicknames(@PageableDefault(size = 20) @SortDefault.SortDefaults({@SortDefault(sort = "id", direction = Sort.Direction.DESC)}) Pageable pageable) {
+    public ResponseEntity<Page<Nickname>> listAllNicknames(@PageableDefault(size = 20) @SortDefault.SortDefaults({@SortDefault(sort = "id", direction = Sort.Direction.DESC)}) Pageable pageable) {
         Page<Nickname> nicknames = nicknameService.findAllByEnabled(true, pageable);
         if (nicknames.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

@@ -4,8 +4,8 @@ import com.anhnbt.blog.entities.Privilege;
 import com.anhnbt.blog.entities.Role;
 import com.anhnbt.blog.entities.User;
 import com.anhnbt.blog.repository.UserRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -22,7 +22,7 @@ import java.util.List;
 @Service("userDetailsService")
 @Transactional
 public class MyUserDetailsService implements UserDetailsService {
-    private Logger logger = LoggerFactory.getLogger(MyUserDetailsService.class);
+    private static final Logger logger = LogManager.getLogger(MyUserDetailsService.class);
 
     @Autowired
     private UserRepository userRepository;

@@ -13,4 +13,7 @@ public interface PostService {
     Optional<Post> findByPostName(String slug);
 
     Post save(Post post);
+
+    boolean existsByPostNameIgnoreCase(String postName);
+
 }
