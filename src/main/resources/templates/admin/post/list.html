@@ -14,26 +14,24 @@
             </nav>
             <div class="card">
                 <header class="card-header">
-                    <p class="card-header-title">
-                        Tất cả bài viết
-                    </p>
+                    <p class="card-header-title" th:text="#{post.list.headline}"></p>
                 </header>
                 <div class="card-content">
                     <!-- /* Handle the flash message */-->
                     <p th:if="${MSG_SUCCESS}" th:text="${MSG_SUCCESS}" class="notification is-success"></p>
                     <p th:if="${MSG_INFO}" th:text="${MSG_INFO}" class="notification is-info"></p>
                     <p th:if="${MSG_ERROR}" th:text="${MSG_ERROR}" class="notification is-danger"></p>
-                    <div th:if="${#lists.isEmpty(posts)}">Không có dữ liệu.</div>
+                    <div th:if="${#lists.isEmpty(posts)}" th:text="#{post.list.empty}"></div>
                     <div th:unless="${#lists.isEmpty(posts)}">
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Tiêu đề</th>
+                            <th scope="col" th:text="#{post.id.label}">ID</th>
+                            <th scope="col" th:text="#{post.title.label}">Tiêu đề</th>
                             <th scope="col">Chuyên mục</th>
                             <th scope="col">Ngày tạo</th>
                             <th scope="col">Lượt xem</th>
-                            <th scope="col">Thao tác</th>
+                            <th scope="col">&nbsp;</th>
                         </tr>
                         </thead>
                         <tbody>

@@ -7,6 +7,7 @@ import com.anhnbt.blog.model.*;
 import com.anhnbt.blog.repository.PostRepository;
 import com.anhnbt.blog.service.CategoryService;
 import com.anhnbt.blog.service.PostService;
+import com.anhnbt.blog.util.WebUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -87,7 +88,7 @@ public class PostController {
     public ModelAndView list() {
         ModelAndView modelAndView = new ModelAndView("admin/post/list");
         modelAndView.addObject("posts", postService.findAll());
-        modelAndView.addObject("metaTag", new MetaTag("Tất cả bài viết"));
+        modelAndView.addObject("metaTag", new MetaTag(WebUtils.getMessage("post.list.headline")));
         return modelAndView;
     }
 
@@ -105,7 +106,7 @@ public class PostController {
                 return "admin/post/add";
             }
             postService.create(postDTO);
-            redirectAttributes.addFlashAttribute(Constants.MSG_SUCCESS, "Thêm bài viết thành công!");
+            redirectAttributes.addFlashAttribute(Constants.MSG_SUCCESS, WebUtils.getMessage("post.create.success"));
         } catch (Exception e) {
             logger.debug("Exception when /admin/posts/add", e);
             redirectAttributes.addFlashAttribute(Constants.MSG_ERROR, "Thêm bài viết không thành công!");
@@ -116,7 +117,7 @@ public class PostController {
     @GetMapping("/admin/posts/edit/{id}")
     public String edit(@PathVariable("id") Long id, Model model) throws PostNotFoundException {
         model.addAttribute("post", postService.findById(id));
-        model.addAttribute("metaTag", new MetaTag("Chỉnh sửa bài viết"));
+        model.addAttribute("metaTag", new MetaTag(WebUtils.getMessage("post.edit.headline")));
         return "admin/post/edit";
     }
 
@@ -130,7 +131,7 @@ public class PostController {
                 return "admin/post-edit";
             }
             postService.update(id, postDTO);
-            redirectAttributes.addFlashAttribute(Constants.MSG_SUCCESS, "Chỉnh sửa bài viết thành công!");
+            redirectAttributes.addFlashAttribute(Constants.MSG_SUCCESS, WebUtils.getMessage("post.update.success"));
         } catch (Exception e) {
             logger.debug("Exception when /admin/posts/edit/{0}: {1}", id, e);
             redirectAttributes.addFlashAttribute(Constants.MSG_ERROR, "Chỉnh sửa bài viết không thành công!");
@@ -141,7 +142,7 @@ public class PostController {
     @PostMapping("/admin/posts/delete/{id}")
     public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         postService.delete(id);
-        redirectAttributes.addFlashAttribute(Constants.MSG_INFO, "Xóa bài viết thành công!");
+        redirectAttributes.addFlashAttribute(Constants.MSG_INFO, WebUtils.getMessage("post.delete.success"));
         return "redirect:/admin/posts";
     }
 }
