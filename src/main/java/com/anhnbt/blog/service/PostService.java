@@ -22,4 +22,5 @@ public interface PostService {
 
     boolean existsByPostNameIgnoreCase(String postName);
 
+    void delete(Long id);
 }

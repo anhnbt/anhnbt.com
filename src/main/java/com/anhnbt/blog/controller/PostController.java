@@ -105,18 +105,18 @@ public class PostController {
                 return "admin/post/add";
             }
             postService.create(postDTO);
-            redirectAttributes.addFlashAttribute(Constants.MSG_SUCCESS, new Message(Constants.MESSAGE_TYPE.SUCCESS, "Thêm bài viết thành công!"));
+            redirectAttributes.addFlashAttribute(Constants.MSG_SUCCESS, "Thêm bài viết thành công!");
         } catch (Exception e) {
             logger.debug("Exception when /admin/posts/add", e);
-            redirectAttributes.addFlashAttribute(Constants.MSG_ERROR, new Message(Constants.MESSAGE_TYPE.DANGER, "Thêm bài viết không thành công!"));
+            redirectAttributes.addFlashAttribute(Constants.MSG_ERROR, "Thêm bài viết không thành công!");
         }
-        return "redirect:/admin/posts/add";
+        return "redirect:/admin/posts";
     }
 
     @GetMapping("/admin/posts/edit/{id}")
     public String edit(@PathVariable("id") Long id, Model model) throws PostNotFoundException {
         model.addAttribute("post", postService.findById(id));
-        model.addAttribute("metaTag", new MetaTag("Thêm bài viết"));
+        model.addAttribute("metaTag", new MetaTag("Chỉnh sửa bài viết"));
         return "admin/post/edit";
     }
 
@@ -130,11 +130,18 @@ public class PostController {
                 return "admin/post-edit";
             }
             postService.update(id, postDTO);
-            redirectAttributes.addFlashAttribute(Constants.MSG_SUCCESS, new Message(Constants.MESSAGE_TYPE.SUCCESS, "Chỉnh sửa bài viết thành công!"));
+            redirectAttributes.addFlashAttribute(Constants.MSG_SUCCESS, "Chỉnh sửa bài viết thành công!");
         } catch (Exception e) {
             logger.debug("Exception when /admin/posts/edit/{0}: {1}", id, e);
-            redirectAttributes.addFlashAttribute(Constants.MSG_ERROR, new Message(Constants.MESSAGE_TYPE.DANGER, "Chỉnh sửa bài viết không thành công!"));
+            redirectAttributes.addFlashAttribute(Constants.MSG_ERROR, "Chỉnh sửa bài viết không thành công!");
         }
+        return "redirect:/admin/posts";
+    }
+
+    @PostMapping("/admin/posts/delete/{id}")
+    public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        postService.delete(id);
+        redirectAttributes.addFlashAttribute(Constants.MSG_INFO, "Xóa bài viết thành công!");
         return "redirect:/admin/posts";
     }
 }

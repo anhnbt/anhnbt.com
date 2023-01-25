@@ -16,16 +16,14 @@
             <div class="card">
                 <header class="card-header">
                     <p class="card-header-title">
-                        Thêm bài viết
+                        Chỉnh sửa bài viết
                     </p>
                 </header>
                 <div class="card-content">
                     <!-- /* Handle the flash message */-->
-                    <th:block th:if="${message != null}">
-                        <!-- /* The message code is returned from the @Controller */ -->
-                        <div th:replace="fragments/components :: alert (type=${#strings.toLowerCase(message.type)}, message=${message.message})">
-                        </div>
-                    </th:block>
+                    <p th:if="${MSG_SUCCESS}" th:text="${MSG_SUCCESS}" class="notification is-success"></p>
+                    <p th:if="${MSG_INFO}" th:text="${MSG_INFO}" class="notification is-info"></p>
+                    <p th:if="${MSG_ERROR}" th:text="${MSG_ERROR}" class="notification is-danger"></p>
                     <form th:action="@{/admin/posts/edit/{id}(id=${post.getId()})}" th:object="${post}" method="post">
                         <div class="message is-danger content" th:if="${#fields.hasAnyErrors()}">
                             <div class="message-body">
@@ -37,12 +35,12 @@
                         <div class="field">
                             <label th:for="title" class="label">Tiêu đề</label>
                             <div class="control">
-                                <input class="input" type="text" th:field="*{getTitle}"
+                                <input class="input" type="text" th:field="*{title}"
                                        th:classappend="${#fields.hasErrors('title')} ? ' is-danger'"
                                        placeholder="Tiêu đề" maxlength="60"/>
                             </div>
                             <div class="help"><span id="titleChars">60</span> ký tự còn lại</div>
-                            <p th:if="${#fields.hasErrors('title')}" th:errors="*{getTitle}"
+                            <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"
                                class="help is-danger"></p>
                         </div>
                         <div class="field">
@@ -61,11 +59,11 @@
                         <div class="field">
                             <label th:for="content" class="label">Nội dung</label>
                             <div class="control">
-                            <textarea maxlength="5000" class="textarea" th:field="*{getContent}"
+                            <textarea maxlength="5000" class="textarea" th:field="*{content}"
                                       th:classappend="${#fields.hasErrors('content')} ? ' is-danger'"
                                       placeholder="Nội dung"/>
                             </div>
-                            <p th:if="${#fields.hasErrors('content')}" th:errors="*{getContent}"
+                            <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}"
                                class="help is-danger"></p>
                         </div>
                         <div class="field is-grouped">

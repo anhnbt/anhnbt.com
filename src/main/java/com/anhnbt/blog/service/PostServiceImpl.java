@@ -83,4 +83,9 @@ public class PostServiceImpl implements PostService {
     public boolean existsByPostNameIgnoreCase(String postName) {
         return postRepository.existsByPostNameIgnoreCase(postName);
     }
+
+    @Override
+    public void delete(Long id) {
+        postRepository.deleteById(id);
+    }
 }
