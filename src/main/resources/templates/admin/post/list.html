@@ -8,7 +8,7 @@
         <div class="column">
             <nav class="breadcrumb" aria-label="breadcrumbs">
                 <ul>
-                    <li><a th:href="@{/admin}">Quản trị</a></li>
+                    <li><a th:href="@{/templates/admin}">Quản trị</a></li>
                     <li class="is-active"><a href="#" aria-current="page">Bài viết</a></li>
                 </ul>
             </nav>
@@ -25,19 +25,21 @@
                         <div th:replace="fragments/components :: alert (type=${#strings.toLowerCase(message.type)}, message=${message.message})">
                         </div>
                     </th:block>
+                    <div th:if="${#lists.isEmpty(posts)}">Không có dữ liệu.</div>
+                    <div th:unless="${#lists.isEmpty(posts)}">
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Tiêu đề</th>
-                            <th>Chuyên mục</th>
-                            <th>Ngày tạo</th>
-                            <th>Lượt xem</th>
-                            <th>Thao tác</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Tiêu đề</th>
+                            <th scope="col">Chuyên mục</th>
+                            <th scope="col">Ngày tạo</th>
+                            <th scope="col">Lượt xem</th>
+                            <th scope="col">Thao tác</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:unless="${#lists.isEmpty(posts)}" th:each="post,iterStat : ${posts}">
+                        <tr th:each="post,iterStat : ${posts}">
                             <td th:text="${iterStat.index+1}"></td>
                             <td><a href="#" th:href="@{/p/{url}.html(url=${post.postName})}" rel="bookmark"
                                    th:text="${post.postTitle}"></a></td>
@@ -46,17 +48,18 @@
                             <td th:text="${#numbers.formatInteger(post.postViewCount,3,'POINT')}"></td>
                             <td>
                                 <div class="buttons ml-2">
+                                    <form th:action="@{/admin/posts/delete/{id}(id=${post.id})}" data-confirm-message="Bạn có thực sự muốn xóa bài viết này không? Điều này không thể hoàn tác." method="post" class="js-submit-confirm">
                                     <a class="button is-small is-info is-light" th:href="@{/admin/post-edit/{id}(id=${post.id})}">
                                         <strong>Sửa</strong>
                                     </a>
-                                    <a class="button is-small is-danger is-light" th:href="@{/login}">
-                                        Xóa
-                                    </a>
+                                    <button type="submit" class="button is-small is-danger is-light">Xóa</button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>
                         </tbody>
                     </table>
+                    </div>
                 </div><!-- /.card-content -->
             </div><!-- /.card -->
         </div><!-- /. column -->
@@ -65,23 +68,18 @@
 <div th:replace="fragments/layout :: footer"></div>
 <div th:replace="fragments/components :: modal"></div>
 <th:block th:replace="fragments/layout :: scripts"></th:block>
-<script src="/js/jquery-3.6.1.min.js" th:src="@{/js/jquery-3.6.1.min.js}"></script>
-<script src="/js/chu-kieu.min.js" th:src="@{/js/ckeditor.js}"></script>
+<script th:src="@{/js/jquery-3.6.1.min.js}"></script>
+<script th:src="@{/js/ckeditor.js}"></script>
 <script>
-    // Textarea Text Count
-
-    const titleMaxLength = 60;
-    const contentMaxLength = 5000;
-    $('#postTitle').on('keyup change', function () {
-        var length = $(this).val().length;
-        length = titleMaxLength - length;
-        $('#titleChars').text(length);
-    });
-    ClassicEditor
-        .create(document.querySelector('#postContent'))
-        .catch(error => {
-            console.error(error);
+    document.querySelectorAll('.js-submit-confirm').forEach(($item) => {
+        $item.addEventListener('submit', (event) => {
+            if (!confirm(event.currentTarget.getAttribute('data-confirm-message'))) {
+                event.preventDefault();
+                return false;
+            }
+            return true;
         });
+    });
 </script>
 
 </body>

@@ -14,7 +14,9 @@ public interface PostService {
 
     Optional<Post> findByPostName(String slug);
 
-    Post save(PostDTO postDto);
+    void create(PostDTO postDto) throws PostNotFoundException;
+
+    void update(Long id, PostDTO postDto) throws PostNotFoundException;
 
     PostDTO findById(Long id) throws PostNotFoundException;
 

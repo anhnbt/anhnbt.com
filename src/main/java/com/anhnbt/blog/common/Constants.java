@@ -12,7 +12,9 @@ public interface Constants {
         String DELETE_PRIVILEGE = "DELETE_PRIVILEGE";
     }
 
-    String MESSAGE = "message";
+    String MSG_SUCCESS = "MSG_SUCCESS";
+    String MSG_INFO = "MSG_INFO";
+    String MSG_ERROR = "MSG_ERROR";
 
     interface MESSAGE_TYPE {
         String DANGER = "danger";

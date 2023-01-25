@@ -21,7 +21,7 @@ public class Category {
     @Column(name = "slug", nullable = false, length = 200)
     private String slug;
 
-    @Column(name = "parent", nullable = false)
+    @Column(name = "parent")
     private Integer parent;
 
 }

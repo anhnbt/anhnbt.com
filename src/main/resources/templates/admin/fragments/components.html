@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="back"><a th:href="@{/}" class="home-link">« Quay lại Blog</a></div>
+<!-- Reusable alert -->
+<div th:fragment="alert (type, message)" class="notification" th:classappend="'is-' + ${type}">
+    <span th:text="${message}"></span>
+</div>
+<div id="copyModal" th:fragment="modal" class="modal fade">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Thông báo</p>
+            <button class="delete" aria-label="close" id="btn-close"></button>
+        </header>
+        <section class="modal-card-body">
+            <div class="field has-addons">
+                <div class="control is-expanded">
+                    <label for="txtSymbol" class="is-sr-only">Ký tự</label>
+                    <input class="input" id="txtSymbol" type="text">
+                </div>
+                <div class="control">
+                    <button class="button is-info" onclick="copyToClipboardInput(this);">
+                        Sao chép
+                    </button>
+                </div>
+            </div>
+            <p class="help">Nhấn <code>Sao chép</code> sẽ tự động lưu ký tự vào Clipboard</p>
+        </section>
+    </div>
+</div>
+</body>
+</html>

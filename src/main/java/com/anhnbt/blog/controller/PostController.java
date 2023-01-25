@@ -7,7 +7,6 @@ import com.anhnbt.blog.model.*;
 import com.anhnbt.blog.repository.PostRepository;
 import com.anhnbt.blog.service.CategoryService;
 import com.anhnbt.blog.service.PostService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -85,64 +84,57 @@ public class PostController {
     }
 
     @GetMapping("/admin/posts")
-    public ModelAndView showAllPost() {
-        ModelAndView modelAndView = new ModelAndView("admin/posts");
+    public ModelAndView list() {
+        ModelAndView modelAndView = new ModelAndView("admin/post/list");
         modelAndView.addObject("posts", postService.findAll());
         modelAndView.addObject("metaTag", new MetaTag("Tất cả bài viết"));
         return modelAndView;
     }
 
-    @GetMapping("/admin/post-new")
-    public ModelAndView createPost() {
-        ModelAndView modelAndView = new ModelAndView("admin/post-new");
-        modelAndView.addObject("post", new Post());
-        modelAndView.addObject("metaTag", new MetaTag("Thêm bài viết"));
-        return modelAndView;
+    @GetMapping("/admin/posts/add")
+    public String add(@ModelAttribute("post") PostDTO postDTO) {
+        return "admin/post/add";
     }
 
-    @PostMapping("/admin/post-new")
-    public String createPost(@Validated @ModelAttribute("post") PostDTO post,
-                          BindingResult result,
-                          RedirectAttributes redirect) {
+    @PostMapping("/admin/posts/add")
+    public String add(@Validated @ModelAttribute("post") PostDTO postDTO,
+                      BindingResult bindingResult,
+                      RedirectAttributes redirectAttributes) {
         try {
-            if (result.hasErrors()) {
-                return "admin/post-new";
+            if (bindingResult.hasErrors()) {
+                return "admin/post/add";
             }
-            postService.save(post);
-            redirect.addFlashAttribute(Constants.MESSAGE, new Message(Constants.MESSAGE_TYPE.SUCCESS, "Thêm bài viết thành công!"));
+            postService.create(postDTO);
+            redirectAttributes.addFlashAttribute(Constants.MSG_SUCCESS, new Message(Constants.MESSAGE_TYPE.SUCCESS, "Thêm bài viết thành công!"));
         } catch (Exception e) {
-            logger.debug("Exception when /admin/post-new", e);
-            redirect.addFlashAttribute(Constants.MESSAGE, new Message(Constants.MESSAGE_TYPE.DANGER, "Thêm bài viết không thành công!"));
+            logger.debug("Exception when /admin/posts/add", e);
+            redirectAttributes.addFlashAttribute(Constants.MSG_ERROR, new Message(Constants.MESSAGE_TYPE.DANGER, "Thêm bài viết không thành công!"));
         }
-        return "redirect:/admin/post-new";
+        return "redirect:/admin/posts/add";
     }
 
-    @GetMapping("/admin/post-edit/{id}")
-    public ModelAndView editPost(@PathVariable("id") Long id) {
-        ModelAndView modelAndView = new ModelAndView("admin/post-edit");
-        try {
-            modelAndView.addObject("post", postService.findById(id));
-        } catch (PostNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        modelAndView.addObject("metaTag", new MetaTag("Thêm bài viết"));
-        return modelAndView;
+    @GetMapping("/admin/posts/edit/{id}")
+    public String edit(@PathVariable("id") Long id, Model model) throws PostNotFoundException {
+        model.addAttribute("post", postService.findById(id));
+        model.addAttribute("metaTag", new MetaTag("Thêm bài viết"));
+        return "admin/post/edit";
     }
 
-    @PostMapping("/admin/post-edit")
-    public String editPost(@ModelAttribute("post") PostDTO post,
-                                 BindingResult result,
-                                 RedirectAttributes redirect) {
+    @PostMapping("/admin/posts/edit/{id}")
+    public String edit(@PathVariable Long id,
+                           @ModelAttribute("post") PostDTO postDTO,
+                           BindingResult bindingResult,
+                           RedirectAttributes redirectAttributes) {
         try {
-            if (result.hasErrors()) {
+            if (bindingResult.hasErrors()) {
                 return "admin/post-edit";
             }
-            postService.save(post);
-            redirect.addFlashAttribute(Constants.MESSAGE, new Message(Constants.MESSAGE_TYPE.SUCCESS, "Chỉnh sửa bài viết thành công!"));
+            postService.update(id, postDTO);
+            redirectAttributes.addFlashAttribute(Constants.MSG_SUCCESS, new Message(Constants.MESSAGE_TYPE.SUCCESS, "Chỉnh sửa bài viết thành công!"));
         } catch (Exception e) {
-            logger.debug("Exception when /admin/post-new", e);
-            redirect.addFlashAttribute(Constants.MESSAGE, new Message(Constants.MESSAGE_TYPE.DANGER, "Chỉnh sửa bài viết không thành công!"));
+            logger.debug("Exception when /admin/posts/edit/{0}: {1}", id, e);
+            redirectAttributes.addFlashAttribute(Constants.MSG_ERROR, new Message(Constants.MESSAGE_TYPE.DANGER, "Chỉnh sửa bài viết không thành công!"));
         }
-        return "redirect:/admin/post-edit/" + post.getId();
+        return "redirect:/admin/posts";
     }
 }
