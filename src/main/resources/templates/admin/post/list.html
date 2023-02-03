@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head"></head>
+<body>
+<div th:replace="fragments/layout :: header"></div>
+<main class="container is-fluid pt-5">
+    <div class="columns is-desktop">
+        <div class="column">
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li><a th:href="@{/templates/admin}">Quản trị</a></li>
+                    <li class="is-active"><a href="#" aria-current="page">Bài viết</a></li>
+                </ul>
+            </nav>
+            <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title" th:text="#{post.list.headline}"></p>
+                </header>
+                <div class="card-content">
+                    <!-- /* Handle the flash message */-->
+                    <p th:if="${MSG_SUCCESS}" th:text="${MSG_SUCCESS}" class="notification is-success"></p>
+                    <p th:if="${MSG_INFO}" th:text="${MSG_INFO}" class="notification is-info"></p>
+                    <p th:if="${MSG_ERROR}" th:text="${MSG_ERROR}" class="notification is-danger"></p>
+                    <div th:if="${#lists.isEmpty(posts)}" th:text="#{post.list.empty}"></div>
+                    <div th:unless="${#lists.isEmpty(posts)}">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col" th:text="#{post.id.label}">ID</th>
+                            <th scope="col" th:text="#{post.title.label}">Tiêu đề</th>
+                            <th scope="col">Chuyên mục</th>
+                            <th scope="col">Ngày tạo</th>
+                            <th scope="col">Lượt xem</th>
+                            <th scope="col">&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="post,iterStat : ${posts}">
+                            <td th:text="${iterStat.index+1}"></td>
+                            <td><a href="#" th:href="@{/p/{url}.html(url=${post.postName})}" rel="bookmark"
+                                   th:text="${post.postTitle}"></a></td>
+                            <td th:text="${post.category?.name}"></td>
+                            <td th:text="${#dates.format(post.postModified, 'dd-MM-yyyy')}"></td>
+                            <td th:text="${#numbers.formatInteger(post.postViewCount,3,'POINT')}"></td>
+                            <td>
+                                <div class="buttons ml-2">
+                                    <form th:action="@{/admin/posts/delete/{id}(id=${post.id})}" data-confirm-message="Bạn có thực sự muốn xóa bài viết này không? Điều này không thể hoàn tác." method="post" class="js-submit-confirm">
+                                    <a class="button is-small is-info is-light" th:href="@{/admin/posts/edit/{id}(id=${post.id})}">
+                                        <strong>Sửa</strong>
+                                    </a>
+                                    <button type="submit" class="button is-small is-danger is-light">Xóa</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div><!-- /.card-content -->
+            </div><!-- /.card -->
+        </div><!-- /. column -->
+    </div><!-- /.columns -->
+</main><!-- .site-main -->
+<div th:replace="fragments/layout :: footer"></div>
+<div th:replace="fragments/components :: modal"></div>
+<th:block th:replace="fragments/layout :: scripts"></th:block>
+<script th:src="@{/js/jquery-3.6.1.min.js}"></script>
+<script th:src="@{/js/ckeditor.js}"></script>
+<script>
+    document.querySelectorAll('.js-submit-confirm').forEach(($item) => {
+        $item.addEventListener('submit', (event) => {
+            if (!confirm(event.currentTarget.getAttribute('data-confirm-message'))) {
+                event.preventDefault();
+                return false;
+            }
+            return true;
+        });
+    });
+</script>
+
+</body>
+</html>

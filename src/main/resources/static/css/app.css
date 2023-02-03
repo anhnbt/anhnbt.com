@@ -46,3 +46,7 @@
     width: 44px;
   }
 }
+.ck-editor__editable[role="textbox"] {
+ /* editing area */
+ min-height: 200px;
+}

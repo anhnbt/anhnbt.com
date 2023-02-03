@@ -2,13 +2,18 @@
 
 ## Development
 
-Ứng dụng có 2 file cấu hình môi trường `production` và `development`.
+Ứng dụng có 2 file cấu hình môi trường `production` và `development`. Mặc định chạy môi trường `development`
 
 ```
-java -Dspring.profiles.active=development -jar blog-1.0.1-SNAPSHOT.jar
+./mvn spring-boot:run
 ```
 
 ## Production
+Đầu tiên cần build project ra file jar.
+```
+mvnw clean package
+```
+
 ```
 nohup java -jar blog-1.0.1-SNAPSHOT.jar --spring.profiles.active=production > anhnbt.log &
 ```
@@ -18,7 +23,7 @@ nohup java -jar blog-1.0.1-SNAPSHOT.jar --spring.profiles.active=production > an
 - [actuator/health](http://localhost:8080/actuator/health)
 - [actuator](http://localhost:8080/actuator)
 
-## Build
+## Build Bulma
 
 ```
 npm install
@@ -27,13 +32,11 @@ npm install
 ```
 npm run css-build
 ```
-
+## Build Bootstrap
 ```
-./mvn spring-boot:run
-```
-
-```
-mvnw clean package
+npm i --save-dev webpack webpack-cli webpack-dev-server
+npm i --save bootstrap @popperjs/core
+npm i --save-dev autoprefixer css-loader postcss-loader sass sass-loader style-loader
 ```
 
 [![Made with Bulma](https://bulma.io/images/made-with-bulma.png)](https://bulma.io?utm_source=badge)
