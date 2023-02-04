@@ -71,10 +71,10 @@ class AuthController {
             }
             accountDto.setRoles(List.of(roleRepository.findByName(Constants.Roles.ROLE_USER)));
             userService.save(accountDto);
-            redirect.addFlashAttribute(Constants.MSG_SUCCESS, new Message(Constants.MESSAGE_TYPE.SUCCESS, "Đăng ký tài khoản thành công!"));
+            redirect.addFlashAttribute(Constants.MSG_SUCCESS, "Đăng ký tài khoản thành công!");
         } catch (EmailExistsException | UsernameExistsException e) {
             logger.error(e);
-            redirect.addFlashAttribute(Constants.MSG_ERROR, new Message(Constants.MESSAGE_TYPE.DANGER, "Đăng ký tài khoản không thành công!"));
+            redirect.addFlashAttribute(Constants.MSG_ERROR, "Email hoặc username đã được sử dụng!");
         }
         logger.trace("Exiting /signup.");
         return "redirect:/login";

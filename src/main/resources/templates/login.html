@@ -14,13 +14,9 @@
                     <div class="notification is-success" th:if="${param.logout}">
                         You have been logged out.
                     </div>
-                    <!-- /* Handle the flash message */-->
-                    <th:block th:if="${message != null}">
-                        <!-- /* The message code is returned from the @Controller */ -->
-                        <div th:replace="fragments/components :: alert (type=${#strings.toLowerCase(message.type)}, message=${message.message})">
-                            &nbsp;
-                        </div>
-                    </th:block>
+                    <p th:if="${MSG_SUCCESS}" th:text="${MSG_SUCCESS}" class="notification is-success"></p>
+                    <p th:if="${MSG_INFO}" th:text="${MSG_INFO}" class="notification is-info"></p>
+                    <p th:if="${MSG_ERROR}" th:text="${MSG_ERROR}" class="notification is-danger"></p>
                     <form th:action="@{/login}" method="post" class="block">
                         <div class="field">
                             <label for="username" class="label">Tài khoản</label>

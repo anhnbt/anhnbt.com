@@ -1,20 +1,17 @@
 package com.anhnbt.blog.security;
 
+import com.anhnbt.blog.service.MyUserDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
-import org.springframework.security.web.csrf.CsrfFilter;
-import org.springframework.security.web.csrf.CsrfTokenRepository;
-import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.security.web.util.matcher.RequestMatcher;
-
-import javax.servlet.http.HttpServletRequest;
 
 @Configuration
 @EnableWebSecurity
@@ -29,7 +26,23 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(requests -> requests
-                        .antMatchers("/", "/signup", "/ky-tu-dac-biet", "/nicknames").permitAll()
+                        .antMatchers("/",
+                                "/signup",
+                                "/ky-tu-dac-biet",
+                                "/chu-kieu",
+                                "/ten-game-hay",
+                                "/chu-in-dam",
+                                "/ki-tu-dac-biet-chu-nho",
+                                "/tao-chu-i-am",
+                                "/ki-tu-qua-tao",
+                                "/ki-tu-vuong-mien",
+                                "/ki-tu-tang-hinh",
+                                "/ki-tu-khoang-trong-ff",
+                                "/p/lien-he.html",
+                                "/p/gioi-thieu.html",
+                                "/p/dieu-khoan-su-dung.html",
+                                "/p/chinh-sach-bao-mat.html",
+                                "/nicknames").permitAll()
                         .mvcMatchers(
                                 "/assets/**",
                                 "/css/**",

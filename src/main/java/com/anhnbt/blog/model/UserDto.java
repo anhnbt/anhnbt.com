@@ -28,7 +28,7 @@ public class UserDto {
     @NotEmpty(message = "Email không được để trống")
     private String email;
 
-    private Boolean enabled = false;
+    private Boolean enabled = true;
 
     private Collection<Role> roles;
 }
