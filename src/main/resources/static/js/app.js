@@ -105,8 +105,20 @@ function loadMoreNickName(btn, nextPage, recordsPerPage) {
     // });
 }
 
-function copyToClipboardInput(elm) {
+function copyToClipboardInputFrmModal(elm) {
     copyToClipboard(elm.parentElement.parentElement.children[0].children[1]);
+    elm.classList.remove("is-info");
+    elm.classList.add("is-success");
+    elm.innerHTML = "Đã chép";
+    setTimeout(function () {
+        elm.classList.remove("is-success");
+        elm.classList.add("is-info");
+        elm.innerHTML = "Sao chép";
+    }, 1000);
+}
+
+function copyToClipboardInput(elm) {
+    copyToClipboard(elm.parentElement.parentElement.children[0].children[0]);
     elm.classList.remove("is-info");
     elm.classList.add("is-success");
     elm.innerHTML = "Đã chép";

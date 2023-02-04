@@ -14,8 +14,8 @@
     <meta property="og:title" th:if="${metaTag?.title}" th:content="${metaTag?.title}">
     <meta property="og:description" th:if="${metaTag?.description}" th:content="${metaTag?.description}">
     <meta property="og:image" th:if="${metaTag?.image}" th:content="${metaTag?.image}">
-    <link rel="stylesheet" media="all" href="/css/bulma.min.css" th:href="@{/css/bulma.min.css}">
-    <link rel="stylesheet" media="all" href="/css/bulma.min.css" th:href="@{/css/app.min.css}">
+    <link rel="stylesheet" media="all" th:href="@{/css/bulma.min.css}">
+    <link rel="stylesheet" media="all" th:href="@{/css/app.min.css}">
     <script type="application/ld+json" th:unless="${schemaLdJson == null}" th:utext="${schemaLdJson}"></script>
     <script th:if="${enabledAds}" data-ad-client="ca-pub-8660218247964227" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-99002958-1"></script>
@@ -141,7 +141,7 @@
     <script th:inline="javascript">
         const contextPath = /*[[@{/}]]*/ '/';
     </script>
-    <script src="/js/app.min.js" th:src="@{/js/app.min.js}"></script>
+    <script th:src="@{/js/app.min.js?version=1}"></script>
 </th:block>
 </body>
 </html>
