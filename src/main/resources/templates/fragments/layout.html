@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title th:if="${metaTag?.title}" th:text="${metaTag?.title}"></title>
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" th:href="@{/favicon-32x32.png}">
     <meta name="description" th:if="${metaTag?.description}" th:content="${metaTag?.description}">
     <link rel="canonical" th:if="${metaTag?.canonical}" th:href="${metaTag?.canonical}">
-    <meta property="fb:app_id" content="1540103976279074"/>
+    <meta property="fb:app_id" content="1540103976279074">
     <meta property="og:locale" content="vi_VN">
     <meta property="og:url" th:if="${metaTag?.url}" th:content="${metaTag?.url}">
     <meta property="og:type" th:if="${metaTag?.type}" th:content="${metaTag?.type}">
@@ -44,18 +43,15 @@
     fbq('track', 'PageView');
 </script>
 <noscript>
-    <img height="1" width="1"
-         src="https://www.facebook.com/tr?id=1266353633523718&ev=PageView
-&noscript=1"/>
+    <img height="1" width="1" src="https://www.facebook.com/tr?id=1266353633523718&ev=PageView&noscript=1">
 </noscript>
 <!-- End Facebook Pixel Code -->
 <!-- Header -->
 <header id="masthead" class="site-header" th:fragment="header">
-    <nav class="navbar is-info has-shadow" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-info has-shadow" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" th:href="@{/}">
-                <img src="/images/logo-anhnbt.png" th:src="@{/images/logo-anhnbt.png}" alt="AnhNBT brand" width="120px"
-                     height="26px">
+                <img src="/images/logo-anhnbt.png" th:src="@{/images/logo-anhnbt.png}" alt="AnhNBT brand" width="120px" height="26px">
             </a>
 
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
