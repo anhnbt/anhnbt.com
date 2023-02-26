@@ -13,6 +13,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -84,6 +85,7 @@ public class PostController {
         model.addAttribute("categories", categoryService.findAll());
     }
 
+    @Secured(Constants.Roles.ROLE_ADMIN)
     @GetMapping("/admin/posts")
     public ModelAndView list() {
         ModelAndView modelAndView = new ModelAndView("admin/post/list");
@@ -92,11 +94,13 @@ public class PostController {
         return modelAndView;
     }
 
+    @Secured(Constants.Roles.ROLE_ADMIN)
     @GetMapping("/admin/posts/add")
     public String add(@ModelAttribute("post") PostDTO postDTO) {
         return "admin/post/add";
     }
 
+    @Secured(Constants.Roles.ROLE_ADMIN)
     @PostMapping("/admin/posts/add")
     public String add(@Validated @ModelAttribute("post") PostDTO postDTO,
                       BindingResult bindingResult,
@@ -114,6 +118,7 @@ public class PostController {
         return "redirect:/admin/posts";
     }
 
+    @Secured(Constants.Roles.ROLE_ADMIN)
     @GetMapping("/admin/posts/edit/{id}")
     public String edit(@PathVariable("id") Long id, Model model) throws PostNotFoundException {
         model.addAttribute("post", postService.findById(id));
@@ -121,6 +126,7 @@ public class PostController {
         return "admin/post/edit";
     }
 
+    @Secured(Constants.Roles.ROLE_ADMIN)
     @PostMapping("/admin/posts/edit/{id}")
     public String edit(@PathVariable Long id,
                            @ModelAttribute("post") PostDTO postDTO,
@@ -139,6 +145,7 @@ public class PostController {
         return "redirect:/admin/posts";
     }
 
+    @Secured(Constants.Roles.ROLE_ADMIN)
     @PostMapping("/admin/posts/delete/{id}")
     public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         postService.delete(id);

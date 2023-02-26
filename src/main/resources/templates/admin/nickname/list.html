@@ -9,12 +9,12 @@
             <nav class="breadcrumb" aria-label="breadcrumbs">
                 <ul>
                     <li><a th:href="@{/templates/admin}">Quản trị</a></li>
-                    <li class="is-active"><a href="#" aria-current="page">Bài viết</a></li>
+                    <li class="is-active"><a href="#" aria-current="page">Tên game</a></li>
                 </ul>
             </nav>
             <div class="card">
                 <header class="card-header">
-                    <span class="card-header-title" th:text="#{post.list.headline}"></span>
+                    <span class="card-header-title" th:text="#{nickname.list.headline}"></span>
                     <a th:href="@{/admin/nicknames/add}" class="button is-link">Thêm tên</a>
                 </header>
                 <div class="card-content">
@@ -22,31 +22,28 @@
                     <p th:if="${MSG_SUCCESS}" th:text="${MSG_SUCCESS}" class="notification is-success"></p>
                     <p th:if="${MSG_INFO}" th:text="${MSG_INFO}" class="notification is-info"></p>
                     <p th:if="${MSG_ERROR}" th:text="${MSG_ERROR}" class="notification is-danger"></p>
-                    <div th:if="${#lists.isEmpty(posts)}" th:text="#{post.list.empty}"></div>
-                    <div th:unless="${#lists.isEmpty(posts)}">
+                    <div th:if="${#lists.isEmpty(nicknames)}" th:text="#{nickname.list.empty}"></div>
+                    <div th:unless="${#lists.isEmpty(nicknames)}">
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col" th:text="#{post.id.label}">ID</th>
-                            <th scope="col" th:text="#{post.title.label}">Tiêu đề</th>
-                            <th scope="col">Chuyên mục</th>
-                            <th scope="col">Ngày tạo</th>
-                            <th scope="col">Lượt xem</th>
+                            <th scope="col" th:text="#{nickname.id.label}">ID</th>
+                            <th scope="col" th:text="#{nickname.nickname.label}">Tên game</th>
+                            <th scope="col" th:text="#{nickname.timestamp.label}">Ngày tạo</th>
+                            <th scope="col" th:text="#{nickname.enabled.label}">Hiển thị</th>
                             <th scope="col">&nbsp;</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="post,iterStat : ${posts}">
+                        <tr th:each="nickname,iterStat : ${nicknames}">
                             <td th:text="${iterStat.index+1}"></td>
-                            <td><a href="#" th:href="@{/p/{url}.html(url=${post.postName})}" rel="bookmark"
-                                   th:text="${post.postTitle}"></a></td>
-                            <td th:text="${post.category?.name}"></td>
-                            <td th:text="${#dates.format(post.postModified, 'dd-MM-yyyy')}"></td>
-                            <td th:text="${#numbers.formatInteger(post.postViewCount,3,'POINT')}"></td>
+                            <td th:text="${nickname.nickname}"></td>
+                            <td th:text="${#dates.format(nickname.timestamp, 'dd-MM-yyyy hh:mm:ss')}"></td>
+                            <td th:text="${nickname.enabled} ? 'Hiển thị' : 'Ẩn'"></td>
                             <td>
                                 <div class="buttons ml-2">
-                                    <form th:action="@{/admin/posts/delete/{id}(id=${post.id})}" data-confirm-message="Bạn có thực sự muốn xóa bài viết này không? Điều này không thể hoàn tác." method="post" class="js-submit-confirm">
-                                    <a class="button is-small is-info is-light" th:href="@{/admin/posts/edit/{id}(id=${post.id})}">
+                                    <form th:action="@{/admin/nicknames/delete/{id}(id=${nickname.id})}" data-confirm-message="Bạn có thực sự muốn xóa tên này không? Điều này không thể hoàn tác." method="post" class="js-submit-confirm">
+                                    <a class="button is-small is-info is-light" th:href="@{/admin/nicknames/edit/{id}(id=${nickname.id})}">
                                         <strong>Sửa</strong>
                                     </a>
                                     <button type="submit" class="button is-small is-danger is-light">Xóa</button>
