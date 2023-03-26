@@ -15,7 +15,7 @@ mvnw clean package
 ```
 
 ```
-nohup java -jar blog-1.0.1-SNAPSHOT.jar --spring.profiles.active=production > anhnbt.log &
+nohup java -jar blog-1.0.3-SNAPSHOT.jar --spring.profiles.active=prod > anhnbt.log &
 ```
 
 ## Actuator
