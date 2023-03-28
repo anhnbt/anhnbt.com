@@ -38,11 +38,8 @@ public class WebSecurityConfig {
                                 "/ki-tu-vuong-mien",
                                 "/ki-tu-tang-hinh",
                                 "/ki-tu-khoang-trong-ff",
-                                "/p/lien-he.html",
-                                "/p/gioi-thieu.html",
-                                "/p/dieu-khoan-su-dung.html",
-                                "/p/chinh-sach-bao-mat.html",
-                                "/nicknames").permitAll()
+                                "/nicknames",
+                                "/p/**").permitAll()
                         .mvcMatchers(
                                 "/assets/**",
                                 "/css/**",
