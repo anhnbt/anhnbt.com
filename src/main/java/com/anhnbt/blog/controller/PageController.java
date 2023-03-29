@@ -56,7 +56,7 @@ public class PageController {
         metaTag.setImage(baseUrl + "/images/ki-tu-dac-biet-anhnbt.jpg");
         model.addAttribute("metaTag", metaTag);
         model.addAttribute("enabledAds", true);
-        Pageable sortedByIdDesc = PageRequest.of(1, 20, Sort.by("id").descending());
+        Pageable sortedByIdDesc = PageRequest.of(0, 20, Sort.by("id").descending());
         model.addAttribute("nicknames", nicknameService.findAllByEnabled(true, sortedByIdDesc));
         return "pages/ky-tu-dac-biet";
     }
