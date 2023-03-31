@@ -13,6 +13,11 @@
 ```
 mvnw clean package
 ```
+hoặc bỏ qua test
+
+```
+mvn clean package -DskipTests
+```
 
 ```
 nohup java -jar blog-1.0.3-SNAPSHOT.jar --spring.profiles.active=prod > anhnbt.log &
