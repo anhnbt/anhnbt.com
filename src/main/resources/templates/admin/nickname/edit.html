@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head"></head>
+<body>
+<div th:replace="fragments/layout :: header"></div>
+<main class="container is-fluid pt-5">
+    <div class="columns is-desktop">
+        <div class="column">
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li><a th:href="@{/templates/admin}">Quản trị</a></li>
+                    <li><a th:href="@{/admin/nicknames}">Nickname</a></li>
+                    <li class="is-active"><a href="#" aria-current="page">Chỉnh sửa Nickname</a></li>
+                </ul>
+            </nav>
+            <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        Chỉnh sửa Nickname
+                    </p>
+                </header>
+                <div class="card-content">
+                    <!-- /* Handle the flash message */-->
+                    <p th:if="${MSG_SUCCESS}" th:text="${MSG_SUCCESS}" class="notification is-success"></p>
+                    <p th:if="${MSG_INFO}" th:text="${MSG_INFO}" class="notification is-info"></p>
+                    <p th:if="${MSG_ERROR}" th:text="${MSG_ERROR}" class="notification is-danger"></p>
+                    <form th:action="@{/admin/nicknames/edit/{id}(id=${nickname.id})}" th:object="${nickname}" method="post">
+                        <div class="message is-danger content" th:if="${#fields.hasAnyErrors()}">
+                            <div class="message-body">
+                                <ul class="m-0">
+                                    <li th:each="err : ${#fields.allErrors()}" th:text="${err}"/>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label th:for="nickname" class="label">Tên game</label>
+                            <div class="control">
+                                <input class="input" type="text" th:field="*{nickname}"
+                                       th:classappend="${#fields.hasErrors('nickname')} ? ' is-danger'"
+                                       placeholder="Tên game" maxlength="100"/>
+                            </div>
+                            <div class="help"><span id="nicknameChars">100</span> ký tự còn lại</div>
+                            <p th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}"
+                               class="help is-danger"></p>
+                        </div>
+                        <div class="field">
+                            <label th:for="slug" class="label">Giải nghĩa</label>
+                            <div class="control">
+                                <input class="input" type="text" th:field="*{slug}"
+                                       th:classappend="${#fields.hasErrors('slug')} ? ' is-danger'"/>
+                            </div>
+                            <p th:if="${#fields.hasErrors('slug')}" th:errors="*{slug}"
+                               class="help is-danger"></p>
+                        </div>
+                        <div class="field">
+                            <label th:for="enabled" class="checkbox">
+                                <input type="checkbox" th:field="*{enabled}" th:checked="${enabled}" /> Hiển thị</label>
+                        </div>
+                        <div class="field is-grouped">
+                            <input type="submit" value="Cập nhật" class="button is-primary"/>
+                            <a th:href="@{/admin/nicknames}" class="button is-link">Quay lại</a>
+                        </div>
+                    </form>
+                </div><!-- /.card-content -->
+            </div><!-- /.card -->
+        </div><!-- /. column -->
+    </div><!-- /.columns -->
+</main><!-- .site-main -->
+<div th:replace="fragments/layout :: footer"></div>
+<div th:replace="fragments/components :: modal"></div>
+<th:block th:replace="fragments/layout :: scripts"></th:block>
+<script th:src="@{/js/jquery-3.6.1.min.js}"></script>
+<script th:src="@{/js/ckeditor.js}"></script>
+<script>
+    const titleMaxLength = 60;
+    $('#nickname').on('keyup change', function () {
+        let length = $(this).val().length;
+        length = titleMaxLength - length;
+        $('#nicknameChars').text(length);
+    });
+</script>
+</body>
+</html>

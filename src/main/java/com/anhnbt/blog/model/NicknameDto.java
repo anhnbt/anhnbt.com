@@ -3,6 +3,8 @@ package com.anhnbt.blog.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 public class NicknameDto {
@@ -12,4 +14,6 @@ public class NicknameDto {
     private String nickname;
     private Integer views;
     private Integer like;
+    private Date timestamp;
+    private Boolean enabled;
 }

@@ -1,32 +1,58 @@
 <!DOCTYPE html>
-<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
-    <meta name="robots" content="noindex">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title th:text="${metaTag.title}"></title>
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" th:href="@{/favicon-32x32.png}">
-    <meta name="description" th:content="${metaTag.description}">
-    <link rel="canonical" th:href="${metaTag.canonical}">
-    <meta property="fb:app_id" content="1540103976279074"/>
+    <title th:if="${metaTag?.title}" th:text="${metaTag?.title}"></title>
+    <meta name="description" th:if="${metaTag?.description}" th:content="${metaTag?.description}">
+    <link rel="canonical" th:if="${metaTag?.canonical}" th:href="${metaTag?.canonical}">
+    <meta property="fb:app_id" content="1540103976279074">
     <meta property="og:locale" content="vi_VN">
-    <meta property="og:url" th:content="${metaTag.url}">
-    <meta property="og:type" th:content="${metaTag.type}">
-    <meta property="og:title" th:content="${metaTag.title}">
-    <meta property="og:description" th:content="${metaTag.description}">
-    <meta property="og:image" th:content="${metaTag.image}">
-    <link rel="stylesheet" media="all" href="/css/bulma.min.css" th:href="@{/css/bulma.min.css}">
-    <link rel="stylesheet" media="all" href="/css/bulma.min.css" th:href="@{/css/app.min.css}">
+    <meta property="og:url" th:if="${metaTag?.url}" th:content="${metaTag?.url}">
+    <meta property="og:type" th:if="${metaTag?.type}" th:content="${metaTag?.type}">
+    <meta property="og:title" th:if="${metaTag?.title}" th:content="${metaTag?.title}">
+    <meta property="og:description" th:if="${metaTag?.description}" th:content="${metaTag?.description}">
+    <meta property="og:image" th:if="${metaTag?.image}" th:content="${metaTag?.image}">
+    <link rel="stylesheet" media="all" th:href="@{/css/bulma.min.css}">
+    <link rel="stylesheet" media="all" th:href="@{/css/app.min.css}">
     <script type="application/ld+json" th:unless="${schemaLdJson == null}" th:utext="${schemaLdJson}"></script>
+    <script th:if="${enabledAds}" data-ad-client="ca-pub-8660218247964227" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1BF75F7361"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-1BF75F7361');
+    </script>
 </head>
 <body>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v7.0&appId=1540103976279074&autoLogAppEvents=1" nonce="jBscnR6T"></script>
+<!-- Facebook Pixel Code -->
+<script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window,document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1266353633523718');
+    fbq('track', 'PageView');
+</script>
+<noscript>
+    <img height="1" width="1" src="https://www.facebook.com/tr?id=1266353633523718&ev=PageView&noscript=1">
+</noscript>
+<!-- End Facebook Pixel Code -->
 <!-- Header -->
 <header id="masthead" class="site-header" th:fragment="header">
-    <nav class="navbar is-info has-shadow" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-info has-shadow" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" th:href="@{/}">
-                <img src="/images/logo-anhnbt.png" th:src="@{/images/logo-anhnbt.png}" alt="AnhNBT brand" width="120px"
-                     height="26px">
+                <img src="/images/logo-anhnbt.png" th:src="@{/images/logo-anhnbt.png}" alt="AnhNBT brand" width="120px" height="26px">
             </a>
 
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
@@ -68,6 +94,25 @@
                             </div>
                         </div>
                     </form>
+                    <div class="buttons ml-2" sec:authorize="!isAuthenticated()">
+                        <a class="button is-primary" th:href="@{/signup}">
+                            <strong>Đăng ký</strong>
+                        </a>
+                        <a class="button is-light" th:href="@{/login}">
+                            Đăng nhập
+                        </a>
+                    </div>
+                    <div class="navbar-item has-dropdown is-hoverable" sec:authorize="isAuthenticated()">
+                        <a class="navbar-link" href="#" th:text="${user?.username}">Tài khoản</a>
+                        <div class="navbar-dropdown is-boxed">
+                            <a th:href="@{/admin/dashboard}" sec:authorize="hasRole('ROLE_ADMIN')" class="navbar-item">
+                                Quản trị
+                            </a>
+                            <a th:href="@{/logout}" class="navbar-item">
+                                Thoát
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -93,7 +138,7 @@
     <script th:inline="javascript">
         const contextPath = /*[[@{/}]]*/ '/';
     </script>
-    <script src="/js/app.min.js" th:src="@{/js/app.js}"></script>
+    <script th:src="@{/js/app.min.js?version=1}"></script>
 </th:block>
 </body>
 </html>

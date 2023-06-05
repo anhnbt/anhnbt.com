@@ -1,9 +1,10 @@
 package com.anhnbt.blog.controller;
 
+import com.anhnbt.blog.SetupDataLoader;
 import com.anhnbt.blog.exception.PostNotFoundException;
 import com.anhnbt.blog.model.MetaTag;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -16,7 +17,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class MyExceptionHandler extends ResponseEntityExceptionHandler {
 
-    private Logger logger = LoggerFactory.getLogger(MyExceptionHandler.class);
+    private static final Logger logger = LogManager.getLogger(MyExceptionHandler.class);
     @Value(value = "${app.base-url}")
     private String baseUrl;
 

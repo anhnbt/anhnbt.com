@@ -46,3 +46,16 @@
     width: 44px;
   }
 }
+.ck-editor__editable[role="textbox"] {
+ /* editing area */
+ min-height: 200px;
+}
+.card-image img {
+  object-fit: cover;
+}
+.title-ellipsis {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow:hidden
+}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head"></head>
+<body>
+<div th:replace="fragments/layout :: header"></div>
+<main class="container is-fluid pt-5">
+    <div class="columns">
+        <div class="column">
+            <div th:replace="fragments/components :: back"></div>
+            <article class="content">
+                <header>
+                    <h1 class="title">Oops! 500 Internal Server Error</h1>
+                </header>
+                <div class="entry-content">Đã có lỗi nghiêm trọng xảy ra. Vui lòng liên hệ quản trị viên để được hỗ trợ. <a
+                        href="#" th:href="@{/}">Click vào đây</a> để trở về trang chủ.
+                </div>
+            </article>
+        </div>
+    </div>
+</main>
+<div th:replace="fragments/layout :: footer"></div>
+</body>
+</html>

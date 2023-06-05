@@ -16,7 +16,7 @@
                 <header>
                     <h1>Kí tự đặc biệt</h1>
                     <p class="is-italic"><small class="has-text-grey">
-                        <time datetime="2022-02-23">23/02/2022</time>
+                        <time datetime="2023-02-17">17/02/2023</time>
                     </small></p>
                 </header>
                 <p>Xin chào, bạn đang tìm <strong>kí tự đặc biệt</strong> đẹp? Tại đây bạn có thể khám phá hàng nghìn
@@ -31,8 +31,18 @@
                     </li>
                     <li>Công cụ tạo <a href="/chu-kieu">Chữ kiểu</a> đẹp!</li>
                 </ul>
-                <div class="my-2 has-text-centered">
-                    ADS HERE
+                <div class="my-2 has-text-centered" th:if="${enabledAds}">
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- AnhNBT Auto Home -->
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-8660218247964227"
+                         data-ad-slot="9066451365"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
                 </div>
                 <form method="POST" class="box">
                     <div class="field">
@@ -256,8 +266,18 @@
                         </div>
                     </div>
                     <div id="txtMessage"></div>
-                    <div class="my-2 has-text-centered">
-                        ADS HERE
+                    <div class="my-2 has-text-centered" th:if="${enabledAds}">
+                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <!-- AnhNBT Auto 2 -->
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-8660218247964227"
+                             data-ad-slot="1225805580"
+                             data-ad-format="auto"
+                             data-full-width-responsive="true"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
                     </div>
                     <div id="result"></div>
                 </form>
@@ -339,11 +359,6 @@
                         <button onclick="loadMoreNickName(this, 2, 20)" class="button is-small">Xem thêm »</button>
                     </div>
                 </section>
-                <div class="message is-info">
-                    <p class="message-body">Hãy giúp AnhNBT trở thành một website với hàng nghìn tên game hay và chất
-                        lượng bằng cách <a href="#" th:href="@{/search#create}" target="_blank"
-                                           rel="noreferrer noopener">đóng góp tên game</a>.</p>
-                </div>
                 <h3 class="is-size-3">Bài viết nổi bật trên AnhNBT</h3>
                 <div class="box">
                     <ul class="list-unstyled m-0">

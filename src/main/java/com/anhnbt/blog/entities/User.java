@@ -1,77 +1,56 @@
 package com.anhnbt.blog.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Date;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id", nullable = false)
-    private Integer id;
+    private Long id;
 
-    @Column(name = "username", nullable = false)
+    @Column(name = "username", length = 50, nullable = false)
     private String username;
 
-    @Column(name = "facebook_id", nullable = false)
-    private String facebookId;
+    @Column(name = "password", length = 500, nullable = false)
+    private String password;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email")
     private String email;
 
-    @Column(name = "role", nullable = false)
-    private Integer role;
+    @CreatedDate
+    @Column(name = "created_date", columnDefinition = "datetime default current_timestamp")
+    private LocalDateTime createdDate = LocalDateTime.now();
 
-    @Column(name = "registration_date", nullable = false)
-    private Instant registrationDate;
+    @LastModifiedDate
+    @Column(name = "modified_date", columnDefinition = "datetime default current_timestamp")
+    private LocalDateTime modifiedDate = LocalDateTime.now();
 
-    public Integer getId() {
-        return id;
-    }
+    @Column(name = "enabled", columnDefinition = "boolean default false")
+    private Boolean enabled = false;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    @Transient
+    private String confirmPassword;
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getFacebookId() {
-        return facebookId;
-    }
-
-    public void setFacebookId(String facebookId) {
-        this.facebookId = facebookId;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Integer getRole() {
-        return role;
-    }
-
-    public void setRole(Integer role) {
-        this.role = role;
-    }
-
-    public Instant getRegistrationDate() {
-        return registrationDate;
-    }
-
-    public void setRegistrationDate(Instant registrationDate) {
-        this.registrationDate = registrationDate;
-    }
-
+    @ManyToMany
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
+    private Collection<Role> roles;
 }

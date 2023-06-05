@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head"></head>
+<body>
+<div th:replace="fragments/layout :: header"></div>
+<!-- /* Handle the flash message */-->
+<th:block th:if="${message != null}">
+    <!-- /* The message code is returned from the @Controller */ -->
+    <div th:replace="fragments/components :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}(${#authentication.name})})">
+        &nbsp;
+    </div>
+</th:block>
+<main class="container is-fluid pt-5">
+    <div class="container is-fluid">
+        <div class="columns is-desktop">
+            <div class="column">
+                <nav class="breadcrumb is-small" aria-label="breadcrumbs">
+                    <ul>
+                        <li><a href="#" th:href="@{/}">Trang chủ</a></li>
+                    </ul>
+                </nav>
+                <h1 class="title">Tìm thấy <span th:text="${nicknames.totalElements}"></span> kết quả cho: <span th:text="${param.s}"></span></h1>
+                <section th:unless="${#lists.isEmpty(nicknames)}">
+                    <div class="box tags">
+                        <span class="tag" th:each="nickname : ${nicknames}"
+                              th:attr="data-clipboard-text=${nickname.nickname}" th:text="${nickname.nickname}"></span>&nbsp;
+                    </div>
+                    <div class="has-text-centered mb-1">
+                        <nav class="pagination" role="navigation" aria-label="pagination" th:if="${nicknames.totalPages > 0}">
+                            <ul class="pagination-list">
+                                <li th:each="pageNumber : ${pageNumbers}">
+                                    <a th:href="@{/search(s=${param.s}, size=${nicknames.size}, page=${pageNumber})}"
+                                       th:text="${pageNumber}"
+                                       th:class="${pageNumber==nicknames.number + 1} ? 'pagination-link is-current' : 'pagination-link'">1</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </section>
+            </div><!-- /.column -->
+        </div><!-- /.columns -->
+    </div><!-- /.container -->
+</main><!-- .site-main -->
+<div th:replace="fragments/layout :: footer"></div>
+<div th:replace="fragments/components :: modal"></div>
+<th:block th:replace="fragments/layout :: scripts"></th:block>
+</body>
+</html>
