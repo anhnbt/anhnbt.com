@@ -44,7 +44,17 @@
                                class="help is-danger"></p>
                         </div>
                         <div class="field">
-                            <label th:for="slug" class="label">Giải nghĩa</label>
+                            <label th:for="name" class="label">Giải nghĩa</label>
+                            <div class="control">
+                                <input class="input" type="text" th:field="*{name}"
+                                       th:classappend="${#fields.hasErrors('name')} ? ' is-danger'"
+                                       placeholder="Giải nghĩa" maxlength="100"/>
+                            </div>
+                            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                               class="help is-danger"></p>
+                        </div>
+                        <div class="field">
+                            <label th:for="slug" class="label">Slug</label>
                             <div class="control">
                                 <input class="input" type="text" th:field="*{slug}"
                                        th:classappend="${#fields.hasErrors('slug')} ? ' is-danger'"/>
