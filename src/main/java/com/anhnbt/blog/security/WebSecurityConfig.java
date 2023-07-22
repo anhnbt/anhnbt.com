@@ -27,6 +27,7 @@ public class WebSecurityConfig {
         http
                 .authorizeHttpRequests(requests -> requests
                         .antMatchers("/",
+                                "/search",
                                 "/signup",
                                 "/ky-tu-dac-biet",
                                 "/chu-kieu",
