@@ -12,6 +12,7 @@ import com.anhnbt.blog.service.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -25,7 +26,7 @@ import java.util.List;
 public class SetupDataLoader implements ApplicationListener<ContextRefreshedEvent> {
     private static final Logger logger = LogManager.getLogger(SetupDataLoader.class);
 
-    boolean alreadySetup = false;
+    boolean alreadySetup = true;
 
     @Autowired
     private UserService userService;
@@ -35,6 +36,12 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 
     @Autowired
     private PrivilegeRepository privilegeRepository;
+
+    @Value(value = "${app.email}")
+    private String email;
+
+    @Value(value = "${app.password}")
+    private String password;
 
     @Override
     @Transactional
@@ -52,8 +59,8 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         Role adminRole = roleRepository.findByName(Constants.Roles.ROLE_ADMIN);
         UserDto user = new UserDto();
         user.setUsername("anhnbt");
-        user.setPassword("KhoaiTay@2019");
-        user.setEmail("anhnbt.it@gmail.com");
+        user.setPassword(password);
+        user.setEmail(email);
         user.setRoles(List.of(adminRole));
         user.setEnabled(true);
         try {
