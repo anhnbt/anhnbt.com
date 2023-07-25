@@ -71,8 +71,9 @@ public class NicknameServiceImpl implements NicknameService {
 
     private Nickname mapToEntity(NicknameDto nicknameDto, Nickname nickname) {
         nickname.setNickname(nicknameDto.getNickname());
-        nickname.setTimestamp(nicknameDto.getTimestamp());
+        nickname.setName(nicknameDto.getName());
         nickname.setSlug(nicknameDto.getSlug());
+        nickname.setTimestamp(nicknameDto.getTimestamp());
         nickname.setEnabled(nicknameDto.getEnabled());
         return nickname;
     }
