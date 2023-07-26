@@ -1,5 +1,6 @@
 package com.anhnbt.blog.service;
 
+import com.anhnbt.blog.common.StringCommon;
 import com.anhnbt.blog.entities.Nickname;
 import com.anhnbt.blog.model.NicknameDto;
 import com.anhnbt.blog.repository.NicknameRepository;
@@ -63,8 +64,9 @@ public class NicknameServiceImpl implements NicknameService {
     private NicknameDto mapToDTO(Nickname nickname, NicknameDto nicknameDto) {
         nicknameDto.setId(nickname.getId());
         nicknameDto.setNickname(nickname.getNickname());
-        nicknameDto.setTimestamp(nickname.getTimestamp());
+        nicknameDto.setName(nickname.getName());
         nicknameDto.setSlug(nickname.getSlug());
+        nicknameDto.setTimestamp(nickname.getTimestamp());
         nicknameDto.setEnabled(nickname.getEnabled());
         return nicknameDto;
     }
@@ -72,7 +74,7 @@ public class NicknameServiceImpl implements NicknameService {
     private Nickname mapToEntity(NicknameDto nicknameDto, Nickname nickname) {
         nickname.setNickname(nicknameDto.getNickname());
         nickname.setName(nicknameDto.getName());
-        nickname.setSlug(nicknameDto.getSlug());
+        nickname.setSlug(StringCommon.createSlug(nicknameDto.getName()));
         nickname.setTimestamp(nicknameDto.getTimestamp());
         nickname.setEnabled(nicknameDto.getEnabled());
         return nickname;
