@@ -63,7 +63,7 @@ public class PostServiceImpl implements PostService {
     private PostDTO mapToDTO(Post post, PostDTO postDTO) {
         postDTO.setId(post.getId());
         postDTO.setTitle(post.getPostTitle());
-        postDTO.setContent(post.getPostContent());
+        postDTO.setContent(post.getContentEscape());
         postDTO.setCategory(post.getCategory() == null ? null : post.getCategory().getId());
         return postDTO;
     }
