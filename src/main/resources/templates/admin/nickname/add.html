@@ -54,21 +54,16 @@
                                class="help is-danger"></p>
                         </div>
                         <div class="field">
-                            <label th:for="slug" class="label">Slug</label>
-                            <div class="control">
-                                <input class="input" type="text" th:field="*{slug}"
-                                       th:classappend="${#fields.hasErrors('slug')} ? ' is-danger'"/>
-                            </div>
-                            <p th:if="${#fields.hasErrors('slug')}" th:errors="*{slug}"
-                               class="help is-danger"></p>
-                        </div>
-                        <div class="field">
                             <label th:for="enabled" class="checkbox">
                             <input type="checkbox" th:field="*{enabled}" th:checked="${enabled}" /> Hiển thị</label>
                         </div>
                         <div class="field is-grouped">
-                            <input type="submit" value="Tạo" class="button is-primary"/>
-                            <a th:href="@{/admin/nicknames}" class="button is-link">Quay lại</a>
+                            <p class="control">
+                                <input type="submit" value="Tạo" class="button is-primary"/>
+                            </p>
+                            <p class="control">
+                                <a th:href="@{/admin/nicknames}" class="button is-link">Quay lại</a>
+                            </p>
                         </div>
                     </form>
                 </div><!-- /.card-content -->
