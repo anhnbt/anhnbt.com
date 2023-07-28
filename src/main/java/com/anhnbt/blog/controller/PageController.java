@@ -24,6 +24,9 @@ public class PageController {
     private final PostService postService;
     private final NicknameService nicknameService;
 
+    @Value(value = "${app.enabledAds}")
+    private Boolean enabledAds;
+
     public PageController(PostService postService, NicknameService nicknameService) {
         this.postService = postService;
         this.nicknameService = nicknameService;
@@ -39,7 +42,7 @@ public class PageController {
         metaTag.setDescription("AnhNBT là nơi chia sẻ những tiện ích hay công cụ về Game Mobile của Nguyễn Bá Tuấn Anh. Mời bạn ghé thăm trang và sử dụng công cụ tạo tên mới nhất của mình");
         metaTag.setImage(baseUrl + "/images/ki-tu-dac-biet-anhnbt.jpg");
         model.addAttribute("metaTag", metaTag);
-        model.addAttribute("enabledAds", false);
+        model.addAttribute("enabledAds", enabledAds);
         // Bỏ qua 4 bài viết đầu tiên
         model.addAttribute("posts", postService.findAllByIdGreaterThan(4L));
         return "index";
@@ -55,7 +58,7 @@ public class PageController {
         metaTag.setDescription("1001 Kí tự đặc biệt FF tạo tên kí tự đẹp Quân đoàn Free Fire, Liên Quân (LQ), PUBG như mặt quỷ ╰‿╯, mặt cười ×͜× , Cây dù ☂ và bảng kí hiệu đặc biệt.");
         metaTag.setImage(baseUrl + "/images/ki-tu-dac-biet-anhnbt.jpg");
         model.addAttribute("metaTag", metaTag);
-        model.addAttribute("enabledAds", true);
+        model.addAttribute("enabledAds", enabledAds);
         Pageable sortedByIdDesc = PageRequest.of(0, 20, Sort.by("id").descending());
         model.addAttribute("nicknames", nicknameService.findAllByEnabled(true, sortedByIdDesc));
         return "pages/ky-tu-dac-biet";
@@ -71,7 +74,7 @@ public class PageController {
         metaTag.setDescription("Công cụ tạo chữ in đậm, chữ nghiêng trên status Facebook Fanpage đơn giản nhất. Chữ nét đậm không cần cài đặt font (phông) về điện thoại.");
         metaTag.setImage(baseUrl + "/images/chu-in-dam.jpg");
         model.addAttribute("metaTag", metaTag);
-        model.addAttribute("enabledAds", true);
+        model.addAttribute("enabledAds", enabledAds);
         return "pages/chu-in-dam";
     }
 
@@ -85,7 +88,7 @@ public class PageController {
         metaTag.setDescription("Tạo Chữ Kiểu đẹp với 1001+ font chữ đẹp như gạch chân, gạch ngang, bong bóng, ô vuông, chữ khoảng trống,... Kí tự Facebook, Instagram, Zalo, Tiktok.");
         metaTag.setImage(baseUrl + "/images/chu-kieu.jpg");
         model.addAttribute("metaTag", metaTag);
-        model.addAttribute("enabledAds", true);
+        model.addAttribute("enabledAds", enabledAds);
         return "pages/chu-kieu";
     }
 
@@ -99,7 +102,7 @@ public class PageController {
         metaTag.setDescription("Bạn đang bí ý tưởng để đặt tên game hay Liên Quân Mobile (LQ), Free Fire (FF)? Vào xem ngay những cái tên cực ngầu, hợp thời và gây được ấn tượng nhất.");
         metaTag.setImage(baseUrl + "/images/ten-lien-quan-hay.jpg");
         model.addAttribute("metaTag", metaTag);
-        model.addAttribute("enabledAds", true);
+        model.addAttribute("enabledAds", enabledAds);
         return "pages/ten-game-hay";
     }
 
@@ -113,7 +116,7 @@ public class PageController {
         metaTag.setDescription("Kí tự Vương Miện hay Kí tự đặc biệt Vương Miện một trong những kí tự hot trend hiện nay. Giúp bạn tạo những tên game hay cho FF, Liên Quân, PUBG.");
         metaTag.setImage(baseUrl + "/images/ki-tu-vuong-mien.jpg");
         model.addAttribute("metaTag", metaTag);
-        model.addAttribute("enabledAds", true);
+        model.addAttribute("enabledAds", enabledAds);
         return "pages/ki-tu-vuong-mien";
     }
 
@@ -127,7 +130,7 @@ public class PageController {
         metaTag.setDescription("Kí tự tàng hình, hay kí tự ẩn là một trong những kí tự hot nhất giúp bạn tạo tên game tàng hình Free Fire (FF) không tên.");
         metaTag.setImage(baseUrl + "/images/ki-tu-tang-hinh.jpg");
         model.addAttribute("metaTag", metaTag);
-        model.addAttribute("enabledAds", true);
+        model.addAttribute("enabledAds", enabledAds);
         return "pages/ki-tu-tang-hinh";
     }
 
@@ -141,7 +144,7 @@ public class PageController {
         metaTag.setDescription("Bộ công cụ tạo tên game bằng bảng kí tự đặc biệt chữ nhỏ (chữ siêu nhỏ, chữ nhỏ ở giữa) có dấu và không dấu.");
         metaTag.setImage(baseUrl + "/images/ki-tu-chu-nho.jpg");
         model.addAttribute("metaTag", metaTag);
-        model.addAttribute("enabledAds", true);
+        model.addAttribute("enabledAds", enabledAds);
         return "pages/ki-tu-dac-biet-chu-nho";
     }
 
@@ -155,7 +158,7 @@ public class PageController {
         metaTag.setDescription("Công cụ tạo kí tự đặc biệt kiểu IAM (IͥAͣMͫ) trên đầu sử dụng dễ dàng và đơn giản. Có nhiều tùy chọn ký tự trên đầu khác chẳng hạn như Aͭnͧhͣn.");
         metaTag.setImage(baseUrl + "/images/ki-tu-i-am-nho.jpg");
         model.addAttribute("metaTag", metaTag);
-        model.addAttribute("enabledAds", true);
+        model.addAttribute("enabledAds", enabledAds);
         return "pages/tao-chu-i-am";
     }
 
@@ -169,7 +172,7 @@ public class PageController {
         metaTag.setDescription("Kí tự quả táo iPhone \uF8FF, hay kí tự quả táo cắn dở được nhiều bạn thắc mắc và hỏi làm sao để hiển thị trong Free Fire (FF).");
         metaTag.setImage(baseUrl + "/images/ki-tu-qua-tao.jpg");
         model.addAttribute("metaTag", metaTag);
-        model.addAttribute("enabledAds", true);
+        model.addAttribute("enabledAds", enabledAds);
         return "pages/ki-tu-qua-tao";
     }
 
@@ -183,7 +186,7 @@ public class PageController {
         metaTag.setDescription("Dùng làm tên game đẹp độc đáo với ký tự khoảng trống hay dấu cách đặc biệt dành cho game Free Fire (FF), Liên Quân Mobile...");
         metaTag.setImage(baseUrl + "/images/ki-tu-khoang-trong-ff.jpg");
         model.addAttribute("metaTag", metaTag);
-        model.addAttribute("enabledAds", true);
+        model.addAttribute("enabledAds", enabledAds);
         return "pages/ki-tu-khoang-trong-ff";
     }
 
