@@ -13,8 +13,7 @@
     <meta property="og:title" th:if="${metaTag?.title}" th:content="${metaTag?.title}">
     <meta property="og:description" th:if="${metaTag?.description}" th:content="${metaTag?.description}">
     <meta property="og:image" th:if="${metaTag?.image}" th:content="${metaTag?.image}">
-    <link rel="stylesheet" media="all" th:href="@{/css/bulma.min.css}">
-    <link rel="stylesheet" media="all" th:href="@{/css/app.min.css}">
+    <link rel="stylesheet" media="all" th:href="@{/css/app.css}">
     <script type="application/ld+json" th:unless="${schemaLdJson == null}" th:utext="${schemaLdJson}"></script>
     <script th:if="${enabledAds}" data-ad-client="ca-pub-8660218247964227" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- Google tag (gtag.js) -->
@@ -49,7 +48,7 @@
 <!-- End Facebook Pixel Code -->
 <!-- Header -->
 <header id="masthead" class="site-header" th:fragment="header">
-    <nav class="navbar is-info has-shadow" aria-label="main navigation">
+    <nav class="navbar is-primary has-shadow" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" th:href="@{/}">
                 <img src="/images/logo-anhnbt.png" th:src="@{/images/logo-anhnbt.png}" alt="AnhNBT brand" width="120px" height="26px">
@@ -95,11 +94,11 @@
                         </div>
                     </form>
                     <div class="buttons ml-2" sec:authorize="!isAuthenticated()">
-                        <a class="button is-primary" th:href="@{/signup}">
-                            <strong>Đăng ký</strong>
-                        </a>
-                        <a class="button is-light" th:href="@{/login}">
+                        <a class="button" th:href="@{/login}">
                             Đăng nhập
+                        </a>
+                        <a class="button is-warning" th:href="@{/signup}">
+                            <strong>Đăng ký</strong>
                         </a>
                     </div>
                     <div class="navbar-item has-dropdown is-hoverable" sec:authorize="isAuthenticated()">
@@ -119,7 +118,7 @@
     </nav>
 </header>
 <!-- Footer -->
-<footer class="footer has-background-info has-text-info-light mt-3" th:fragment="footer">
+<footer class="footer has-background-primary has-text-primary-light mt-3" th:fragment="footer">
     <div class="content has-text-centered">
         <p>© Copyright 2016-<span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2016</span> by <a
                 th:href="@{/}" class="has-text-info-light">AnhNBT</a>™ <span class="tag is-dark is-rounded"
