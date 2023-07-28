@@ -42,7 +42,7 @@ public class PageController {
         metaTag.setDescription("AnhNBT là nơi chia sẻ những tiện ích hay công cụ về Game Mobile của Nguyễn Bá Tuấn Anh. Mời bạn ghé thăm trang và sử dụng công cụ tạo tên mới nhất của mình");
         metaTag.setImage(baseUrl + "/images/ki-tu-dac-biet-anhnbt.jpg");
         model.addAttribute("metaTag", metaTag);
-        model.addAttribute("enabledAds", enabledAds);
+        model.addAttribute("enabledAds", false);
         // Bỏ qua 4 bài viết đầu tiên
         model.addAttribute("posts", postService.findAllByIdGreaterThan(4L));
         return "index";
