@@ -13,7 +13,7 @@
     <meta property="og:title" th:if="${metaTag?.title}" th:content="${metaTag?.title}">
     <meta property="og:description" th:if="${metaTag?.description}" th:content="${metaTag?.description}">
     <meta property="og:image" th:if="${metaTag?.image}" th:content="${metaTag?.image}">
-    <link rel="stylesheet" media="all" th:href="@{/css/app.css}">
+    <link rel="stylesheet" media="all" th:href="@{/css/app.min.css}">
     <script type="application/ld+json" th:unless="${schemaLdJson == null}" th:utext="${schemaLdJson}"></script>
     <script th:if="${enabledAds}" data-ad-client="ca-pub-8660218247964227" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- Google tag (gtag.js) -->
