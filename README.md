@@ -24,6 +24,9 @@ nohup java -jar blog-1.0.3-SNAPSHOT.jar --spring.profiles.active=prod > anhnbt.l
 nohup java -jar blog-1.0.4-SNAPSHOT.jar --spring.profiles.active=staging > anhnbt-staging.log &
 ```
 
+`Nohup` là một lệnh Unix cho phép chạy ứng dụng ngay cả khi ngắt kết nối.
+
+`&` là **shell's backgrounding operator**
 ## Actuator
 
 - [actuator/health](http://localhost:8080/actuator/health)
