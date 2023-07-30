@@ -21,8 +21,6 @@ public class MyErrorController implements ErrorController {
     @RequestMapping("/error")
     @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
     public String handleError(HttpServletRequest request, Model model) {
-        Exception e = (Exception) request.getAttribute(RequestDispatcher.ERROR_EXCEPTION);
-        logger.error("Error: ", e);
         MetaTag metaTag = new MetaTag();
         metaTag.setTitle("Đã xảy ra lỗi");
         model.addAttribute("metaTag", metaTag);
