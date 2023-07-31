@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/account")
 public class AccountController {
-
     @GetMapping
     public String general(Model model, Authentication auth) {
         if (auth != null && auth.isAuthenticated()) {
@@ -21,9 +20,4 @@ public class AccountController {
         model.addAttribute("metaTag", metaTag);
         return "pages/account/general";
     }
-
-//    @GetMapping("/security")
-//    public String security() {
-//
-//    }
 }

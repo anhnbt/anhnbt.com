@@ -3,14 +3,12 @@ package com.anhnbt.blog.controller;
 import com.anhnbt.blog.common.Constants;
 import com.anhnbt.blog.exception.EmailExistsException;
 import com.anhnbt.blog.exception.UsernameExistsException;
-import com.anhnbt.blog.model.Message;
 import com.anhnbt.blog.model.MetaTag;
 import com.anhnbt.blog.model.UserDto;
 import com.anhnbt.blog.repository.RoleRepository;
 import com.anhnbt.blog.service.UserService;
 import com.anhnbt.blog.validator.RegisterValidator;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -24,9 +22,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
+@Slf4j
 @Controller
 class AuthController {
-    private static final Logger logger = LogManager.getLogger(AuthController.class);
 
     @Autowired
     private UserService userService;
@@ -49,7 +47,6 @@ class AuthController {
 
     @GetMapping("/signup")
     public String signup(Model model) {
-        logger.trace("Entering /signup.");
         MetaTag metaTag = new MetaTag();
         metaTag.setTitle("Đăng ký");
         model.addAttribute("metaTag", metaTag);
@@ -61,7 +58,6 @@ class AuthController {
     public String signup(@Validated @ModelAttribute("user") UserDto accountDto,
                          BindingResult result,
                          RedirectAttributes redirect) {
-        logger.trace("Entering /signup.");
         try {
             registerValidator.validate(accountDto, result);
             if (result.hasErrors()) {
@@ -73,10 +69,9 @@ class AuthController {
             userService.save(accountDto);
             redirect.addFlashAttribute(Constants.MSG_SUCCESS, "Đăng ký tài khoản thành công!");
         } catch (EmailExistsException | UsernameExistsException e) {
-            logger.error(e);
+            log.error("Exception when /signup", e);
             redirect.addFlashAttribute(Constants.MSG_ERROR, "Email hoặc username đã được sử dụng!");
         }
-        logger.trace("Exiting /signup.");
         return "redirect:/login";
     }
 }

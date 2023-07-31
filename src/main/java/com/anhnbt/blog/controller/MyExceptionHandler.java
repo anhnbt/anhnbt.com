@@ -1,11 +1,7 @@
 package com.anhnbt.blog.controller;
 
-import com.anhnbt.blog.SetupDataLoader;
 import com.anhnbt.blog.exception.PostNotFoundException;
 import com.anhnbt.blog.model.MetaTag;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,14 +13,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class MyExceptionHandler extends ResponseEntityExceptionHandler {
 
-    private static final Logger logger = LogManager.getLogger(MyExceptionHandler.class);
-    @Value(value = "${app.base-url}")
-    private String baseUrl;
-
     @ExceptionHandler(PostNotFoundException.class)
     @ResponseStatus(code = HttpStatus.NOT_FOUND)
     protected ModelAndView handleNotFoundException(PostNotFoundException e, WebRequest request) {
-        logger.error("NotFoundException: " + request.toString(), e);
         MetaTag metaTag = new MetaTag();
         metaTag.setTitle("404 Not Found - Bài viết không tồn tại");
         ModelAndView modelAndView = new ModelAndView("error/404");

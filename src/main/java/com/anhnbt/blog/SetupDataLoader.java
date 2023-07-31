@@ -26,7 +26,7 @@ import java.util.List;
 public class SetupDataLoader implements ApplicationListener<ContextRefreshedEvent> {
     private static final Logger logger = LogManager.getLogger(SetupDataLoader.class);
 
-    boolean alreadySetup = true;
+    boolean alreadySetup = false;
 
     @Autowired
     private UserService userService;

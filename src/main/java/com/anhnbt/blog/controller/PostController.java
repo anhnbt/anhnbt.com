@@ -9,8 +9,7 @@ import com.anhnbt.blog.service.CategoryService;
 import com.anhnbt.blog.service.PostService;
 import com.anhnbt.blog.util.WebUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.annotation.Secured;
@@ -24,12 +23,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
+@Slf4j
 @Controller
 @RequestMapping
 public class PostController {
 
-    private static final Logger logger = LogManager.getLogger(PostController.class);
-
+    public static final String REDIRECT_ADMIN_POSTS = "redirect:/admin/posts";
     @Autowired
     private PostService postService;
     @Autowired
@@ -70,7 +69,7 @@ public class PostController {
             post.setPostViewCount(post.getPostViewCount() + 1);
             postRepository.save(post);
         } catch (Exception e) {
-            logger.debug("Exception khi thực hiện PostController.details", e);
+            log.debug("Exception khi thực hiện PostController.details", e);
         }
 
         modelAndView.addObject("schemaLdJson", jsonAsString);
@@ -112,10 +111,10 @@ public class PostController {
             postService.create(postDTO);
             redirectAttributes.addFlashAttribute(Constants.MSG_SUCCESS, WebUtils.getMessage("post.create.success"));
         } catch (Exception e) {
-            logger.debug("Exception when /admin/posts/add", e);
+            log.debug("Exception when /admin/posts/add", e);
             redirectAttributes.addFlashAttribute(Constants.MSG_ERROR, "Thêm bài viết không thành công!");
         }
-        return "redirect:/admin/posts";
+        return REDIRECT_ADMIN_POSTS;
     }
 
     @Secured(Constants.Roles.ROLE_ADMIN)
@@ -139,10 +138,10 @@ public class PostController {
             postService.update(id, postDTO);
             redirectAttributes.addFlashAttribute(Constants.MSG_SUCCESS, WebUtils.getMessage("post.update.success"));
         } catch (Exception e) {
-            logger.debug("Exception when /admin/posts/edit/{0}: {1}", id, e);
+            log.debug("Exception when /admin/posts/edit/{0}: {1}", id, e);
             redirectAttributes.addFlashAttribute(Constants.MSG_ERROR, "Chỉnh sửa bài viết không thành công!");
         }
-        return "redirect:/admin/posts";
+        return REDIRECT_ADMIN_POSTS;
     }
 
     @Secured(Constants.Roles.ROLE_ADMIN)
@@ -150,6 +149,6 @@ public class PostController {
     public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         postService.delete(id);
         redirectAttributes.addFlashAttribute(Constants.MSG_INFO, WebUtils.getMessage("post.delete.success"));
-        return "redirect:/admin/posts";
+        return REDIRECT_ADMIN_POSTS;
     }
 }

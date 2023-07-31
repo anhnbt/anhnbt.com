@@ -6,8 +6,7 @@ import com.anhnbt.blog.model.NicknameDto;
 import com.anhnbt.blog.service.CategoryService;
 import com.anhnbt.blog.service.NicknameService;
 import com.anhnbt.blog.util.WebUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -22,17 +21,17 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+@Slf4j
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
+    public static final String REDIRECT_ADMIN_NICKNAMES = "redirect:/admin/nicknames";
     @Autowired
     private NicknameService nicknameService;
 
     @Autowired
     private CategoryService categoryService;
-
-    private static final Logger logger = LogManager.getLogger(AdminController.class);
 
     @ModelAttribute
     public void categoriesAttributes(Model model) {
@@ -69,10 +68,10 @@ public class AdminController {
             nicknameService.create(nicknameDto);
             redirectAttributes.addFlashAttribute(Constants.MSG_SUCCESS, WebUtils.getMessage("nickname.create.success"));
         } catch (Exception e) {
-            logger.debug("Exception when /admin/nicknames/add", e);
+            log.debug("Exception when /admin/nicknames/add", e);
             redirectAttributes.addFlashAttribute(Constants.MSG_ERROR, "Thêm tên không thành công!");
         }
-        return "redirect:/admin/nicknames";
+        return REDIRECT_ADMIN_NICKNAMES;
     }
 
     @Secured(Constants.Roles.ROLE_ADMIN)
@@ -88,15 +87,15 @@ public class AdminController {
     public String edit(@PathVariable Long id, @ModelAttribute("nickname") NicknameDto nicknameDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         try {
             if (bindingResult.hasErrors()) {
-                return "admin/nicknames/edit";
+                return "admin/nickname/edit";
             }
             nicknameService.update(id, nicknameDto);
             redirectAttributes.addFlashAttribute(Constants.MSG_SUCCESS, WebUtils.getMessage("nickname.update.success"));
         } catch (Exception e) {
-            logger.debug("Exception when /admin/nicknames/edit/{0}: {1}", id, e);
+            log.debug("Exception when /admin/nicknames/edit/{0}: {1}", id, e);
             redirectAttributes.addFlashAttribute(Constants.MSG_ERROR, "Chỉnh sửa tên không thành công!");
         }
-        return "redirect:/admin/nicknames";
+        return REDIRECT_ADMIN_NICKNAMES;
     }
 
     @Secured(Constants.Roles.ROLE_ADMIN)
@@ -104,6 +103,6 @@ public class AdminController {
     public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         nicknameService.delete(id);
         redirectAttributes.addFlashAttribute(Constants.MSG_INFO, WebUtils.getMessage("nickname.delete.success"));
-        return "redirect:/admin/nicknames";
+        return REDIRECT_ADMIN_NICKNAMES;
     }
 }
