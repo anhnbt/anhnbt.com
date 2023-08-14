@@ -1,4 +1,2 @@
 User-agent: *
-Disallow: *?fb_comment_id=*
-Disallow: /sao-chep-ky-tu-dac-biet
-Sitemap: https://anhnbt.com/sitemap.xml
+Sitemap: https://www.anhnbt.com/sitemap.xml

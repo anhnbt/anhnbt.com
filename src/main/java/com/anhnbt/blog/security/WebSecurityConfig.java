@@ -49,6 +49,7 @@ public class WebSecurityConfig {
                                 "/uploads/**",
                                 "/ads.txt",
                                 "/robots.txt",
+                                "/sitemap.xml",
                                 "/favicon.ico",
                                 "/favicon-32x32.png").permitAll()
                         .mvcMatchers("/admin/**").hasRole("ADMIN")
