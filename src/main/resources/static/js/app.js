@@ -22,8 +22,8 @@ function toPerfectName(elm) {
             if (this.readyState === 4 && this.status === 200) {
                 myName.classList.remove("is-danger");
                 const resp = JSON.parse(this.responseText);
-                let html = '<div class="tabs mb-1"><ul class="m-0"><li id="tabRecommendChars" class="is-active" onclick="openTab(event,\'recommendChars\')"><a>Gợi ý</a></li>' +
-                    '<li id="tabAll" onclick="openTab(event,\'all\')"><a>Tất cả</a></li>';
+                let html = '<div class="tabs mb-1"><ul class="m-0"><li id="tabRecommendChars" class="is-active" onclick="openTab(event,\'recommendChars\')"><a>Gợi ý <span class="tag is-primary is-light">' + resp.recommendChars.length + '</span></a></li>' +
+                    '<li id="tabAll" onclick="openTab(event,\'all\')"><a>Tất cả <span class="tag is-primary is-light">' + resp.chars.length + '</span></a></li>';
                 html += '</ul></div>';
                 if (resp.recommendChars) {
                     html += '<div id="recommendChars" class="content-tab" style="overflow-y:scroll; height:150px;">';
@@ -42,7 +42,7 @@ function toPerfectName(elm) {
                     html += '</div>';
                 }
                 if (resp.chars) {
-                    html += '<div id="all" class="content-tab" style="overflow-y:scroll; height:150px; display:none">';
+                    html += '<p class="has-text-centered has-text-success">↓↓ Cuộn xuống dưới ↓↓</p><div id="all" class="content-tab" style="overflow-y:scroll; height:150px; display:none">';
                     for (let i = 0; i < resp.chars.length; i++) {
                         html += `<div class="field has-addons">
                 <div class="control is-expanded">
@@ -90,7 +90,7 @@ function loadMoreNickName(btn, nextPage, recordsPerPage) {
                     html += '<span class="tag" data-clipboard-text="' + resp.content[i].nickname + '">' + resp.content[i].nickname + '</span>&nbsp;';
                 }
                 html += `</div><div class="has-text-centered mb-1">
-                    <button onclick="loadMoreNickName(this, ${nextPage}+1, ${recordsPerPage})" class="button is-primary is-small">Xem tiếp »</button>
+                    <button onclick="loadMoreNickName(this, ${nextPage}+1, ${recordsPerPage})" class="button">Xem thêm (${resp.number}/${resp.totalPages} trang)</button>
                    </div>`;
                 nickNameList.innerHTML = html;
             } else {
@@ -98,7 +98,7 @@ function loadMoreNickName(btn, nextPage, recordsPerPage) {
             }
         } else if (http.status === 204) {
             nickNameList.innerHTML = `<div class="has-background-warning p-2 mb-2">Đã tải hết dữ liệu.</div><div class="has-text-centered mb-1">
-                    <button onclick="loadMoreNickName(this, 1, ${recordsPerPage})" class="button is-primary is-small">Tải lại</button>
+                    <button onclick="loadMoreNickName(this, 1, ${recordsPerPage})" class="button">Tải lại</button>
                    </div>`;
         } else {
             nickNameList.innerHTML = '<div class="has-background-danger p-2 mb-2">Lỗi không xác định.</div>';
