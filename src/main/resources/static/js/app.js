@@ -22,34 +22,40 @@ function toPerfectName(elm) {
             if (this.readyState === 4 && this.status === 200) {
                 myName.classList.remove("is-danger");
                 const resp = JSON.parse(this.responseText);
-                let html = '';
+                let html = '<div class="tabs mb-1"><ul class="m-0"><li id="tabRecommendChars" class="is-active" onclick="openTab(event,\'recommendChars\')"><a>Gợi ý</a></li>' +
+                    '<li id="tabAll" onclick="openTab(event,\'all\')"><a>Tất cả</a></li>';
+                html += '</ul></div>';
                 if (resp.recommendChars) {
+                    html += '<div id="recommendChars" class="content-tab" style="overflow-y:scroll; height:150px;">';
                     for (let i = 0; i < resp.recommendChars.length; i++) {
                         html += `<div class="field has-addons">
                 <div class="control is-expanded">
                     <input type="text" class="input" value="${resp.recommendChars[i]}" onfocus="this.select();" onmouseup="return false;">
                 </div>
                 <div class="control">
-                    <button type="button" class="button is-info" onclick="copyToClipboardInput(this);">
+                    <button type="button" class="button is-primary" onclick="copyToClipboardInput(this);">
                     Sao chép
                     </button>
                 </div>
             </div>`;
                     }
+                    html += '</div>';
                 }
                 if (resp.chars) {
+                    html += '<div id="all" class="content-tab" style="overflow-y:scroll; height:150px; display:none">';
                     for (let i = 0; i < resp.chars.length; i++) {
                         html += `<div class="field has-addons">
                 <div class="control is-expanded">
                     <input type="text" class="input" value="${resp.chars[i]}" onfocus="this.select();" onmouseup="return false;">
                 </div>
                 <div class="control">
-                    <button type="button" class="button is-info" onclick="copyToClipboardInput(this);">
+                    <button type="button" class="button is-primary" onclick="copyToClipboardInput(this);">
                     Sao chép
                     </button>
                 </div>
             </div>`;
                     }
+                    html += '</div>';
                 }
                 resultDOM.innerHTML = html;
                 setTimeout(function () {
@@ -107,36 +113,36 @@ function loadMoreNickName(btn, nextPage, recordsPerPage) {
 
 function copyToClipboardInputFrmModal(elm) {
     copyToClipboard(elm.parentElement.parentElement.children[0].children[1]);
-    elm.classList.remove("is-info");
+    elm.classList.remove("is-primary");
     elm.classList.add("is-success");
     elm.innerHTML = "Đã chép";
     setTimeout(function () {
         elm.classList.remove("is-success");
-        elm.classList.add("is-info");
+        elm.classList.add("is-primary");
         elm.innerHTML = "Sao chép";
     }, 1000);
 }
 
 function copyToClipboardInput(elm) {
     copyToClipboard(elm.parentElement.parentElement.children[0].children[0]);
-    elm.classList.remove("is-info");
+    elm.classList.remove("is-primary");
     elm.classList.add("is-success");
     elm.innerHTML = "Đã chép";
     setTimeout(function () {
         elm.classList.remove("is-success");
-        elm.classList.add("is-info");
+        elm.classList.add("is-primary");
         elm.innerHTML = "Sao chép";
     }, 1000);
 }
 
 function copyToClipboardInputWithLabel(elm) {
     copyToClipboard(elm.parentElement.parentElement.children[0].children[0]);
-    elm.classList.remove("is-info");
+    elm.classList.remove("is-primary");
     elm.classList.add("is-success");
     elm.innerHTML = "Đã chép";
     setTimeout(function () {
         elm.classList.remove("is-success");
-        elm.classList.add("is-info");
+        elm.classList.add("is-primary");
         elm.innerHTML = "Sao chép";
     }, 1000);
 }
@@ -176,4 +182,17 @@ for (let i = 0; i < tags.length; i++) {
             document.getElementById("txtSymbol").value = s;
         });
     }
+}
+function openTab(evt, tabName) {
+    var i, x, tabAll, tabRecommendChars;
+    x = document.getElementsByClassName("content-tab");
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
+    tabAll = document.getElementById("tabAll");
+    tabAll.classList.remove("is-active");
+    tabRecommendChars = document.getElementById("tabRecommendChars");
+    tabRecommendChars.classList.remove("is-active");
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.classList.toggle("is-active");
 }

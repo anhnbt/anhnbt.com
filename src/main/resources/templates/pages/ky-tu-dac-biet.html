@@ -3,45 +3,17 @@
 <head th:replace="fragments/layout :: head"></head>
 <body>
 <div th:replace="fragments/layout :: header"></div>
-<main class="container is-fluid pt-5">
+<main class="container is-fluid pt-1">
     <div class="columns">
         <div class="column">
-            <nav class="breadcrumb is-small" aria-label="breadcrumbs">
-                <ul>
-                    <li><a href="#" th:href="@{/}">Trang chủ</a></li>
-                    <li class="is-active"><a href="#" aria-current="page">Kí tự đặc biệt</a></li>
-                </ul>
-            </nav>
             <article class="content">
-                <header>
-                    <h1>Kí tự đặc biệt</h1>
-                    <p class="is-italic"><small class="has-text-grey">
-                        <time datetime="2023-02-17">17/02/2023</time>
-                    </small></p>
-                </header>
-                <p>Xin chào, bạn đang tìm <strong>kí tự đặc biệt</strong> đẹp? Tại đây bạn có thể khám phá hàng nghìn
-                    <em>kí tự đẹp</em> dành riêng cho mình!</p>
-                <p>Bạn có thể chọn Kí tự trái tim ❤, ngôi sao ★, mặt quỷ ╰‿╯ hay Mặt Cười ×͜×, <a
-                        href="/ki-tu-vuong-mien" title="Kí tự Vương miện">Vương miện 亗</a>, cây dù ⛱ ☂ và nhiều hơn nữa.
-                </p>
-                <div class="my-2 has-text-centered" th:if="${enabledAds}">
-                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <!-- AnhNBT Auto Home -->
-                    <ins class="adsbygoogle"
-                         style="display:block"
-                         data-ad-client="ca-pub-8660218247964227"
-                         data-ad-slot="9066451365"
-                         data-ad-format="auto"
-                         data-full-width-responsive="true"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
-                </div>
-                <form method="POST" class="box">
+                <h1>Kí tự đặc biệt</h1>
+                <p>Tại đây, bạn có thể khám phá hàng nghìn <strong>kí tự đặc biệt</strong> đẹp từ khắp nơi trên thế giới, từ trái tim ❤, ngôi sao ★ hay Mặt Cười ×͜×, Vương miện 亗!</p>
+                <form method="POST" class="">
                     <div class="field">
                         <div class="control">
-                            <label for="myName" class="is-sr-only">Nhập tên</label>
-                            <input type="text" name="myName" id="myName" placeholder="Nhập tên hoặc nickname của bạn"
+                            <label for="myName" class="is-sr-only">Nhập tên hoặc nickname</label>
+                            <input type="text" name="myName" id="myName" placeholder="Nhập tên hoặc nickname"
                                    class="input" aria-required="true" required>
                         </div>
                     </div>
@@ -127,7 +99,7 @@
                                 <label for="symbolCenter" class="is-sr-only">Chọn ký tự giữa</label>
                                 <select name="symbolCenter" id="symbolCenter">
                                     <option value="">-Giữa-</option>
-                                    <option value=" ">Dấu cách đặc biệt</option>
+                                    <option value=" ">Dấu cách</option>
                                     <option value="乛">乛</option>
                                     <option value="๛">๛</option>
                                     <option value="丶">丶</option>
@@ -274,36 +246,13 @@
                     </div>
                     <div id="result"></div>
                 </form>
-                <details open="">
-                    <summary>Lưu ý khi đặt tên</summary>
-                    <ul>
+                <details class="message is-warning" open="">
+                    <summary class="message-header">Lưu ý khi đặt tên</summary>
+                    <ul class="message-body mt-0 p-1">
                         <li>Độ dài dưới 12 <em>kitudacbiet</em></li>
                         <li>Không chứa từ ngữ nhạy cảm hoặc bị cấm</li>
                     </ul>
                 </details>
-                <div class="table-responsive">
-                    <table class="table is-bordered is-fullwidth">
-                        <caption class="is-size-4">Kí tự đặc biệt phổ biến</caption>
-                        <tbody>
-                        <tr>
-                            <td>✅ Mặt Quỷ</td>
-                            <td>╰‿╯</td>
-                        </tr>
-                        <tr>
-                            <td>✅ Cây dù</td>
-                            <td>☂</td>
-                        </tr>
-                        <tr>
-                            <td>✅ Nhịp tim</td>
-                            <td>ﮩ٨ـﮩﮩ٨ـ♡ﮩ٨ـﮩﮩ٨</td>
-                        </tr>
-                        <tr>
-                            <td>✅ Vương Miện</td>
-                            <td>亗</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
                 <!--                comment here-->
                 <h2>Kí tự đặc biệt Free Fire</h2>
                 <div class="tags">
@@ -349,94 +298,11 @@
                               th:attr="data-clipboard-text=${nickname.nickname}" th:text="${nickname.nickname}"></span>&nbsp;
                     </div>
                     <div class="has-text-centered mb-1">
-                        <button onclick="loadMoreNickName(this, 2, 20)" class="button is-small">Xem thêm »</button>
+                        <button onclick="loadMoreNickName(this, 2, 20)" class="button">Xem thêm »</button>
                     </div>
                 </section>
-                <h3 class="is-size-3">Bài viết nổi bật trên AnhNBT</h3>
-                <div class="box">
-                    <ul class="list-unstyled m-0">
-                        <li class="media mb-1">
-                            <a href="#" th:href="@{/chu-in-dam}">
-                                <picture>
-                                    <source media="(max-width: 188px)" srcset="/images/chu-in-dam-188w.jpg">
-                                    <source media="(min-width: 800px)" srcset="/images/chu-in-dam.jpg">
-                                    <img width="188" height="106" src="/images/chu-in-dam.jpg"
-                                         th:src="@{/images/chu-in-dam.jpg}" alt="Chữ in đậm"
-                                         class="align-self-center mr-3" loading="lazy">
-                                </picture>
-                            </a>
-                            <div class="media-body">
-                                <a class="mt-0 mb-1 font-weight-bold" href="#" th:href="@{/chu-in-dam}">Chữ in đậm</a>
-                                <p><small>13 tháng 8 2021</small></p>
-                            </div>
-                        </li>
-                        <li class="media mb-1">
-                            <a href="#" th:href="@{/ki-tu-tang-hinh}">
-                                <picture>
-                                    <source media="(max-width: 188px)" srcset="/images/ki-tu-tang-hinh-ff-188w.jpg">
-                                    <source media="(min-width: 800px)" srcset="/images/ki-tu-tang-hinh-ff.jpg">
-                                    <img width="188" height="106" src="/images/ki-tu-tang-hinh-ff.jpg"
-                                         th:src="@{/images/ki-tu-tang-hinh-ff.jpg}" alt="Kí tự tàng hình"
-                                         class="align-self-center mr-3" loading="lazy">
-                                </picture>
-                            </a>
-                            <div class="media-body">
-                                <a class="mt-0 mb-1 font-weight-bold" href="/ki-tu-tang-hinh"
-                                   th:href="@{/ki-tu-tang-hinh}">Kí tự tàng hình</a>
-                                <p><small>5 tháng 8 2021</small></p>
-                            </div>
-                        </li>
-                        <li class="media mb-1">
-                            <a href="#" th:href="@{/ki-tu-khoang-trong-ff}">
-                                <picture>
-                                    <source media="(max-width: 188px)" srcset="/images/ki-tu-khoang-trong-ff-188w.jpg">
-                                    <source media="(min-width: 800px)" srcset="/images/ki-tu-khoang-trong-ff.jpg">
-                                    <img width="188" height="106" src="/images/ki-tu-khoang-trong-ff.jpg"
-                                         th:src="@{/images/ki-tu-khoang-trong-ff.jpg}" alt="Kí tự khoảng trống FF"
-                                         class="align-self-center mr-3" loading="lazy">
-                                </picture>
-                            </a>
-                            <div class="media-body">
-                                <a class="mt-0 mb-1 font-weight-bold" href="#" th:href="@{/ki-tu-khoang-trong-ff}">Kí tự
-                                    khoảng trống FF</a>
-                                <p><small>02 tháng 8 2021</small></p>
-                            </div>
-                        </li>
-                        <li class="media mb-1">
-                            <a href="#" th:href="@{/chu-kieu}">
-                                <picture>
-                                    <source media="(max-width: 188px)" srcset="/images/chu-kieu-188w.jpg">
-                                    <source media="(min-width: 800px)" srcset="/images/chu-kieu.jpg">
-                                    <img width="188" height="106" src="/images/chu-kieu.jpg"
-                                         th:src="@{/images/chu-kieu.jpg}" alt="Chữ kiểu" class="align-self-center mr-3"
-                                         loading="lazy">
-                                </picture>
-                            </a>
-                            <div class="media-body">
-                                <a class="mt-0 mb-1 font-weight-bold" href="#" th:href="@{/chu-kieu}">Chữ kiểu</a>
-                                <p><small>26 tháng 7 2021</small></p>
-                            </div>
-                        </li>
-                        <li class="media mb-1">
-                            <a href="#" th:href="@{/tao-chu-i-am}">
-                                <picture>
-                                    <source media="(max-width: 188px)" srcset="/images/ki-tu-i-am-nho-188w.jpg">
-                                    <source media="(min-width: 800px)" srcset="/images/ki-tu-i-am-nho.jpg">
-                                    <img width="188" height="106" src="/images/ki-tu-i-am-nho.jpg"
-                                         th:src="@{/images/ki-tu-i-am-nho.jpg}" alt="Tạo chữ IͥAͣMͫ"
-                                         class="align-self-center mr-3" loading="lazy">
-                                </picture>
-                            </a>
-                            <div class="media-body">
-                                <a class="mt-0 mb-1 font-weight-bold" href="#" th:href="@{/tao-chu-i-am}">Tạo chữ
-                                    IͥAͣMͫ</a>
-                                <p><small>26 tháng 7 2021</small></p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
                 <section class="all-symbols">
-                    <h3>Ký tự đẹp FF</h3>
+                    <h3>Kí tự đặc biệt FF</h3>
                     <figure class="has-text-centered">
                         <img width="480" height="270" src="/images/ki-tu-dac-biet-anhnbt.jpg"
                              th:src="@{/images/ki-tu-dac-biet-anhnbt.jpg}" alt="Kí tự đặc biệt" loading="lazy">
@@ -617,6 +483,29 @@
                     <p>㉰ ㉱ ㉲ ㉳ ㉴ ㉵ ㉶ ㉷ ㉸ ㉹ ㉺ ㉻ ㉿</p>
                     <p>㈀ ㈁ ㈂ ㈃ ㈄ ㈅ ㈆ ㈇ ㈈ ㈉ ㈊ ㈋ ㈌ ㈍ ㈎ ㈏</p>
                     <p>㈐ ㈑ ㈒ ㈓ ㈔ ㈕ ㈖ ㈗ ㈘ ㈙ ㈚ ㈛ ㈜</p>
+                    <div class="table-responsive">
+                        <table class="table is-bordered is-fullwidth">
+                            <caption class="is-size-4">Kí tự đặc biệt có lượt tìm nhiều nhất</caption>
+                            <tbody>
+                            <tr>
+                                <td>✅ Mặt Quỷ</td>
+                                <td>╰‿╯</td>
+                            </tr>
+                            <tr>
+                                <td>✅ Cây dù</td>
+                                <td>☂</td>
+                            </tr>
+                            <tr>
+                                <td>✅ Nhịp tim</td>
+                                <td>ﮩ٨ـﮩﮩ٨ـ♡ﮩ٨ـﮩﮩ٨</td>
+                            </tr>
+                            <tr>
+                                <td>✅ Vương Miện</td>
+                                <td>亗</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <h2>Kí hiệu mặt cười</h2>
                     <p class="has-text-centered">
                         ¯\_(ツ)_/¯<br>
@@ -637,15 +526,15 @@
                              loading="lazy">
                         <figcaption>Character Map Windows 10.</figcaption>
                     </figure>
-                    <p class="text-normal">Ngoài ra, bạn có thể lấy được rất nhiều <strong>ký tự đặc biệt</strong> có
-                        sẵn trên Windows 10 có tên là <strong>Character Map</strong>. Chỉ cần vài thao tác Chọn; Sao
+                    <p class="text-normal">Ngoài ra, bạn có thể lấy được rất nhiều <strong>kí tự đặc biệt</strong> có
+                        sẵn trên HĐH Windows có tên là <strong>Character Map</strong>. Chỉ cần vài thao tác Chọn; Sao
                         chép và <kbd>Ctrl</kbd> + <kbd>V</kbd> trên máy tính là có thể sử dụng được.</p>
                 </section><!-- /.symbols -->
             </article>
         </div>
 
         <aside class="column is-3">
-            <section class="hero is-small is-primary has-text-centered mb-2 p-3">
+            <section class="hero is-primary has-text-centered mb-2 p-3">
                 <h3 class="has-text-weight-bold">Kí Tự Đặc Biệt AnhNBT</h3>
                 <p>Tải ứng dụng Miễn phí trên Google Play (Android).</p>
                 <a title="Google Download"
