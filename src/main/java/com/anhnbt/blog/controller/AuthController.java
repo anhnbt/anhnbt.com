@@ -40,7 +40,8 @@ class AuthController {
             return "redirect:/";
         }
         MetaTag metaTag = new MetaTag();
-        metaTag.setTitle("Đăng nhập");
+        metaTag.setTitle("Đăng nhập - anhnbt.com");
+        metaTag.setDescription("Đăng nhập tài khoản blog anhnbt.com");
         model.addAttribute("metaTag", metaTag);
         return "login";
     }
@@ -48,7 +49,8 @@ class AuthController {
     @GetMapping("/signup")
     public String signup(Model model) {
         MetaTag metaTag = new MetaTag();
-        metaTag.setTitle("Đăng ký");
+        metaTag.setTitle("Đăng ký - anhnbt.com");
+        metaTag.setDescription("Đăng ký tài khoản blog anhnbt.com");
         model.addAttribute("metaTag", metaTag);
         model.addAttribute("user", new UserDto());
         return "signup";
@@ -62,7 +64,8 @@ class AuthController {
             registerValidator.validate(accountDto, result);
             if (result.hasErrors()) {
                 MetaTag metaTag = new MetaTag();
-                metaTag.setTitle("Đăng ký");
+                metaTag.setTitle("Đăng ký - anhnbt.com");
+                metaTag.setDescription("Đăng ký tài khoản blog anhnbt.com");
                 return "signup";
             }
             accountDto.setRoles(List.of(roleRepository.findByName(Constants.Roles.ROLE_USER)));
