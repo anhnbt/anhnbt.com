@@ -217,7 +217,7 @@
                                     <figure class="image is-5by3">
                                         <th:block th:if="${post.postThumb != null}">
                                             <img width="300" height="157" src="#"
-                                                 th:src="@{/uploads/{thumb}(thumb=${post.postThumb})}"
+                                                 th:src="@{/uploads/images/{thumb}(thumb=${post.postThumb})}"
                                                  th:alt="${post.postTitle}">
                                         </th:block>
                                         <th:block th:if="${post.postThumb == null}">
