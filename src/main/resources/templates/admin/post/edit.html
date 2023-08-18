@@ -24,7 +24,8 @@
                     <p th:if="${MSG_SUCCESS}" th:text="${MSG_SUCCESS}" class="notification is-success"></p>
                     <p th:if="${MSG_INFO}" th:text="${MSG_INFO}" class="notification is-info"></p>
                     <p th:if="${MSG_ERROR}" th:text="${MSG_ERROR}" class="notification is-danger"></p>
-                    <form th:action="@{/admin/posts/edit/{id}(id=${post.getId()})}" th:object="${post}" method="post">
+                    <form th:action="@{/admin/posts/edit/{id}(id=${post.getId()})}" th:object="${post}" method="post" enctype="multipart/form-data">
+                        <input type="hidden" th:field="*{thumbnailUrl}">
                         <div class="message is-danger content" th:if="${#fields.hasAnyErrors()}">
                             <div class="message-body">
                                 <ul class="m-0">
@@ -42,6 +43,17 @@
                             <div class="help"><span id="titleChars">60</span> ký tự còn lại</div>
                             <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"
                                class="help is-danger"></p>
+                        </div>
+                        <div class="field">
+                            <label th:for="thumbnail" class="label">Thumbnail <span
+                                    class="has-text-danger">*</span>:</label>
+                            <div class="col-md-10">
+                                <input type="file" th:field="*{thumbnail}" class="form-control">
+                                <p th:if="${#fields.hasErrors('thumbnail')}" th:errors="*{thumbnail}" class="invalid-feedback">Thumbnail error</p>
+                                <figure class="image is-128x128" th:unless="${#strings.isEmpty(post.thumbnailUrl)}">
+                                    <img th:src="${'/uploads/images/' + post.thumbnailUrl}" alt="thumbnail">
+                                </figure>
+                            </div>
                         </div>
                         <div class="field">
                             <label th:for="category" class="label">Chuyên mục</label>

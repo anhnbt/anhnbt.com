@@ -7,7 +7,10 @@ import com.anhnbt.blog.model.*;
 import com.anhnbt.blog.repository.PostRepository;
 import com.anhnbt.blog.service.CategoryService;
 import com.anhnbt.blog.service.PostService;
+import com.anhnbt.blog.storage.StorageException;
+import com.anhnbt.blog.storage.StorageService;
 import com.anhnbt.blog.util.WebUtils;
+import com.anhnbt.blog.validator.FileValidator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -19,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -37,6 +41,12 @@ public class PostController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private FileValidator fileValidator;
+
+    @Autowired
+    private StorageService storageService;
 
     @Value(value = "${app.base-url}")
     private String baseUrl;
@@ -80,7 +90,7 @@ public class PostController {
     @GetMapping("/admin/posts")
     public ModelAndView list() {
         ModelAndView modelAndView = new ModelAndView("admin/post/list");
-        modelAndView.addObject("posts", postService.findAll());
+        modelAndView.addObject("posts", postService.findAllByOrderByIdDesc());
         modelAndView.addObject("metaTag", new MetaTag(WebUtils.getMessage("post.list.headline")));
         return modelAndView;
     }
@@ -97,8 +107,17 @@ public class PostController {
                       BindingResult bindingResult,
                       RedirectAttributes redirectAttributes) {
         try {
+            MultipartFile thumbnailFile = postDTO.getThumbnail();
+            fileValidator.validate(postDTO, bindingResult);
             if (bindingResult.hasErrors()) {
                 return "admin/post/add";
+            }
+            try {
+                String thumbnailUrl = thumbnailFile.getOriginalFilename();
+                storageService.store(thumbnailFile);
+                postDTO.setThumbnailUrl(thumbnailUrl);
+            } catch (StorageException e) {
+                postDTO.setThumbnailUrl("150.png");
             }
             postService.create(postDTO);
             redirectAttributes.addFlashAttribute(Constants.MSG_SUCCESS, WebUtils.getMessage("post.create.success"));
@@ -124,8 +143,24 @@ public class PostController {
                            BindingResult bindingResult,
                            RedirectAttributes redirectAttributes) {
         try {
+            MultipartFile thumbnailFile = null;
+            if (postDTO.getThumbnail() != null && !postDTO.getThumbnail().isEmpty()) {
+                thumbnailFile = postDTO.getThumbnail();
+                fileValidator.validate(postDTO, bindingResult);
+            }
             if (bindingResult.hasErrors()) {
-                return "admin/post-edit";
+                return "admin/post/edit";
+            }
+            try {
+                if (thumbnailFile != null) {
+                    String thumbnailUrl = thumbnailFile.getOriginalFilename();
+                    storageService.store(thumbnailFile);
+                    postDTO.setThumbnailUrl(thumbnailUrl);
+                }
+            } catch (StorageException e) {
+                if (StringUtils.isEmpty(postDTO.getThumbnailUrl())) {
+                    postDTO.setThumbnailUrl("150.png");
+                }
             }
             postService.update(id, postDTO);
             redirectAttributes.addFlashAttribute(Constants.MSG_SUCCESS, WebUtils.getMessage("post.update.success"));

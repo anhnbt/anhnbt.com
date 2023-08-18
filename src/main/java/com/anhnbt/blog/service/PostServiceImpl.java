@@ -29,6 +29,11 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public List<Post> findAllByOrderByIdDesc() {
+        return postRepository.findAllByOrderByIdDesc();
+    }
+
+    @Override
     public List<Post> findAllByIdGreaterThan(Long id) {
         return postRepository.findAllByIdGreaterThan(id);
     }
@@ -63,6 +68,7 @@ public class PostServiceImpl implements PostService {
     private PostDTO mapToDTO(Post post, PostDTO postDTO) {
         postDTO.setId(post.getId());
         postDTO.setTitle(post.getPostTitle());
+        postDTO.setThumbnailUrl(post.getPostThumb());
         postDTO.setDescription(post.getPostDescription());
         postDTO.setContent(post.getContentEscape());
         postDTO.setCategory(post.getCategory() == null ? null : post.getCategory().getId());
@@ -72,6 +78,7 @@ public class PostServiceImpl implements PostService {
     private Post mapToEntity(PostDTO postDTO, Post post) throws PostNotFoundException {
         post.setPostTitle(postDTO.getTitle());
         post.setPostName(StringCommon.createSlug(postDTO.getTitle()));
+        post.setPostThumb(postDTO.getThumbnailUrl());
         post.setPostDescription(postDTO.getDescription());
         post.setPostContent(postDTO.getContent());
         Category category = postDTO.getCategory() == null ? null : categoryRepository

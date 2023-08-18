@@ -10,6 +10,8 @@ import java.util.Optional;
 public interface PostService {
     Iterable<Post> findAll();
 
+    List<Post> findAllByOrderByIdDesc();
+
     List<Post> findAllByIdGreaterThan(Long id);
 
     Optional<Post> findByPostName(String slug);
