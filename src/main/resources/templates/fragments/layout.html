@@ -101,6 +101,93 @@
     </nav>
 </header>
 <!-- Footer -->
+<section th:fragment="release-posts(page)">
+    <h3 class="is-size-3">Công cụ nổi bật khác</h3>
+    <div class="columns">
+        <div class="column">
+            <div class="card">
+                <div class="card-image">
+                    <a href="/ky-tu-dac-biet" th:href="@{/ky-tu-dac-biet}">
+                        <figure class="image is-5by3">
+                            <img src="/images/ki-tu-dac-biet-anhnbt.jpg"
+                                 th:src="@{/images/ki-tu-dac-biet-anhnbt.jpg}"
+                                 alt="Kí tự đặc biệt">
+                        </figure>
+                    </a>
+                </div>
+                <div class="card-content">
+                    <h5 class="title is-5"><a href="/ky-tu-dac-biet" th:href="@{/ky-tu-dac-biet}">Kí tự đặc
+                        biệt</a></h5>
+                </div>
+            </div>
+        </div>
+        <div class="column" th:unless="${#strings.equals(page, 'chu-in-dam')}">
+            <div class="card">
+                <div class="card-image">
+                    <a href="/chu-in-dam" th:href="@{/chu-in-dam}">
+                        <figure class="image is-5by3">
+                            <img src="/images/chu-in-dam.jpg"
+                                 th:src="@{/images/ki-tu-dac-biet-anhnbt.jpg}"
+                                 alt="Chữ in đậm">
+                        </figure>
+                    </a>
+                </div>
+                <div class="card-content">
+                    <h5 class="title is-5"><a href="/chu-in-dam" th:href="@{/chu-in-dam}">Chữ in đậm</a></h5>
+                </div>
+            </div>
+        </div>
+        <div class="column" th:unless="${#strings.equals(page, 'ki-tu-khoang-trong-ff')}">
+            <div class="card">
+                <div class="card-image">
+                    <a href="/ki-tu-khoang-trong-ff" th:href="@{/ki-tu-khoang-trong-ff}">
+                        <figure class="image is-5by3">
+                            <img src="/images/ki-tu-khoang-trong-ff.jpg"
+                                 th:src="@{/images/ki-tu-khoang-trong-ff.jpg}"
+                                 alt="kí tự khoảng trống">
+                        </figure>
+                    </a>
+                </div>
+                <div class="card-content">
+                    <h5 class="title is-5"><a href="/ki-tu-khoang-trong-ff" th:href="@{/ki-tu-khoang-trong-ff}">Kí tự khoảng trống</a></h5>
+                </div>
+            </div>
+        </div>
+        <div class="column" th:unless="${#strings.equals(page, 'ki-tu-dac-biet-chu-nho')}">
+            <div class="card">
+                <div class="card-image">
+                    <a href="/ki-tu-dac-biet-chu-nho" th:href="@{/ki-tu-dac-biet-chu-nho}">
+                        <figure class="image is-5by3">
+                            <img src="/images/ki-tu-chu-nho.jpg"
+                                 th:src="@{/images/ki-tu-chu-nho.jpg}"
+                                 alt="Kí tự đặc biệt chữ nhỏ">
+                        </figure>
+                    </a>
+                </div>
+                <div class="card-content">
+                    <h5 class="title is-5"><a href="/ki-tu-dac-biet-chu-nho" th:href="@{/ki-tu-dac-biet-chu-nho}">Kí tự đặc biệt chữ nhỏ</a></h5>
+                </div>
+            </div>
+        </div>
+        <div class="column" th:unless="${#strings.equals(page, 'ki-tu-tang-hinh')}">
+            <div class="card">
+                <div class="card-image">
+                    <a href="/ki-tu-tang-hinh" th:href="@{/ki-tu-tang-hinh}">
+                        <figure class="image is-5by3">
+                            <img src="/images/ki-tu-tang-hinh-ff.jpg"
+                                 th:src="@{/images/ki-tu-tang-hinh-ff.jpg}"
+                                 alt="Kí tự tàng hình">
+                        </figure>
+                    </a>
+                </div>
+                <div class="card-content">
+                    <h5 class="title is-5"><a href="/ki-tu-tang-hinh" th:href="@{/ki-tu-tang-hinh}">Kí tự tàng hình</a></h5>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.columns -->
+</section>
+<!-- Footer -->
 <footer class="footer has-background-primary has-text-primary-light mt-3" th:fragment="footer">
     <div class="content has-text-centered">
         <p>© Copyright 2016-<span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2016</span> by <a

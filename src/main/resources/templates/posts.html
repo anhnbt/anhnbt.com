@@ -17,6 +17,7 @@
                 </header>
                 <div class="entry-content" th:utext="${post.contentEscape}"></div><!-- .entry-content -->
             </article>
+            <div th:replace="fragments/layout :: release-posts(page='')"></div>
         </div>
     </div>
 </main>
