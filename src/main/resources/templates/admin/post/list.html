@@ -28,6 +28,7 @@
                         <thead>
                         <tr>
                             <th class="has-text-centered" scope="col" th:text="#{post.id.label}">ID</th>
+                            <th class="has-text-centered" scope="col" th:text="#{post.thumbnail.label}">Ảnh</th>
                             <th class="has-text-centered" scope="col" th:text="#{post.title.label}">Tiêu đề</th>
                             <th class="has-text-centered" scope="col">Chuyên mục</th>
                             <th class="has-text-centered" scope="col">Ngày tạo</th>
@@ -38,6 +39,11 @@
                         <tbody>
                         <tr th:each="post,iterStat : ${posts}">
                             <td class="has-text-centered" th:text="${iterStat.index+1}"></td>
+                            <td class="has-text-centered">
+                                <figure class="image mx-auto is-5by3" th:unless="${#strings.isEmpty(post.postThumb)}">
+                                    <img th:src="${'/uploads/images/' + post.postThumb}" alt="thumbnail">
+                                </figure>
+                            </td>
                             <td><a href="#" th:href="@{/p/{url}.html(url=${post.postName})}" rel="bookmark"
                                    th:text="${post.postTitle}"></a></td>
                             <td th:text="${post.category?.name}"></td>
