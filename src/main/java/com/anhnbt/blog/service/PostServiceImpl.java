@@ -3,6 +3,7 @@ package com.anhnbt.blog.service;
 import com.anhnbt.blog.common.StringCommon;
 import com.anhnbt.blog.entities.Category;
 import com.anhnbt.blog.entities.Post;
+import com.anhnbt.blog.exception.PostExistsException;
 import com.anhnbt.blog.exception.PostNotFoundException;
 import com.anhnbt.blog.model.PostDTO;
 import com.anhnbt.blog.repository.CategoryRepository;
@@ -44,17 +45,23 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void create(PostDTO postDto) throws PostNotFoundException {
+    public void create(PostDTO postDto) throws PostNotFoundException, PostExistsException {
         Post post = new Post();
         mapToEntity(postDto, post);
+        if (existsByPostNameIgnoreCase(post.getPostName())) {
+            throw new PostExistsException("Tiêu đề đã tồn tại!");
+        }
         postRepository.save(post);
     }
 
     @Override
-    public void update(Long id, PostDTO postDTO) throws PostNotFoundException {
+    public void update(Long id, PostDTO postDTO) throws PostNotFoundException, PostExistsException {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new PostNotFoundException("Post not found"));
         mapToEntity(postDTO, post);
+        if (existsByPostNameIgnoreCaseAndIdNot(post.getPostName(), post.getId())) {
+            throw new PostExistsException("Tiêu đề đã tồn tại!");
+        }
         postRepository.save(post);
     }
 
@@ -91,6 +98,11 @@ public class PostServiceImpl implements PostService {
     @Override
     public boolean existsByPostNameIgnoreCase(String postName) {
         return postRepository.existsByPostNameIgnoreCase(postName);
+    }
+
+    @Override
+    public boolean existsByPostNameIgnoreCaseAndIdNot(String postName, Long id) {
+        return postRepository.existsByPostNameIgnoreCaseAndIdNot(postName, id);
     }
 
     @Override

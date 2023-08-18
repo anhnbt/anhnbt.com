@@ -2,6 +2,7 @@ package com.anhnbt.blog.controller;
 
 import com.anhnbt.blog.common.Constants;
 import com.anhnbt.blog.entities.Post;
+import com.anhnbt.blog.exception.PostExistsException;
 import com.anhnbt.blog.exception.PostNotFoundException;
 import com.anhnbt.blog.model.*;
 import com.anhnbt.blog.repository.PostRepository;
@@ -121,6 +122,8 @@ public class PostController {
             }
             postService.create(postDTO);
             redirectAttributes.addFlashAttribute(Constants.MSG_SUCCESS, WebUtils.getMessage("post.create.success"));
+        } catch (PostExistsException | PostNotFoundException e) {
+            redirectAttributes.addFlashAttribute(Constants.MSG_ERROR, e.getMessage());
         } catch (Exception e) {
             log.debug("Exception when /admin/posts/add", e);
             redirectAttributes.addFlashAttribute(Constants.MSG_ERROR, "Thêm bài viết không thành công!");
@@ -164,6 +167,8 @@ public class PostController {
             }
             postService.update(id, postDTO);
             redirectAttributes.addFlashAttribute(Constants.MSG_SUCCESS, WebUtils.getMessage("post.update.success"));
+        } catch (PostExistsException | PostNotFoundException e) {
+            redirectAttributes.addFlashAttribute(Constants.MSG_ERROR, e.getMessage());
         } catch (Exception e) {
             log.debug("Exception when /admin/posts/edit/{0}: {1}", id, e);
             redirectAttributes.addFlashAttribute(Constants.MSG_ERROR, "Chỉnh sửa bài viết không thành công!");
