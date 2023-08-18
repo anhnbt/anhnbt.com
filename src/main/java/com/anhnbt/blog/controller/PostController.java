@@ -17,16 +17,23 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
+import java.nio.file.DirectoryNotEmptyException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.util.List;
 
 @Slf4j
@@ -137,6 +144,34 @@ public class PostController {
         model.addAttribute("post", postService.findById(id));
         model.addAttribute("metaTag", new MetaTag(WebUtils.getMessage("post.edit.headline")));
         return "admin/post/edit";
+    }
+
+
+
+    @Secured(Constants.Roles.ROLE_ADMIN)
+    @GetMapping("/admin/posts/delete-thumb/{id}")
+    public String deleteThumb(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) throws IOException, PostNotFoundException {
+        PostDTO postDTO = postService.findById(id);
+        Resource file = storageService.loadAsResource(postDTO.getThumbnailUrl());
+        try {
+            // Delete file or directory
+            if (file.exists()) {
+                Files.delete(file.getFile().toPath());
+                postDTO.setThumbnailUrl("");
+                postService.update(id, postDTO);
+            }
+            redirectAttributes.addFlashAttribute(Constants.MSG_SUCCESS, "Xóa thumbnail thành công!");
+        } catch (NoSuchFileException ex) {
+            redirectAttributes.addFlashAttribute(Constants.MSG_ERROR, "File không tồn tại: " + file.getFile().toPath());
+        } catch (DirectoryNotEmptyException ex) {
+            redirectAttributes.addFlashAttribute(Constants.MSG_ERROR, "Thư mục trống");
+        } catch (IOException ex) {
+            redirectAttributes.addFlashAttribute(Constants.MSG_ERROR, ex.getMessage());
+        } catch (PostExistsException e) {
+            redirectAttributes.addFlashAttribute(Constants.MSG_ERROR, "Bài viết không tồn tại");
+            return REDIRECT_ADMIN_POSTS;
+        }
+        return "redirect:/admin/posts/edit/" + id;
     }
 
     @Secured(Constants.Roles.ROLE_ADMIN)
