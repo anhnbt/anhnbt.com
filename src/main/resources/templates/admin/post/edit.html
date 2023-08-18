@@ -50,8 +50,9 @@
                             <div class="col-md-10">
                                 <input type="file" th:field="*{thumbnail}" class="form-control">
                                 <p th:if="${#fields.hasErrors('thumbnail')}" th:errors="*{thumbnail}" class="invalid-feedback">Thumbnail error</p>
-                                <figure class="image is-128x128" th:unless="${#strings.isEmpty(post.thumbnailUrl)}">
+                                <figure class="image is-128x128 is-relative" th:unless="${#strings.isEmpty(post.thumbnailUrl)}">
                                     <img th:src="${'/uploads/images/' + post.thumbnailUrl}" alt="thumbnail">
+                                    <button type="button" class="delete is-small" style="position: absolute;top: 4px;right: 4px;"></button>
                                 </figure>
                             </div>
                         </div>
