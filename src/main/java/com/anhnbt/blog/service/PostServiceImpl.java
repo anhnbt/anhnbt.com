@@ -63,6 +63,7 @@ public class PostServiceImpl implements PostService {
     private PostDTO mapToDTO(Post post, PostDTO postDTO) {
         postDTO.setId(post.getId());
         postDTO.setTitle(post.getPostTitle());
+        postDTO.setDescription(post.getPostDescription());
         postDTO.setContent(post.getContentEscape());
         postDTO.setCategory(post.getCategory() == null ? null : post.getCategory().getId());
         return postDTO;
@@ -71,8 +72,9 @@ public class PostServiceImpl implements PostService {
     private Post mapToEntity(PostDTO postDTO, Post post) throws PostNotFoundException {
         post.setPostTitle(postDTO.getTitle());
         post.setPostName(StringCommon.createSlug(postDTO.getTitle()));
+        post.setPostDescription(postDTO.getDescription());
         post.setPostContent(postDTO.getContent());
-        Category category =postDTO.getCategory() == null ? null : categoryRepository
+        Category category = postDTO.getCategory() == null ? null : categoryRepository
                 .findById(postDTO.getCategory())
                 .orElseThrow(() -> new PostNotFoundException("Category not found"));
         post.setCategory(category);

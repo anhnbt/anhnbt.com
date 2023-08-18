@@ -21,4 +21,8 @@ public class PostDTO {
     @NotEmpty(message = "Nội dung không được để trống")
     @Size(max = 5000, message = "Nội dung không vượt quá 5000 ký tự")
     private String content;
+
+    @NotEmpty(message = "Mô tả ngắn không được để trống")
+    @Size(max = 160, message = "Mô tả ngắn không vượt quá 160 ký tự")
+    private String description;
 }

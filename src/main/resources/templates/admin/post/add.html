@@ -57,6 +57,16 @@
                                class="help is-danger"></p>
                         </div>
                         <div class="field">
+                            <label th:for="description" class="label">Mô tả ngắn</label>
+                            <div class="control">
+                            <textarea maxlength="160" class="textarea" th:field="*{description}"
+                                      th:classappend="${#fields.hasErrors('description')} ? ' is-danger'"
+                                      placeholder="Mô tả ngắn"/>
+                            </div>
+                            <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
+                               class="help is-danger"></p>
+                        </div>
+                        <div class="field">
                             <label th:for="content" class="label">Nội dung</label>
                             <div class="control">
                             <textarea maxlength="5000" class="textarea" th:field="*{content}"

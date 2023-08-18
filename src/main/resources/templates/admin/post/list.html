@@ -42,7 +42,7 @@
                                    th:text="${post.postTitle}"></a></td>
                             <td th:text="${post.category?.name}"></td>
                             <td class="has-text-centered" th:text="${#dates.format(post.postModified, 'dd-MM-yyyy')}"></td>
-                            <td th:text="${#numbers.formatInteger(post.postViewCount,3,'POINT')}"></td>
+                            <td><span th:text="${post.postViewCount > 0} ? ${#numbers.formatInteger(post.postViewCount,3,'POINT')} : 0"></span></td>
                             <td class="has-text-centered">
                                 <div class="buttons ml-2">
                                     <form th:action="@{/admin/posts/delete/{id}(id=${post.id})}" data-confirm-message="Bạn có thực sự muốn xóa bài viết này không? Điều này không thể hoàn tác." method="post" class="js-submit-confirm">

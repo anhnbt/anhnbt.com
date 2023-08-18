@@ -10,6 +10,7 @@ import com.anhnbt.blog.service.PostService;
 import com.anhnbt.blog.util.WebUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.annotation.Secured;
@@ -44,15 +45,6 @@ public class PostController {
     public ModelAndView details(@PathVariable("slug") String slug) throws PostNotFoundException {
         ModelAndView modelAndView = new ModelAndView("posts");
         Post post = postService.findByPostName(slug).orElseThrow(() -> new PostNotFoundException("Not found"));
-        MetaTag metaTag = new MetaTag();
-        metaTag.setCanonical(baseUrl + "/p/" + slug + ".html");
-        metaTag.setUrl(baseUrl + "/p/" + slug + ".html");
-        metaTag.setTitle(post.getPostTitle());
-        metaTag.setType("article");
-        // TODO
-//        metaTag.setDescription(post.getPostContent());
-        metaTag.setImage(baseUrl + "/uploads/" + post.getPostThumb());
-
         SchemaLdJson json = new SchemaLdJson();
         json.setContext("https://schema.org");
         json.setType("NewsArticle");
@@ -73,7 +65,7 @@ public class PostController {
         }
 
         modelAndView.addObject("schemaLdJson", jsonAsString);
-        modelAndView.addObject("metaTag", metaTag);
+        modelAndView.addObject("metaTag", new MetaTag(baseUrl, post));
         modelAndView.addObject("post", post);
         modelAndView.addObject("enabledAds", false);
         return modelAndView;
