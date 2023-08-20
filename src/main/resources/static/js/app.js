@@ -196,3 +196,60 @@ function openTab(evt, tabName) {
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.classList.toggle("is-active");
 }
+// Add something to given element placeholder
+function addToPlaceholder(toAdd, el) {
+    el.placeholder = el.placeholder + toAdd;
+    // Delay between symbols "typing"
+    return new Promise(resolve => setTimeout(resolve, 100));
+}
+
+// Cleare placeholder attribute in given element
+function clearPlaceholder(el) {
+    el.placeholder = "";
+}
+
+// Print one phrase
+function printPhrase(phrase, el) {
+    return new Promise(resolve => {
+        // Clear placeholder before typing next phrase
+        clearPlaceholder(el);
+        let letters = phrase.split('');
+        // For each letter in phrase
+        letters.reduce(
+            (promise, letter, index) => promise.then(_ => {
+                // Resolve promise when all letters are typed
+                if (index === letters.length - 1) {
+                    // Delay before start next phrase "typing"
+                    setTimeout(resolve, 1000);
+                }
+                return addToPlaceholder(letter, el);
+            }),
+            Promise.resolve()
+        );
+    });
+}
+
+// Print given phrases to element
+function printPhrases(phrases, el) {
+    // For each phrase
+    // wait for phrase to be typed
+    // before start typing next
+    phrases.reduce(
+        (promise, phrase) => promise.then(_ => printPhrase(phrase, el)),
+        Promise.resolve()
+    );
+}
+
+// Start typing
+function startTyping() {
+    let phrases = [
+        "Nhập tên hoặc nickname, ví dụ: \"꧁Yang Hồ꧂\"",
+        "Ác☠️Q͜͡ủy",
+        "Bad┊Girl",
+        "Cỏ 3 Lá☘"
+    ];
+    const elm = document.getElementById("myName") || document.getElementById("mySearch");
+    printPhrases(phrases, elm);
+}
+
+startTyping();
