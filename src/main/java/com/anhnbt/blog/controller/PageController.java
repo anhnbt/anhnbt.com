@@ -137,11 +137,11 @@ public class PageController {
     @GetMapping("/ki-tu-dac-biet-chu-nho")
     public String kiTuDacBietChuNho(Model model) {
         MetaTag metaTag = new MetaTag();
-        metaTag.setTitle("Kí tự đặc biệt chữ nhỏ - Tạo chữ siêu nhỏ");
+        metaTag.setTitle("Kí tự đặc biệt chữ nhỏ ²⁰²³");
         metaTag.setCanonical(baseUrl + "/ki-tu-dac-biet-chu-nho");
         metaTag.setUrl(baseUrl + "/ki-tu-dac-biet-chu-nho");
         metaTag.setType("article");
-        metaTag.setDescription("Bộ công cụ tạo tên game bằng bảng kí tự đặc biệt chữ nhỏ (chữ siêu nhỏ, chữ nhỏ ở giữa) có dấu và không dấu.");
+        metaTag.setDescription("Bộ công cụ tạo tên game bằng bảng kí tự đặc biệt chữ nhỏ (chữ siêu nhỏ, chữ nhỏ ở giữa) như ↭ⁱˡᵒᵛᵉᵘɞ, ⁀ᶦᵈᵒᶫ, ²⁴ʰYêü.");
         metaTag.setImage(baseUrl + "/images/ki-tu-chu-nho.jpg");
         model.addAttribute("metaTag", metaTag);
         model.addAttribute("enabledAds", enabledAds);
