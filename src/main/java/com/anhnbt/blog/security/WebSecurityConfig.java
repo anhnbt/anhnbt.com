@@ -40,7 +40,10 @@ public class WebSecurityConfig {
                                 "/ki-tu-tang-hinh",
                                 "/ki-tu-khoang-trong-ff",
                                 "/nicknames",
-                                "/p/**").permitAll()
+                                "/p/**",
+                                "/apps/**",
+                                "/ki-tu/**",
+                                "/sao-chep-ky-tu-dac-biet").permitAll()
                         .mvcMatchers(
                                 "/assets/**",
                                 "/css/**",
