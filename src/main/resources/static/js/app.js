@@ -93,6 +93,7 @@ function loadMoreNickName(btn, nextPage, recordsPerPage) {
                     <button onclick="loadMoreNickName(this, ${nextPage}+1, ${recordsPerPage})" class="button">Xem thêm (${resp.number}/${resp.totalPages} trang)</button>
                    </div>`;
                 nickNameList.innerHTML = html;
+                handleClipboardText('tag-ajax');
             } else {
                 nickNameList.innerHTML = '<div class="has-background-danger p-2 mb-2">Lỗi không nhận được dữ liệu từ máy chủ</div>';
             }
@@ -173,14 +174,18 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
-const tags = document.querySelectorAll(".tag");
-for (let i = 0; i < tags.length; i++) {
-    const s = tags[i].getAttribute("data-clipboard-text");
-    if (s) {
-        tags[i].addEventListener("click", function () {
-            document.getElementById("copyModal").classList.toggle("is-active");
-            document.getElementById("txtSymbol").value = s;
-        });
+
+function handleClipboardText(tag) {
+    console.log('Hello World!');
+    const tags = document.getElementsByClassName(tag);
+    for (let i = 0; i < tags.length; i++) {
+        const s = tags[i].getAttribute("data-clipboard-text");
+        if (s) {
+            tags[i].addEventListener("click", function () {
+                document.getElementById("copyModal").classList.toggle("is-active");
+                document.getElementById("txtSymbol").value = s;
+            });
+        }
     }
 }
 function openTab(evt, tabName) {
@@ -253,3 +258,4 @@ function startTyping() {
 }
 
 startTyping();
+handleClipboardText('tag');
