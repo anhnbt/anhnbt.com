@@ -87,13 +87,13 @@ function loadMoreNickName(btn, nextPage, recordsPerPage) {
                 btn.remove();
                 let html = '<div class="box tags">';
                 for (let i = 0; i < resp.content.length; i++) {
-                    html += '<span class="tag" data-clipboard-text="' + resp.content[i].nickname + '">' + resp.content[i].nickname + '</span>&nbsp;';
+                    html += '<span class="tag data-clipboard" data-clipboard-text="' + resp.content[i].nickname + '">' + resp.content[i].nickname + '</span>&nbsp;';
                 }
                 html += `</div><div class="has-text-centered mb-1">
                     <button onclick="loadMoreNickName(this, ${nextPage}+1, ${recordsPerPage})" class="button">Xem thêm (${resp.number}/${resp.totalPages} trang)</button>
                    </div>`;
                 nickNameList.innerHTML = html;
-                handleClipboardText('tag-ajax');
+                handleClipboardText('data-clipboard');
             } else {
                 nickNameList.innerHTML = '<div class="has-background-danger p-2 mb-2">Lỗi không nhận được dữ liệu từ máy chủ</div>';
             }
