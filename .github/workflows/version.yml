@@ -20,7 +20,7 @@ jobs:
           current_version=$(cat $GITHUB_WORKSPACE/config/version.yml | grep 'version:' | awk '{print $2}')
           
           # Tăng phiên bản lên một đơn vị (ví dụ: 1.0.0 -> 1.0.1)
-          new_version=$(echo $current_version | awk -F. '{$NF++; OFS="."; print $0}')
+          new_version=$(echo $current_version | awk -F. '{printf "%d.%d.%d", $1, $2, $3 + 1}')
 
           # Ghi phiên bản mới vào tệp version.yml
           sed -i "s/version: $current_version/version: $new_version/g" $GITHUB_WORKSPACE/config/version.yml
