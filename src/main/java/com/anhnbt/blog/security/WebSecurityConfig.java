@@ -27,6 +27,7 @@ public class WebSecurityConfig {
         http
                 .authorizeHttpRequests(requests -> requests
                         .antMatchers("/",
+                                "/search",
                                 "/signup",
                                 "/ky-tu-dac-biet",
                                 "/chu-kieu",
@@ -39,7 +40,10 @@ public class WebSecurityConfig {
                                 "/ki-tu-tang-hinh",
                                 "/ki-tu-khoang-trong-ff",
                                 "/nicknames",
-                                "/p/**").permitAll()
+                                "/p/**",
+                                "/apps/**",
+                                "/ki-tu/**",
+                                "/sao-chep-ky-tu-dac-biet").permitAll()
                         .mvcMatchers(
                                 "/assets/**",
                                 "/css/**",
@@ -48,6 +52,7 @@ public class WebSecurityConfig {
                                 "/uploads/**",
                                 "/ads.txt",
                                 "/robots.txt",
+                                "/sitemap.xml",
                                 "/favicon.ico",
                                 "/favicon-32x32.png").permitAll()
                         .mvcMatchers("/admin/**").hasRole("ADMIN")

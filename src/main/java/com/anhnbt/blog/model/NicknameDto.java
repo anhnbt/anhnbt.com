@@ -15,5 +15,5 @@ public class NicknameDto {
     private Integer views;
     private Integer like;
     private Date timestamp;
-    private Boolean enabled;
+    private Boolean enabled = true;
 }

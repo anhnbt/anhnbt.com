@@ -13,7 +13,6 @@
     <meta property="og:title" th:if="${metaTag?.title}" th:content="${metaTag?.title}">
     <meta property="og:description" th:if="${metaTag?.description}" th:content="${metaTag?.description}">
     <meta property="og:image" th:if="${metaTag?.image}" th:content="${metaTag?.image}">
-    <link rel="stylesheet" media="all" th:href="@{/css/bulma.min.css}">
     <link rel="stylesheet" media="all" th:href="@{/css/app.min.css}">
     <script type="application/ld+json" th:unless="${schemaLdJson == null}" th:utext="${schemaLdJson}"></script>
     <script th:if="${enabledAds}" data-ad-client="ca-pub-8660218247964227" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -49,7 +48,7 @@
 <!-- End Facebook Pixel Code -->
 <!-- Header -->
 <header id="masthead" class="site-header" th:fragment="header">
-    <nav class="navbar is-info has-shadow" aria-label="main navigation">
+    <nav class="navbar is-primary has-shadow" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" th:href="@{/}">
                 <img src="/images/logo-anhnbt.png" th:src="@{/images/logo-anhnbt.png}" alt="AnhNBT brand" width="120px" height="26px">
@@ -64,29 +63,27 @@
 
         <div id="navMenu" class="navbar-menu">
             <div class="navbar-start">
-
                 <a class="navbar-item" th:href="@{/ky-tu-dac-biet}">Kí tự đặc biệt</a>
                 <a class="navbar-item" th:href="@{/chu-kieu}">Chữ kiểu</a>
-                <a class="navbar-item" th:href="@{/ten-game-hay}">Tên game hay</a>
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">
                         Công cụ
                     </a>
                     <div class="navbar-dropdown">
+                        <a class="navbar-item" th:href="@{/ten-game-hay}">Tên game hay</a>
                         <a class="navbar-item" th:href="@{/chu-in-dam}">Chữ in đậm</a>
                         <a class="navbar-item" th:href="@{/ki-tu-dac-biet-chu-nho}">Tạo chữ nhỏ</a>
                         <a class="navbar-item" th:href="@{/tao-chu-i-am}">Tạo chữ IͥAͣMͫ</a>
                     </div>
                 </div>
             </div>
-
             <div class="navbar-end">
                 <div class="navbar-item">
                     <form action="#" th:action="@{/search}" method="GET">
                         <div class="field is-grouped">
                             <div class="control is-expanded">
                                 <label>
-                                    <input class="input" name="s" type="text" placeholder="Tìm kiếm tên game">
+                                    <input class="input" name="s" id="mySearch" type="text" placeholder="Tìm kiếm tên game">
                                 </label>
                             </div>
                             <div class="control">
@@ -95,11 +92,11 @@
                         </div>
                     </form>
                     <div class="buttons ml-2" sec:authorize="!isAuthenticated()">
-                        <a class="button is-primary" th:href="@{/signup}">
-                            <strong>Đăng ký</strong>
-                        </a>
-                        <a class="button is-light" th:href="@{/login}">
+                        <a class="button" th:href="@{/login}">
                             Đăng nhập
+                        </a>
+                        <a class="button is-warning" th:href="@{/signup}">
+                            <strong>Đăng ký</strong>
                         </a>
                     </div>
                     <div class="navbar-item has-dropdown is-hoverable" sec:authorize="isAuthenticated()">
@@ -119,7 +116,94 @@
     </nav>
 </header>
 <!-- Footer -->
-<footer class="footer has-background-info has-text-info-light mt-3" th:fragment="footer">
+<section th:fragment="release-posts(page)">
+    <h3 class="is-size-3">Công cụ nổi bật khác</h3>
+    <div class="columns">
+        <div class="column">
+            <div class="card">
+                <div class="card-image">
+                    <a href="/ky-tu-dac-biet" th:href="@{/ky-tu-dac-biet}">
+                        <figure class="image is-5by3">
+                            <img src="/images/ki-tu-dac-biet-anhnbt.jpg"
+                                 th:src="@{/images/ki-tu-dac-biet-anhnbt.jpg}"
+                                 alt="Kí tự đặc biệt">
+                        </figure>
+                    </a>
+                </div>
+                <div class="card-content">
+                    <h5 class="title is-5"><a href="/ky-tu-dac-biet" th:href="@{/ky-tu-dac-biet}">Kí tự đặc
+                        biệt</a></h5>
+                </div>
+            </div>
+        </div>
+        <div class="column" th:unless="${#strings.equals(page, 'chu-in-dam')}">
+            <div class="card">
+                <div class="card-image">
+                    <a href="/chu-in-dam" th:href="@{/chu-in-dam}">
+                        <figure class="image is-5by3">
+                            <img src="/images/chu-in-dam.jpg"
+                                 th:src="@{/images/ki-tu-dac-biet-anhnbt.jpg}"
+                                 alt="Chữ in đậm">
+                        </figure>
+                    </a>
+                </div>
+                <div class="card-content">
+                    <h5 class="title is-5"><a href="/chu-in-dam" th:href="@{/chu-in-dam}">Chữ in đậm</a></h5>
+                </div>
+            </div>
+        </div>
+        <div class="column" th:unless="${#strings.equals(page, 'ki-tu-khoang-trong-ff')}">
+            <div class="card">
+                <div class="card-image">
+                    <a href="/ki-tu-khoang-trong-ff" th:href="@{/ki-tu-khoang-trong-ff}">
+                        <figure class="image is-5by3">
+                            <img src="/images/ki-tu-khoang-trong-ff.jpg"
+                                 th:src="@{/images/ki-tu-khoang-trong-ff.jpg}"
+                                 alt="kí tự khoảng trống">
+                        </figure>
+                    </a>
+                </div>
+                <div class="card-content">
+                    <h5 class="title is-5"><a href="/ki-tu-khoang-trong-ff" th:href="@{/ki-tu-khoang-trong-ff}">Kí tự khoảng trống</a></h5>
+                </div>
+            </div>
+        </div>
+        <div class="column" th:unless="${#strings.equals(page, 'ki-tu-dac-biet-chu-nho')}">
+            <div class="card">
+                <div class="card-image">
+                    <a href="/ki-tu-dac-biet-chu-nho" th:href="@{/ki-tu-dac-biet-chu-nho}">
+                        <figure class="image is-5by3">
+                            <img src="/images/ki-tu-chu-nho.jpg"
+                                 th:src="@{/images/ki-tu-chu-nho.jpg}"
+                                 alt="Kí tự đặc biệt chữ nhỏ">
+                        </figure>
+                    </a>
+                </div>
+                <div class="card-content">
+                    <h5 class="title is-5"><a href="/ki-tu-dac-biet-chu-nho" th:href="@{/ki-tu-dac-biet-chu-nho}">Kí tự đặc biệt chữ nhỏ</a></h5>
+                </div>
+            </div>
+        </div>
+        <div class="column" th:unless="${#strings.equals(page, 'ki-tu-tang-hinh')}">
+            <div class="card">
+                <div class="card-image">
+                    <a href="/ki-tu-tang-hinh" th:href="@{/ki-tu-tang-hinh}">
+                        <figure class="image is-5by3">
+                            <img src="/images/ki-tu-tang-hinh-ff.jpg"
+                                 th:src="@{/images/ki-tu-tang-hinh-ff.jpg}"
+                                 alt="Kí tự tàng hình">
+                        </figure>
+                    </a>
+                </div>
+                <div class="card-content">
+                    <h5 class="title is-5"><a href="/ki-tu-tang-hinh" th:href="@{/ki-tu-tang-hinh}">Kí tự tàng hình</a></h5>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.columns -->
+</section>
+<!-- Footer -->
+<footer class="footer has-background-primary has-text-primary-light mt-3" th:fragment="footer">
     <div class="content has-text-centered">
         <p>© Copyright 2016-<span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2016</span> by <a
                 th:href="@{/}" class="has-text-info-light">AnhNBT</a>™ <span class="tag is-dark is-rounded"
@@ -138,7 +222,7 @@
     <script th:inline="javascript">
         const contextPath = /*[[@{/}]]*/ '/';
     </script>
-    <script th:src="@{/js/app.min.js?version=1}"></script>
+    <script th:src="@{/js/app.min.js?version=3.3}"></script>
 </th:block>
 </body>
 </html>

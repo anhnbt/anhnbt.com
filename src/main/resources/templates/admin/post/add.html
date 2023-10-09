@@ -8,7 +8,7 @@
         <div class="column">
             <nav class="breadcrumb" aria-label="breadcrumbs">
                 <ul>
-                    <li><a th:href="@{/templates/admin}">Quản trị</a></li>
+                    <li><a th:href="@{/admin}">Quản trị</a></li>
                     <li><a th:href="@{/admin/posts}">Bài viết</a></li>
                     <li class="is-active"><a href="#" aria-current="page">Thêm bài viết</a></li>
                 </ul>
@@ -24,7 +24,7 @@
                     <p th:if="${MSG_SUCCESS}" th:text="${MSG_SUCCESS}" class="notification is-success"></p>
                     <p th:if="${MSG_INFO}" th:text="${MSG_INFO}" class="notification is-info"></p>
                     <p th:if="${MSG_ERROR}" th:text="${MSG_ERROR}" class="notification is-danger"></p>
-                    <form th:action="@{/admin/posts/add}" th:object="${post}" method="post">
+                    <form th:action="@{/admin/posts/add}" th:object="${post}" method="post" enctype="multipart/form-data">
                         <div class="message is-danger content" th:if="${#fields.hasAnyErrors()}">
                             <div class="message-body">
                                 <ul class="m-0">
@@ -44,6 +44,14 @@
                                class="help is-danger"></p>
                         </div>
                         <div class="field">
+                            <label th:for="thumbnail" class="label">Thumbnail <span
+                                    class="has-text-danger">*</span>:</label>
+                            <div class="col-md-10">
+                                <input type="file" th:field="*{thumbnail}" class="form-control">
+                                <p th:if="${#fields.hasErrors('thumbnail')}" th:errors="*{thumbnail}" class="invalid-feedback">Thumbnail error</p>
+                            </div>
+                        </div>
+                        <div class="field">
                             <label th:for="category" class="label">Chuyên mục</label>
                             <div class="select">
                                 <select th:field="*{category}">
@@ -54,6 +62,16 @@
                                 </select>
                             </div>
                             <p th:if="${#fields.hasErrors('category')}" th:errors="*{category}"
+                               class="help is-danger"></p>
+                        </div>
+                        <div class="field">
+                            <label th:for="description" class="label">Mô tả ngắn</label>
+                            <div class="control">
+                            <textarea maxlength="160" class="textarea" th:field="*{description}"
+                                      th:classappend="${#fields.hasErrors('description')} ? ' is-danger'"
+                                      placeholder="Mô tả ngắn"/>
+                            </div>
+                            <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
                                class="help is-danger"></p>
                         </div>
                         <div class="field">

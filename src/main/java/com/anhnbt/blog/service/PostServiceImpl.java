@@ -3,6 +3,7 @@ package com.anhnbt.blog.service;
 import com.anhnbt.blog.common.StringCommon;
 import com.anhnbt.blog.entities.Category;
 import com.anhnbt.blog.entities.Post;
+import com.anhnbt.blog.exception.PostExistsException;
 import com.anhnbt.blog.exception.PostNotFoundException;
 import com.anhnbt.blog.model.PostDTO;
 import com.anhnbt.blog.repository.CategoryRepository;
@@ -29,6 +30,11 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public List<Post> findAllByOrderByIdDesc() {
+        return postRepository.findAllByOrderByIdDesc();
+    }
+
+    @Override
     public List<Post> findAllByIdGreaterThan(Long id) {
         return postRepository.findAllByIdGreaterThan(id);
     }
@@ -39,17 +45,23 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void create(PostDTO postDto) throws PostNotFoundException {
+    public void create(PostDTO postDto) throws PostNotFoundException, PostExistsException {
         Post post = new Post();
         mapToEntity(postDto, post);
+        if (existsByPostNameIgnoreCase(post.getPostName())) {
+            throw new PostExistsException("Tiêu đề đã tồn tại!");
+        }
         postRepository.save(post);
     }
 
     @Override
-    public void update(Long id, PostDTO postDTO) throws PostNotFoundException {
+    public void update(Long id, PostDTO postDTO) throws PostNotFoundException, PostExistsException {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new PostNotFoundException("Post not found"));
         mapToEntity(postDTO, post);
+        if (existsByPostNameIgnoreCaseAndIdNot(post.getPostName(), post.getId())) {
+            throw new PostExistsException("Tiêu đề đã tồn tại!");
+        }
         postRepository.save(post);
     }
 
@@ -63,7 +75,9 @@ public class PostServiceImpl implements PostService {
     private PostDTO mapToDTO(Post post, PostDTO postDTO) {
         postDTO.setId(post.getId());
         postDTO.setTitle(post.getPostTitle());
-        postDTO.setContent(post.getPostContent());
+        postDTO.setThumbnailUrl(post.getPostThumb());
+        postDTO.setDescription(post.getPostDescription());
+        postDTO.setContent(post.getContentEscape());
         postDTO.setCategory(post.getCategory() == null ? null : post.getCategory().getId());
         return postDTO;
     }
@@ -71,8 +85,10 @@ public class PostServiceImpl implements PostService {
     private Post mapToEntity(PostDTO postDTO, Post post) throws PostNotFoundException {
         post.setPostTitle(postDTO.getTitle());
         post.setPostName(StringCommon.createSlug(postDTO.getTitle()));
+        post.setPostThumb(postDTO.getThumbnailUrl());
+        post.setPostDescription(postDTO.getDescription());
         post.setPostContent(postDTO.getContent());
-        Category category =postDTO.getCategory() == null ? null : categoryRepository
+        Category category = postDTO.getCategory() == null ? null : categoryRepository
                 .findById(postDTO.getCategory())
                 .orElseThrow(() -> new PostNotFoundException("Category not found"));
         post.setCategory(category);
@@ -82,6 +98,11 @@ public class PostServiceImpl implements PostService {
     @Override
     public boolean existsByPostNameIgnoreCase(String postName) {
         return postRepository.existsByPostNameIgnoreCase(postName);
+    }
+
+    @Override
+    public boolean existsByPostNameIgnoreCaseAndIdNot(String postName, Long id) {
+        return postRepository.existsByPostNameIgnoreCaseAndIdNot(postName, id);
     }
 
     @Override

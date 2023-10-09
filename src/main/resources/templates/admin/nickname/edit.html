@@ -8,7 +8,7 @@
         <div class="column">
             <nav class="breadcrumb" aria-label="breadcrumbs">
                 <ul>
-                    <li><a th:href="@{/templates/admin}">Quản trị</a></li>
+                    <li><a th:href="@{/admin}">Quản trị</a></li>
                     <li><a th:href="@{/admin/nicknames}">Nickname</a></li>
                     <li class="is-active"><a href="#" aria-current="page">Chỉnh sửa Nickname</a></li>
                 </ul>
@@ -40,25 +40,32 @@
                                        placeholder="Tên game" maxlength="100"/>
                             </div>
                             <div class="help"><span id="nicknameChars">100</span> ký tự còn lại</div>
+                            <p class="help">Ví dụ: <code>Ťøp❶</code></p>
                             <p th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}"
                                class="help is-danger"></p>
                         </div>
                         <div class="field">
-                            <label th:for="slug" class="label">Giải nghĩa</label>
+                            <label th:for="name" class="label">Giải nghĩa</label>
                             <div class="control">
-                                <input class="input" type="text" th:field="*{slug}"
-                                       th:classappend="${#fields.hasErrors('slug')} ? ' is-danger'"/>
+                                <input class="input" type="text" th:field="*{name}"
+                                       th:classappend="${#fields.hasErrors('name')} ? ' is-danger'"
+                                       placeholder="Giải nghĩa" maxlength="100"/>
                             </div>
-                            <p th:if="${#fields.hasErrors('slug')}" th:errors="*{slug}"
+                            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
                                class="help is-danger"></p>
+                            <p class="help">Ví dụ: <code>Top1</code> (Sử dụng cho công cụ tìm kiếm)</p>
                         </div>
                         <div class="field">
                             <label th:for="enabled" class="checkbox">
                                 <input type="checkbox" th:field="*{enabled}" th:checked="${enabled}" /> Hiển thị</label>
                         </div>
                         <div class="field is-grouped">
-                            <input type="submit" value="Cập nhật" class="button is-primary"/>
-                            <a th:href="@{/admin/nicknames}" class="button is-link">Quay lại</a>
+                            <p class="control">
+                                <input type="submit" value="Cập nhật" class="button is-primary"/>
+                            </p>
+                            <p class="control">
+                                <a th:href="@{/admin/nicknames}" class="button is-link">Quay lại</a>
+                            </p>
                         </div>
                     </form>
                 </div><!-- /.card-content -->

@@ -30,6 +30,9 @@ public class Post implements Serializable {
     @Column(name = "post_name", length = 200)
     private String postName;
 
+    @Column(name = "post_description", length = 160)
+    private String postDescription;
+
     @Column(name = "post_thumb")
     private String postThumb;
 

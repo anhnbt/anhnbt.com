@@ -3,9 +3,7 @@ package com.anhnbt.blog.controller;
 import com.anhnbt.blog.entities.Nickname;
 import com.anhnbt.blog.model.MetaTag;
 import com.anhnbt.blog.service.NicknameService;
-import com.anhnbt.blog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -24,12 +22,6 @@ import java.util.stream.IntStream;
 @Controller
 @RequestMapping("search")
 public class SearchController {
-
-    @Value(value = "${app.base-url}")
-    private String baseUrl;
-
-    @Autowired
-    private PostService postService;
 
     @Autowired
     private NicknameService nicknameService;

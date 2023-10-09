@@ -496,6 +496,7 @@
           <p>Đừng quên sử dụng các ký tự đặc biệt độc lạ để tạo ra những cái tên game đỉnh của chóp các bạn nhé.</p>
         </div>
       </article>
+      <div th:replace="fragments/layout :: release-posts(page='ten-game-hay')"></div>
     </div>
   </div>
 </main>
@@ -503,7 +504,7 @@
 <div th:replace="fragments/components :: modal"></div>
 <th:block th:replace="fragments/layout :: scripts"></th:block>
 <script src="/js/jquery-3.6.0.min.js" th:src="@{/js/jquery-3.6.0.min.js}"></script>
-<script src="/js/datatables.min.js" th:src="@{/js/dataTables.min.js}"></script>
+<script src="/js/datatables.min.js" th:src="@{/js/datatables.min.js}"></script>
 <script src="/js/datatables.bulma.min.js" th:src="@{/js/dataTables.bulma.min.js}"></script>
 <script src="/js/ten-game-hay.js" th:src="@{/js/ten-game-hay.js}"></script>
 </body>

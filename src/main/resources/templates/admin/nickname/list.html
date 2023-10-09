@@ -8,7 +8,7 @@
         <div class="column">
             <nav class="breadcrumb" aria-label="breadcrumbs">
                 <ul>
-                    <li><a th:href="@{/templates/admin}">Quản trị</a></li>
+                    <li><a th:href="@{/admin}">Quản trị</a></li>
                     <li class="is-active"><a href="#" aria-current="page">Tên game</a></li>
                 </ul>
             </nav>
@@ -23,24 +23,24 @@
                     <p th:if="${MSG_INFO}" th:text="${MSG_INFO}" class="notification is-info"></p>
                     <p th:if="${MSG_ERROR}" th:text="${MSG_ERROR}" class="notification is-danger"></p>
                     <div th:if="${#lists.isEmpty(nicknames)}" th:text="#{nickname.list.empty}"></div>
-                    <div th:unless="${#lists.isEmpty(nicknames)}">
-                    <table class="table">
+                    <div class="table-container" th:unless="${#lists.isEmpty(nicknames)}">
+                    <table class="table mb-5 is-bordered is-striped is-hoverable is-fullwidth">
                         <thead>
                         <tr>
-                            <th scope="col" th:text="#{nickname.id.label}">ID</th>
-                            <th scope="col" th:text="#{nickname.nickname.label}">Tên game</th>
-                            <th scope="col" th:text="#{nickname.timestamp.label}">Ngày tạo</th>
-                            <th scope="col" th:text="#{nickname.enabled.label}">Hiển thị</th>
-                            <th scope="col">&nbsp;</th>
+                            <th class="has-text-centered" scope="col" th:text="#{nickname.id.label}">ID</th>
+                            <th class="has-text-centered" scope="col" th:text="#{nickname.nickname.label}">Tên game</th>
+                            <th class="has-text-centered" scope="col" th:text="#{nickname.timestamp.label}">Ngày tạo</th>
+                            <th class="has-text-centered" scope="col" th:text="#{nickname.enabled.label}" style="width: 100px;">Hiển thị</th>
+                            <th class="has-text-centered" scope="col" style="width: 140px;">&nbsp;</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="nickname,iterStat : ${nicknames}">
-                            <td th:text="${iterStat.index+1}"></td>
+                            <td class="has-text-centered" th:text="${iterStat.index+1}"></td>
                             <td th:text="${nickname.nickname}"></td>
-                            <td th:text="${#dates.format(nickname.timestamp, 'dd-MM-yyyy hh:mm:ss')}"></td>
-                            <td th:text="${nickname.enabled} ? 'Hiển thị' : 'Ẩn'"></td>
-                            <td>
+                            <td class="has-text-centered" th:text="${#dates.format(nickname.timestamp, 'dd-MM-yyyy hh:mm:ss')}"></td>
+                            <td class="has-text-centered" th:utext="${nickname.enabled} ? '<span class=\'tag is-success\'>Hiển thị</span>' : '<span class=\'tag is-danger\'>Ẩn</span>'"></td>
+                            <td class="has-text-centered">
                                 <div class="buttons ml-2">
                                     <form th:action="@{/admin/nicknames/delete/{id}(id=${nickname.id})}" data-confirm-message="Bạn có thực sự muốn xóa tên này không? Điều này không thể hoàn tác." method="post" class="js-submit-confirm">
                                     <a class="button is-small is-info is-light" th:href="@{/admin/nicknames/edit/{id}(id=${nickname.id})}">

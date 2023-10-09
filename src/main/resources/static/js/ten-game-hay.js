@@ -1,6 +1,13 @@
 $(document).ready( function () {
     $('#TenLienQuanHay').DataTable({
-        "ajax": "https://anhnbt.com/ajax/ten-game-hay.php"
+        ajax: {
+            url: "/nicknames?size=9999",
+            dataSrc: 'content'
+        },
+        columns: [
+            { data: 'name' },
+            { data: 'nickname' }
+        ]
     });
     $('#TenQuanDoanHay').DataTable();
 } );

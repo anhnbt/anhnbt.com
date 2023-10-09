@@ -1,0 +1,51 @@
+name: Auto Versioning
+
+on:
+  push:
+    branches:
+      - main  # Thay thế "main" bằng tên nhánh chính của bạn
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set version
+        id: set_version
+        run: |
+          # Lấy phiên bản hiện tại từ tệp version.yml sử dụng đường dẫn tương đối
+          current_version=$(cat $GITHUB_WORKSPACE/config/version.yml | grep 'version:' | awk '{print $2}')
+          
+          # Tăng phiên bản lên một đơn vị (ví dụ: 1.0.0 -> 1.0.1)
+          new_version=$(echo $current_version | awk -F. '{$NF++; OFS="."; print $0}')
+
+          # Ghi phiên bản mới vào tệp version.yml
+          sed -i "s/version: $current_version/version: $new_version/g" $GITHUB_WORKSPACE/config/version.yml
+
+          # Đặt giá trị phiên bản mới vào biến
+          echo "VERSION=$new_version" >> $GITHUB_ENV
+          
+          # Cập nhật tệp application-prod.properties
+          sed -i "s/app.version=$current_version/app.version=$new_version/g" src/main/resources/application-prod.properties
+
+          # Cập nhật tệp pom.xml
+          sed -i "s/<version>$current_version-SNAPSHOT<\/version>/<version>$new_version-SNAPSHOT<\/version>/" pom.xml
+
+        # Đảm bảo rằng tệp version.yml đã được cập nhật
+        # Nếu không, sẽ không tạo commit mới
+        continue-on-error: true
+
+      - name: Commit version change
+        run: |
+          git config user.name "Nguyễn Bá Tuấn Anh"
+          git config user.email "anhnbt.it@gmail.com"
+          git add $GITHUB_WORKSPACE/config/version.yml src/main/resources/application-prod.properties pom.xml
+          git commit -m "Auto-increment version"
+          git push
+
+      - name: Display new version
+        run: |
+          echo "New version: ${{ env.VERSION }}"
