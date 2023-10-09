@@ -36,6 +36,9 @@ jobs:
 
           # Cập nhật tệp pom.xml
           sed -i "s/<version>$current_version-SNAPSHOT<\/version>/<version>$new_version-SNAPSHOT<\/version>/" pom.xml
+          
+          # Cập nhật tệp README.md
+          sed -i "s/$current_version/$new_version/g" README.md
 
         # Đảm bảo rằng tệp version.yml đã được cập nhật
         # Nếu không, sẽ không tạo commit mới
@@ -45,7 +48,7 @@ jobs:
         run: |
           git config user.name "Nguyễn Bá Tuấn Anh"
           git config user.email "anhnbt.it@gmail.com"
-          git add config/version.yml src/main/resources/application-prod.properties src/main/resources/application-dev.properties pom.xml
+          git add config/version.yml src/main/resources/application-prod.properties src/main/resources/application-dev.properties pom.xml README.md
           git commit -m "Auto-increment version"
           git push
 

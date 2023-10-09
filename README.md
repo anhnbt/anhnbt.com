@@ -20,8 +20,8 @@ mvn clean package -DskipTests
 ```
 
 ```
-nohup java -jar blog-1.1.8-SNAPSHOT.jar --spring.profiles.active=prod > anhnbt-prod-1.1.8.log &
-tail -1000f /opt/anhnbt-prod-1.1.8.log
+nohup java -jar blog-2.0.2-SNAPSHOT.jar --spring.profiles.active=prod > anhnbt-prod-2.0.2.log &
+tail -1000f /opt/anhnbt-prod-2.0.2.log
 ```
 
 `Nohup` là một lệnh Unix cho phép chạy ứng dụng ngay cả khi ngắt kết nối.
