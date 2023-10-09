@@ -3,7 +3,7 @@ name: Auto Versioning
 on:
   push:
     branches:
-      - main  # Thay thế "main" bằng tên nhánh chính của bạn
+      - develop  # Thay thế "develop" bằng tên nhánh chính của bạn
 
 jobs:
   build:
