@@ -4,12 +4,14 @@ import com.anhnbt.blog.common.StringCommon;
 import com.anhnbt.blog.entities.Nickname;
 import com.anhnbt.blog.model.NicknameDto;
 import com.anhnbt.blog.repository.NicknameRepository;
+import com.anhnbt.blog.util.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class NicknameServiceImpl implements NicknameService {
@@ -59,6 +61,30 @@ public class NicknameServiceImpl implements NicknameService {
     @Override
     public void delete(Long id) {
         repo.deleteById(id);
+    }
+
+    @Override
+    public long countPostsInDay(Date date) {
+        Date startOfDay = DateUtils.truncateTimeToStartOfDay(date);
+        Date endOfDay = DateUtils.truncateTimeToEndOfDay(date);
+        List<Nickname> nicknames = repo.findAllByTimestampBetween(startOfDay, endOfDay);
+        return nicknames.size();
+    }
+
+    @Override
+    public long countPostsInWeek(Date date) {
+        Date startOfWeek = DateUtils.getStartOfWeek(date);
+        Date endOfWeek = DateUtils.getEndOfWeek(date);
+        List<Nickname> nicknames = repo.findAllByTimestampBetween(startOfWeek, endOfWeek);
+        return nicknames.size();
+    }
+
+    @Override
+    public long countPostsInMonth(Date date) {
+        Date startOfMonth = DateUtils.getStartOfMonth(date);
+        Date endOfMonth = DateUtils.getEndOfMonth(date);
+        List<Nickname> nicknames = repo.findAllByTimestampBetween(startOfMonth, endOfMonth);
+        return nicknames.size();
     }
 
     private NicknameDto mapToDTO(Nickname nickname, NicknameDto nicknameDto) {

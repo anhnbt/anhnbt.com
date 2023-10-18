@@ -1,10 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Chào mừng đến với Administrator</title>
-</head>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head"></head>
 <body>
-Chào mừng đến với Administrator.
+<main class="container is-fluid pt-5">
+    <section class="hero is-medium mb-6">
+        <div class="container has-text-centered">
+            <div class="hero-body">
+                <h1 class="title">Chào mừng đến với Administrator</h1>
+            </div>
+            <div class="hero-light-line">
+                <img src="/images/brand-anhnbt.png" th:src="@{/images/brand-anhnbt.png}" alt="AnhNBT logo" width="30"
+                     height="30" class="hero-light-line-image">
+            </div>
+        </div>
+    </section>
+    <nav class="panel">
+        <p class="panel-heading">
+            Dashboard
+        </p>
+        <div class="panel-block">
+            <p class="control has-icons-left">
+                <input class="input" type="text" placeholder="Search">
+                <span class="icon is-left">
+        <i class="fas fa-search" aria-hidden="true"></i>
+      </span>
+            </p>
+        </div>
+        <p class="panel-tabs">
+            <a class="is-active">Hôm nay</a>
+            <a>Tuần này</a>
+            <a>Tháng này</a>
+        </p>
+        <a class="panel-block is-flex is-justify-content-space-between is-active">
+            Hôm nay: <span class="tag is-primary" th:text="${countPostsInDay}">0</span>
+        </a>
+        <a class="panel-block is-flex is-justify-content-space-between">
+            Tuần này: <span class="tag is-primary" th:text="${countPostsInWeek}">0</span>
+        </a>
+        <a class="panel-block is-flex is-justify-content-space-between">
+            Tháng này: <span class="tag is-primary" th:text="${countPostsInMonth}">0</span>
+        </a>
+    </nav>
+</main>
 </body>
 </html>

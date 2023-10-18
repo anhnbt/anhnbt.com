@@ -40,6 +40,7 @@ public class Nickname implements Serializable {
     @Column(name = "views")
     private Integer views;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "timestamp", nullable = false)
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date timestamp;

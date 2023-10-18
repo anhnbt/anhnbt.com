@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Date;
+
 @Slf4j
 @Controller
 @RequestMapping("/admin")
@@ -39,7 +41,11 @@ public class AdminController {
     }
 
     @GetMapping
-    public String index() {
+    public String index(Model model) {
+        Date currentDate = new Date();
+        model.addAttribute("countPostsInDay", nicknameService.countPostsInDay(currentDate));
+        model.addAttribute("countPostsInWeek", nicknameService.countPostsInWeek(currentDate));
+        model.addAttribute("countPostsInMonth", nicknameService.countPostsInMonth(currentDate));
         return "admin/index";
     }
 
