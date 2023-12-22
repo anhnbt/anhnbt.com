@@ -4,14 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
-import java.time.Instant;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.Date;
 
 @Getter
 @Setter
