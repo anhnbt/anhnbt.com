@@ -1,5 +1,11 @@
 # AnhNBT
 
+## Kế hoạch 2024
+
+- Sử dụng Docker
+- Sử dụng các công cụ CI/CD
+- Triển khai lên Google Cloud
+
 ## System Requirements
 
 | Phần mềm         | Phiên bản                                           |
