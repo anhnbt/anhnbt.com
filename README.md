@@ -2,9 +2,10 @@
 
 ## Kế hoạch 2024
 
-- Sử dụng Docker
-- Sử dụng các công cụ CI/CD
-- Triển khai lên Google Cloud
+- Sử dụng `Docker`
+- Sử dụng các công cụ `CI/CD`
+- Triển khai lên `Google Cloud`
+- Sử dụng `Zabbix` hoặc `Prometheus + Grafana`
 
 ## System Requirements
 
