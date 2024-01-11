@@ -1,17 +1,15 @@
 package com.anhnbt.blog.security;
 
-import com.anhnbt.blog.service.MyUserDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -26,7 +24,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(requests -> requests
-                        .antMatchers("/",
+                        .requestMatchers("/",
                                 "/search",
                                 "/signup",
                                 "/ky-tu-dac-biet",
@@ -43,8 +41,7 @@ public class WebSecurityConfig {
                                 "/p/**",
                                 "/apps/**",
                                 "/ki-tu/**",
-                                "/sao-chep-ky-tu-dac-biet").permitAll()
-                        .mvcMatchers(
+                                "/sao-chep-ky-tu-dac-biet",
                                 "/assets/**",
                                 "/css/**",
                                 "/js/**",
@@ -55,7 +52,7 @@ public class WebSecurityConfig {
                                 "/sitemap.xml",
                                 "/favicon.ico",
                                 "/favicon-32x32.png").permitAll()
-                        .mvcMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers(antMatcher("/admin/**")).hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
