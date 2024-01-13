@@ -27,6 +27,7 @@
     </script>
 </head>
 <body>
+<th:block th:fragment="facebook">
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v7.0&appId=1540103976279074&autoLogAppEvents=1" nonce="jBscnR6T"></script>
 <!-- Facebook Pixel Code -->
@@ -46,6 +47,7 @@
     <img height="1" width="1" src="https://www.facebook.com/tr?id=1266353633523718&ev=PageView&noscript=1">
 </noscript>
 <!-- End Facebook Pixel Code -->
+</th:block>
 <!-- Header -->
 <header id="masthead" class="site-header" th:fragment="header">
     <nav class="navbar is-primary has-shadow" aria-label="main navigation">
