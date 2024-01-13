@@ -36,7 +36,7 @@ Sau khi build thành công. Sao chép tệp `blog-<version>-SNAPSHOT.jar` trong 
 Chạy dự án:
 
 ```shell
-nohup java -jar blog-2.0.13-SNAPSHOT.jar --spring.profiles.active=prod > anhnbt-prod-2.0.13.log &
+nohup java -jar blog-2.0.14-SNAPSHOT.jar --spring.profiles.active=prod > anhnbt-prod-2.0.14.log &
 ```
 
 - `nohup` là một lệnh Unix cho phép chạy ứng dụng ngay cả khi ngắt kết nối.
@@ -46,7 +46,7 @@ nohup java -jar blog-2.0.13-SNAPSHOT.jar --spring.profiles.active=prod > anhnbt-
 Xem logs theo thời gian thực:
 
 ```shell
-tail -1000f /opt/anhnbt-prod-2.0.13.log
+tail -1000f /opt/anhnbt-prod-2.0.14.log
 ```
 
 ## Build Bulma
