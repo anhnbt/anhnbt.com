@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="vi" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/layout :: head"></head>
+<head th:replace="~{fragments/layout :: head}"></head>
 <body>
-<th:block th:replace="fragments/layout :: facebook"></th:block>
-<div th:replace="fragments/layout :: header"></div>
+<th:block th:replace="~{fragments/layout :: facebook}"></th:block>
+<div th:replace="~{fragments/layout :: header}"></div>
 <main class="container is-fluid pt-5">
     <div class="columns">
         <div class="column">
@@ -231,9 +231,9 @@
         </div>
     </div>
 </main>
-<div th:replace="fragments/layout :: footer"></div>
-<div th:replace="fragments/components :: modal"></div>
-<th:block th:replace="fragments/layout :: scripts"></th:block>
+<div th:replace="~{fragments/layout :: footer}"></div>
+<div th:replace="~{fragments/components :: modal}"></div>
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
 <script src="/js/bold-text.min.js" th:src="@{/js/bold-text.min.js}"></script>
 </body>
 </html>

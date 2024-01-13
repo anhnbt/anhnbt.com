@@ -4,8 +4,8 @@
   <title>Hello</title>
 </head>
 <body>
-<th:block th:replace="fragments/layout :: facebook"></th:block>
-<div th:replace="fragments/layout :: header"></div>
+<th:block th:replace="~{fragments/layout :: facebook}"></th:block>
+<div th:replace="~{fragments/layout :: header}"></div>
 <article class="content">
   <header>
     <h1 class="title">Chính sách bảo mật</h1>
@@ -101,6 +101,6 @@
     </ol>
   </div><!-- .entry-content -->
 </article>
-<div th:replace="fragments/layout :: footer"></div>
+<div th:replace="~{fragments/layout :: footer}"></div>
 </body>
 </html>

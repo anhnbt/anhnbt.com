@@ -37,7 +37,7 @@ public class Post implements Serializable {
     private String postThumb;
 
     @Lob
-    @Column(name = "post_content", nullable = false)
+    @Column(name = "post_content", nullable = false, columnDefinition = "TEXT")
     private String postContent;
 
     @Column(name = "post_date")

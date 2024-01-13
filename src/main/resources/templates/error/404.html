@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="vi" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/layout :: head"></head>
+<head th:replace="~{fragments/layout :: head}"></head>
 <body>
-<div th:replace="fragments/layout :: header"></div>
+<div th:replace="~{fragments/layout :: header}"></div>
 <main class="container is-fluid pt-5">
     <div class="columns">
         <div class="column">
-            <div th:replace="fragments/components :: back"></div>
+            <div th:replace="~{fragments/components :: back}"></div>
             <article class="content">
                 <header>
                     <h1 class="title">Oops! 404 Not Found</h1>
@@ -18,6 +18,6 @@
         </div>
     </div>
 </main>
-<div th:replace="fragments/layout :: footer"></div>
+<div th:replace="~{fragments/layout :: footer}"></div>
 </body>
 </html>

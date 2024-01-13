@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="vi" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/layout :: head"></head>
+<head th:replace="~{fragments/layout :: head}"></head>
 <body>
-<div th:replace="fragments/layout :: header"></div>
+<div th:replace="~{fragments/layout :: header}"></div>
 <!-- /* Handle the flash message */-->
 <th:block th:if="${message != null}">
     <!-- /* The message code is returned from the @Controller */ -->
-    <div th:replace="fragments/components :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}(${#authentication.name})})">
+    <div th:replace="~{fragments/components :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}(${#authentication.name})})}">
         &nbsp;
     </div>
 </th:block>
@@ -41,8 +41,8 @@
         </div><!-- /.columns -->
     </div><!-- /.container -->
 </main><!-- .site-main -->
-<div th:replace="fragments/layout :: footer"></div>
-<div th:replace="fragments/components :: modal"></div>
-<th:block th:replace="fragments/layout :: scripts"></th:block>
+<div th:replace="~{fragments/layout :: footer}"></div>
+<div th:replace="~{fragments/components :: modal}"></div>
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
 </body>
 </html>
