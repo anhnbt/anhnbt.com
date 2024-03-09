@@ -190,6 +190,20 @@ public class PageController {
         return "pages/ki-tu-khoang-trong-ff";
     }
 
+    @GetMapping("/ki-tu-trai-tim")
+    public String kiTuTraiTim(Model model) {
+        MetaTag metaTag = new MetaTag();
+        metaTag.setTitle("Chinh phục trái tim người chơi: Sử dụng kí tự trái tim trong game");
+        metaTag.setCanonical(baseUrl + "/ki-tu-trai-tim");
+        metaTag.setUrl(baseUrl + "/ki-tu-trai-tim");
+        metaTag.setType("article");
+        metaTag.setDescription("Chinh phục trái tim người chơi bằng cách sử dụng kí tự trái tim trong game, với những ký tự đặc biệt tạo hình trái tim, bạn dễ dàng thể hiện thiện cảm tốt.");
+        metaTag.setImage(baseUrl + "/images/ki-tu-trai-tim.jpg");
+        model.addAttribute("metaTag", metaTag);
+        model.addAttribute("enabledAds", enabledAds);
+        return "pages/ki-tu-trai-tim";
+    }
+
     private void send301Redirect(HttpServletResponse response, String newUrl) {
         response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
         response.setHeader("Location", newUrl);

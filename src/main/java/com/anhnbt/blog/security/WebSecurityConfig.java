@@ -37,6 +37,7 @@ public class WebSecurityConfig {
                                 "/ki-tu-vuong-mien",
                                 "/ki-tu-tang-hinh",
                                 "/ki-tu-khoang-trong-ff",
+                                "/ki-tu-trai-tim",
                                 "/nicknames",
                                 "/p/**",
                                 "/apps/**",
