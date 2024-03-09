@@ -95,11 +95,11 @@ public class PageController {
     @GetMapping("/ten-game-hay")
     public String tenGameHay(Model model) {
         MetaTag metaTag = new MetaTag();
-        metaTag.setTitle("Tên Game Hay nhất cho game thủ Việt Nam");
+        metaTag.setTitle("Sở hữu tên game hay nổi bật trong thế giới ảo");
         metaTag.setCanonical(baseUrl + "/ten-game-hay");
         metaTag.setUrl(baseUrl + "/ten-game-hay");
         metaTag.setType("article");
-        metaTag.setDescription("Bạn đang bí ý tưởng để đặt tên game hay Liên Quân Mobile (LQ), Free Fire (FF)? Vào xem ngay những cái tên cực ngầu, hợp thời và gây được ấn tượng nhất.");
+        metaTag.setDescription("Sở hữu tên game hay là điều mà nhiều game thủ quan tâm? Vào xem ngay những cái tên cực ngầu, hợp thời và gây được ấn tượng nhất.");
         metaTag.setImage(baseUrl + "/images/ten-lien-quan-hay.jpg");
         model.addAttribute("metaTag", metaTag);
         model.addAttribute("enabledAds", enabledAds);
