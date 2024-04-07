@@ -210,12 +210,15 @@
         <p>© Copyright 2016-<span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2016</span> by <a
                 th:href="@{/}" class="has-text-info-light">AnhNBT</a>™ <span class="tag is-dark is-rounded"
                 th:text="${@environment.getProperty('app.version')}"></span></p>
-        <nav id="secondarynav" aria-label="Secondary menu">
+        <nav class="mb-2" id="secondarynav" aria-label="Secondary menu">
             <a th:href="@{/p/lien-he.html}" class="has-text-info-light">Liên hệ</a> ·
             <a th:href="@{/p/gioi-thieu.html}" class="has-text-info-light">Giới thiệu</a> ·
             <a th:href="@{/p/dieu-khoan-su-dung.html}" class="has-text-info-light">Điều khoản sử dụng</a> ·
             <a th:href="@{/p/chinh-sach-bao-mat.html}" class="has-text-info-light">Chính sách bảo mật</a>
         </nav>
+        <p>Địa chỉ: P.604 Tầng 6 Tòa nhà Tây Hà, Số 19 Tố Hữu, Nam Từ Liêm, Hà Nội</p>
+        <p>Email: <a href="mailto:anhnbt.com@gmail.com" class="has-text-white">anhnbt.com@gmail.com</a></p>
+        <p>Điện thoại: <a href="tel:+84975737642" class="has-text-white">0975737642</a></p>
     </div>
 </footer>
 <script th:inline="javascript">
