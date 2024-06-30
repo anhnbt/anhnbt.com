@@ -10,8 +10,8 @@
 ## System Requirements
 
 | Phần mềm         | Phiên bản                                           |
-| ---------------- | --------------------------------------------------- |
-| JDK              | 11                                                  |
+| ---------------- |-----------------------------------------------------|
+| JDK              | 17                                                  |
 | Maven            | 3.9+                                                |
 | MySQL or MariaDB | MySQL Community Server 8.2.0 or MariaDB Server 11.x |
 
